@@ -33,7 +33,7 @@ services:
     env_file:
       - ./.env.base44-defaults
       - /run/base44/app.env
-    command: ["sh", "-ec", "pnpm build:packages && pnpm prisma:generate && pnpm prisma:deploy && pnpm prisma:seed"]
+    command: ["sh", "-ec", ". /app/scripts/force-ipv4.sh && pnpm build:packages && pnpm prisma:generate && pnpm prisma:deploy && pnpm prisma:seed"]
     restart: "no"
 
   # NestJS API — dev mode with watch, internal port 3001.
@@ -59,7 +59,7 @@ services:
     depends_on:
       migrate:
         condition: service_completed_successfully
-    command: ["sh", "-ec", "pnpm build:packages && pnpm prisma:generate && exec pnpm --filter @prince-net/api dev"]
+    command: ["sh", "-ec", ". /app/scripts/force-ipv4.sh && pnpm build:packages && pnpm prisma:generate && exec pnpm --filter @prince-net/api dev"]
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:3001/api/v1/health || exit 1"]
       interval: 10s
