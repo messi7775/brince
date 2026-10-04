@@ -1,5 +1,6 @@
 # Base44 development compose — single-origin wiring.
 # Vite (web) on host port 3000, proxies /api to the NestJS API (internal port 3001).
+# DATABASE_URL comes from /run/base44/app.env (remote Neon database).
 services:
   db:
     image: postgres:16-bookworm
@@ -32,11 +33,6 @@ services:
     env_file:
       - ./.env.base44-defaults
       - /run/base44/app.env
-    environment:
-      - DATABASE_URL=postgresql://prince_net:prince_net_dev@db:5432/prince_net?schema=public
-    depends_on:
-      db:
-        condition: service_healthy
     command: ["sh", "-ec", "pnpm build:packages && pnpm prisma:generate && pnpm prisma:deploy && pnpm prisma:seed"]
     restart: "no"
 
@@ -59,12 +55,8 @@ services:
       - ./.env.base44-defaults
       - /run/base44/app.env
     environment:
-      - DATABASE_URL=postgresql://prince_net:prince_net_dev@db:5432/prince_net?schema=public
       - PORT=3001
-      - CORS_ORIGIN=http://localhost:3000
     depends_on:
-      db:
-        condition: service_healthy
       migrate:
         condition: service_completed_successfully
     command: ["sh", "-ec", "pnpm build:packages && pnpm prisma:generate && exec pnpm --filter @prince-net/api dev"]
