@@ -5,14 +5,19 @@
       "root": "apps/api",
       "entrypoint": "src/main.ts",
       "framework": "nestjs",
-      "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
+      "installCommand": "cd ../.. && pnpm install --frozen-lockfile --prod=false",
       "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && pnpm prisma:generate && pnpm --filter @prince-net/api build"
     },
     "web": {
       "root": "apps/web",
       "framework": "vite",
-      "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
+      "installCommand": "cd ../.. && pnpm install --frozen-lockfile --prod=false",
       "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && cd apps/web && pnpm build"
+    }
+  },
+  "functions": {
+    "api/src/main.ts": {
+      "includeFiles": "node_modules/**"
     }
   },
   "rewrites": [
