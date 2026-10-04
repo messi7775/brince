@@ -3,8 +3,8 @@
   "services": {
     "api": {
       "root": "apps/api",
-      "framework": "nestjs",
-      "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && cd apps/api && pnpm build"
+      "entrypoint": "src/main.ts",
+      "framework": "nestjs"
     },
     "web": {
       "root": "apps/web",
