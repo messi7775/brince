@@ -6,7 +6,7 @@
       "entrypoint": "src/main.ts",
       "framework": "nestjs",
       "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
-      "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && pnpm prisma:generate && pnpm --filter @prince-net/api build && cp -r ../../node_modules ./node_modules"
+      "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && pnpm prisma:generate && pnpm --filter @prince-net/api build"
     },
     "web": {
       "root": "apps/web",
@@ -16,7 +16,17 @@
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": { "service": "api" } },
-    { "source": "/(.*)", "destination": { "service": "web" } }
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "api"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "web"
+      }
+    }
   ]
 }
