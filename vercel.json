@@ -3,11 +3,13 @@
   "services": {
     "api": {
       "root": "apps/api",
-      "framework": "nestjs"
+      "framework": "nestjs",
+      "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && cd apps/api && pnpm build"
     },
     "web": {
       "root": "apps/web",
-      "framework": "vite"
+      "framework": "vite",
+      "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && cd apps/web && pnpm build"
     }
   },
   "rewrites": [
