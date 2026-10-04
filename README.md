@@ -642,6 +642,56 @@ apps/api/dist/
 
 ---
 
+## النشر على Vercel (مع Neon PostgreSQL)
+
+المشروع مُعدّ للنشر على Vercel عبر `vercel.json` (خدمتان: `api` و `web` مع rewrites).
+
+### المتغيرات البيئية المطلوبة على Vercel
+
+اضبطها في **Settings → Environment Variables** (لكل بيئة: Production, Preview):
+
+| المتغير | الوصف |
+|---|---|
+| `DATABASE_URL` | سلسلة اتصال Neon المُجمّعة (pooler) مع `?sslmode=require` |
+| `JWT_SECRET` | مفتاح توقيع JWT (32 حرفًا على الأقل) |
+| `CSRF_SECRET` | مفتاح توقيع CSRF (16 حرفًا على الأقل) |
+| `ADMIN_PASSWORD` | كلمة مرور الأدمن (12 حرفًا على الأقل) |
+| `ADMIN_EMAIL` | بريد الأدمن (مطلوب فقط عند تشغيل الـ seed) |
+| `NODE_ENV` | `production` |
+
+> `CORS_ORIGIN` يمكن تركه فارغًا — API و Web على نفس النطاق عبر rewrites.
+> `VITE_API_BASE_URL` يُترك افتراضيًا `/api/v1` (نسبي).
+
+### خطوات النشر
+
+1. **إنشاء قاعدة بيانات Neon** ونسخ الـ connection string (pooler).
+
+2. **تطبيق المهاجرات** على Neon (قبل أول نشر):
+   ```bash
+   DATABASE_URL="postgresql://..." pnpm prisma:deploy
+   ```
+   ثم تشغيل الـ seed (مرة واحدة):
+   ```bash
+   DATABASE_URL="postgresql://..." ADMIN_EMAIL="..." ADMIN_PASSWORD="..." pnpm prisma:seed
+   ```
+
+3. **ربط المستودع بـ Vercel** — Vercel يكتشف `vercel.json` تلقائيًا:
+   - خدمة `api` (NestJS) — البناء يشمل بناء الحزم المشتركة + `prisma generate` + `nest build`
+   - خدمة `web` (Vite) — البناء يشمل بناء الحزم المشتركة + `vite build`
+   - `rewrites`: `/api/*` → خدمة API، الباقي → خدمة Web
+
+4. **ضبط المتغيرات البيئية** على Vercel (انظر الجدول أعلاه).
+
+5. **النشر** — كل دفع لـ `main` يُفعّل نشرًا تلقائيًا.
+
+### ملاحظات
+
+- Prisma يستخدم `@prisma/adapter-pg` (driver adapter) مع `engineType = "client"` — لا حاجة لمحرك Rust على Vercel.
+- الكوكيز آمنة تلقائيًا في الإنتاج (`secure=true` عند `NODE_ENV=production`).
+- `@vercel/speed-insights` مُفعّل في الواجهة ويعمل تلقائيًا على Vercel.
+
+---
+
 ## API
 
 The REST API uses the prefix:

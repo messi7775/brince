@@ -128,6 +128,11 @@ export const routes: RouteObject[] = [
                 path: '/settings',
                 element: <SettingsPage />,
               },
+              // ─── Catch-all ───
+              {
+                path: '*',
+                element: <Navigate to="/dashboard" replace />,
+              },
             ],
           },
         ],

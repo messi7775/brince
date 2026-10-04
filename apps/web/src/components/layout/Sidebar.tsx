@@ -14,6 +14,7 @@ import {
   History,
   Database,
   Settings,
+  Tags,
   type LucideIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -32,6 +33,7 @@ const NAV_ITEMS: NavItemConfig[] = [
   { to: '/sales', label: 'المبيعات', icon: ShoppingCart },
   { to: '/lines', label: 'الخطوط', icon: Wifi },
   { to: '/expenses', label: 'المصروفات', icon: TrendingDown },
+  { to: '/expense-categories', label: 'تصنيفات المصروفات', icon: Tags },
   { to: '/owner-withdrawals', label: 'سحوبات المالك', icon: Wallet },
   { to: '/cash', label: 'الصندوق', icon: Banknote },
   { to: '/reports', label: 'التقارير', icon: BarChart3 },

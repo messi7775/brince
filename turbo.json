@@ -1,11 +1,60 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "globalPassThroughEnv": [
+    "DATABASE_URL",
+    "ADMIN_EMAIL",
+    "ADMIN_PASSWORD",
+    "JWT_SECRET",
+    "CSRF_SECRET",
+    "CORS_ORIGIN",
+    "BACKUP_DIR",
+    "NODE_ENV",
+    "PORT"
+  ],
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
+    "start:prod": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
     "prisma:generate": {
+      "cache": false
+    },
+    "prisma:migrate": {
+      "cache": false
+    },
+    "prisma:deploy": {
+      "cache": false
+    },
+    "prisma:seed": {
+      "cache": false,
+      "dependsOn": ["^build", "prisma:generate"]
+    },
+    "prisma:studio": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
       "cache": false
     }
   }

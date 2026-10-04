@@ -4,9 +4,7 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "assets": [
-      "generated/prisma/**/*"
-    ],
+    "assets": ["generated/prisma/**/*"],
     "watchAssets": true
   }
 }
