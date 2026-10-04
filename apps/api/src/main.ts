@@ -18,7 +18,10 @@ async function bootstrap(): Promise<void> {
 
     const port = config.get<number>('PORT', 3000);
     const apiPrefix = config.get<string>('API_PREFIX', 'api/v1');
-    const corsOrigin = config.get<string>('CORS_ORIGIN', 'http://localhost:5173');
+    const corsOriginRaw = config.get<string>('CORS_ORIGIN', '');
+    // When CORS_ORIGIN is empty (e.g. Vercel same-origin via services),
+    // reflect the request origin so the API works on any domain.
+    const corsOrigin: string | true = corsOriginRaw || true;
 
     // Security headers
     app.use(helmet());
@@ -56,7 +59,7 @@ async function bootstrap(): Promise<void> {
     await app.listen(port);
 
     logger.log(`Prince Net API running on http://localhost:${port}/${apiPrefix}`);
-    logger.log(`CORS origin: ${corsOrigin}`);
+    logger.log(`CORS origin: ${corsOrigin === true ? 'reflect (any)' : corsOrigin}`);
     logger.log(`Environment: ${config.get<string>('NODE_ENV', 'development')}`);
 }
 
