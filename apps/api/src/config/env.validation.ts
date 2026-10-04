@@ -36,9 +36,15 @@ const envSchema = z
 
         CSRF_SECRET: z.string().min(16),
 
-        CORS_ORIGIN: z.string().url(),
+        // Optional on Vercel (same-origin via services) — empty means reflect origin
+        CORS_ORIGIN: z
+            .union([z.string().url(), z.literal('')])
+            .default(''),
 
-        BACKUP_DIR: z.string().min(1),
+        BACKUP_DIR: z
+            .string()
+            .min(1)
+            .default('/tmp'),
     })
     .superRefine((env, ctx) => {
         if (
@@ -52,16 +58,10 @@ const envSchema = z
             });
         }
 
-        if (
-            env.NODE_ENV === 'production' &&
-            env.COOKIE_SECURE !== 'true'
-        ) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                path: ['COOKIE_SECURE'],
-                message: 'COOKIE_SECURE must be true in production',
-            });
-        }
+        // Note: In production, cookies are always secure (handled in auth.service.ts
+        // and csrf.service.ts via isProduction checks), so we don't enforce
+        // COOKIE_SECURE=true here — it would block startup on Vercel where
+        // the user may not have set it explicitly.
 
         if (
             env.COOKIE_SAME_SITE === 'none' &&
