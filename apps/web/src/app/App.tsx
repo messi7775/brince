@@ -1,4 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { router } from './router';
 import { Providers } from './providers';
 import { Toaster } from '../components/ui/toaster';
@@ -15,6 +16,7 @@ export function App() {
         future={{ v7_startTransition: true }}
       />
       <Toaster />
+      <SpeedInsights />
     </Providers>
   );
 }
