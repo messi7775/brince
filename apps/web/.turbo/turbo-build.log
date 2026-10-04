@@ -1,0 +1,18 @@
+$ tsc -b && vite build
+[36mvite v7.3.6 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 3239 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                          [39m[1m[2m    0.67 kB[22m[1m[22m[2m │ gzip:   0.40 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-D7YORPL7.css           [39m[1m[2m   40.69 kB[22m[1m[22m[2m │ gzip:   8.16 kB[22m
+[2mdist/[22m[2massets/[22m[36mpurify.es-BPuvlvQ_.js        [39m[1m[2m   29.10 kB[22m[1m[22m[2m │ gzip:  11.13 kB[22m[2m │ map:   132.64 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex.es-ChdDb3Ew.js         [39m[1m[2m  158.95 kB[22m[1m[22m[2m │ gzip:  53.07 kB[22m[2m │ map:   650.59 kB[22m
+[2mdist/[22m[2massets/[22m[36mhtml2canvas.esm-DXEQVQnt.js  [39m[1m[2m  201.09 kB[22m[1m[22m[2m │ gzip:  47.47 kB[22m[2m │ map:   602.76 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-CgryAqMG.js            [39m[1m[33m1,577.48 kB[39m[22m[2m │ gzip: 451.69 kB[22m[2m │ map: 5,994.88 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 20.49s[39m
