@@ -4,6 +4,11 @@
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
   "secrets": [
     {
+      "name": "DATABASE_URL",
+      "description": "Neon PostgreSQL connection string (postgresql://...?sslmode=require). From Neon dashboard → Connection Details.",
+      "requiredAtBoot": true
+    },
+    {
       "name": "JWT_SECRET",
       "description": "JWT signing secret for auth tokens (min 32 chars). Internal app secret, not an external credential.",
       "requiredAtBoot": true,

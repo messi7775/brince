@@ -12,8 +12,8 @@ The web app uses a relative `/api/v1` base URL, so all API calls go through the 
 
 ## Compose Services (`docker-compose.base44.yml`)
 
-- `db` — PostgreSQL 16
-- `migrate` — one-shot: builds packages, generates Prisma client, applies migrations, seeds. Must complete before API starts.
+- **Database: external Neon PostgreSQL** — `DATABASE_URL` provided via `/run/base44/app.env` (no local db service).
+- `migrate` — one-shot: builds packages, generates Prisma client, applies migrations, seeds against Neon. Must complete before API starts.
 - `api` — NestJS dev (`nest start --watch --path tsconfig.dev.json`), depends on `migrate` completing
 - API watch output is isolated in `apps/api/.dev-dist`; normal `nest build` uses `dist`. Do not share these directories: a concurrent build cleans `dist` while the watcher restarts, which can leave the watcher alive but the API child dead (`Cannot find module dist/main`). Verify both a cold restart and a normal API build while watch is running, then confirm `/api/v1/health` and Compose health remain healthy.
 - `web` — Vite dev, depends on `api` being healthy
@@ -38,6 +38,7 @@ The web app uses a relative `/api/v1` base URL, so all API calls go through the 
 
 ## Secrets (in `/run/base44/app.env`)
 
+- `DATABASE_URL` — Neon PostgreSQL connection string (external credential, user-provided)
 - `JWT_SECRET` — min 32 chars (generated dev placeholder)
 - `CSRF_SECRET` — min 16 chars (generated dev placeholder)
 - `ADMIN_PASSWORD` — min 12 chars (generated dev placeholder; replace with real value for functional login)
@@ -47,6 +48,5 @@ The web app uses a relative `/api/v1` base URL, so all API calls go through the 
 - Web: `curl -sf http://localhost:3000` returns Vite-served HTML
 - API health: `curl -sf http://localhost:3000/api/v1/health` → `{"status":"ok","database":"ok"}`
 - CSRF: `curl -sf http://localhost:3000/api/v1/auth/csrf` returns a token
-- DB consistency (sale totals) — run via psql in the `db` service. The amount column is `total_price` (there is no `line_total`):
+- DB consistency (sale totals) — run via psql against the Neon database (use `DATABASE_URL`). The amount column is `total_price` (there is no `line_total`):
   `SELECT s.id FROM sales s JOIN sale_items si ON si.sale_id = s.id GROUP BY s.id, s.total_amount HAVING SUM(si.total_price) <> s.total_amount;`
-- Shadow DB `prince_net_shadow` exists in the `db` service (used by `prisma migrate dev`/`diff` verification runs). If missing: `CREATE DATABASE prince_net_shadow;` as user `prince_net`.

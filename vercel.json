@@ -4,7 +4,8 @@
     "api": {
       "root": "apps/api",
       "entrypoint": "src/main.ts",
-      "framework": "nestjs"
+      "framework": "nestjs",
+      "buildCommand": "cd ../.. && pnpm --filter @prince-net/types build && pnpm --filter @prince-net/validation build && pnpm --filter @prince-net/config build && pnpm prisma:generate && pnpm --filter @prince-net/api prisma:deploy && pnpm --filter @prince-net/api build"
     },
     "web": {
       "root": "apps/web",
