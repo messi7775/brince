@@ -2,21 +2,6 @@
 # Vite (web) on host port 3000, proxies /api to the NestJS API (internal port 3001).
 # DATABASE_URL comes from /run/base44/app.env (remote Neon database).
 services:
-  db:
-    image: postgres:16-bookworm
-    environment:
-      POSTGRES_USER: prince_net
-      POSTGRES_PASSWORD: prince_net_dev
-      POSTGRES_DB: prince_net
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U prince_net"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    restart: on-failure
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
   # One-shot: build shared packages, generate Prisma client, apply migrations, seed.
   migrate:
     build:
@@ -95,7 +80,6 @@ services:
     restart: on-failure
 
 volumes:
-  pgdata:
   node_modules:
   api_node_modules:
   web_node_modules:
