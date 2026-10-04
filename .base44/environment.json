@@ -5,7 +5,7 @@
   "secrets": [
     {
       "name": "DATABASE_URL",
-      "description": "Neon PostgreSQL connection string (postgresql://...?sslmode=require). From Neon dashboard → Connection Details.",
+      "description": "Neon PostgreSQL connection string for the remote managed database.",
       "requiredAtBoot": true
     },
     {
@@ -22,9 +22,8 @@
     },
     {
       "name": "ADMIN_PASSWORD",
-      "description": "Admin login password for admin@prince-net.local (min 12 chars). Internal, not an external credential.",
-      "requiredAtBoot": true,
-      "generatedForDevelopment": true
+      "description": "Admin login password for ibrabra651@gmail.com (min 12 chars).",
+      "requiredAtBoot": true
     }
   ]
 }
