@@ -33,63 +33,60 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-            envFilePath: ['../../.env', '.env'],
-            cache: true,
-            validate: validateEnv,
-        }),
-
-        ThrottlerModule.forRoot([
-            {
-                ttl: 60_000,
-                limit: 120,
-            },
-        ]),
-
-        ScheduleModule.forRoot(),
-
-        PrismaModule,
-        CommonModule,
-        AuditModule,
-        CsrfModule,
-        UsersModule,
-        AuthModule,
-        PackagesModule,
-        InventoryModule,
-        DistributorsModule,
-        SalesModule,
-        PaymentsModule,
-        CashModule,
-        LinesModule,
-        LinePaymentsModule,
-        ExpensesModule,
-        ExpenseCategoriesModule,
-        OwnerWithdrawalsModule,
-        ReportsModule,
-        SearchModule,
-        BackupsModule,
-        SettingsModule,
-        DashboardModule,
-        NotificationsModule,
-        HealthModule,
-        SchedulerModule,
-    ],
-    controllers: [],
-    providers: [
-        {
-            provide: APP_GUARD,
-            useClass: ThrottlerGuard,
-        },
-        {
-            provide: APP_GUARD,
-            useClass: JwtAuthGuard,
-        },
-        {
-            provide: APP_FILTER,
-            useClass: HttpExceptionFilter,
-        },
-    ],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['../../.env', '.env'],
+      cache: true,
+      validate: validateEnv,
+    }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60_000,
+        limit: 120,
+      },
+    ]),
+    ScheduleModule.forRoot(),
+    PrismaModule,
+    CommonModule,
+    AuditModule,
+    CsrfModule,
+    UsersModule,
+    AuthModule,
+    PackagesModule,
+    InventoryModule,
+    DistributorsModule,
+    SalesModule,
+    PaymentsModule,
+    CashModule,
+    LinesModule,
+    LinePaymentsModule,
+    ExpensesModule,
+    ExpenseCategoriesModule,
+    OwnerWithdrawalsModule,
+    ReportsModule,
+    SearchModule,
+    BackupsModule,
+    SettingsModule,
+    DashboardModule,
+    NotificationsModule,
+    HealthModule,
+    SchedulerModule,
+  ],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
-export class AppModule { }
+export class AppModule {}
