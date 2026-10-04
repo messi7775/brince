@@ -1,0 +1,30 @@
+{
+  "name": "@prince-net/validation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"no lint for validation\"",
+    "test": "echo \"no tests for validation\""
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  }
+}
