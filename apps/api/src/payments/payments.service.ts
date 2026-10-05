@@ -398,7 +398,7 @@ export class PaymentsService {
     status: 'ACTIVE' | 'REVERSED';
     paymentDate: Date;
     notes: string | null;
-    createdBy: string;
+    createdBy: string | null;
     createdAt: Date;
     reversedAt: Date | null;
     reversedBy: string | null;

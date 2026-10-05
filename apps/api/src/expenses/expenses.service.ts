@@ -357,7 +357,7 @@ export class ExpensesService {
     status: 'ACTIVE' | 'REVERSED';
     expenseDate: Date;
     notes: string | null;
-    createdBy: string;
+    createdBy: string | null;
     createdAt: Date;
     updatedAt: Date;
     reversedAt: Date | null;

@@ -826,7 +826,7 @@ export class SalesService {
     status: 'ACTIVE' | 'CANCELLED';
     saleDate: Date;
     notes: string | null;
-    createdBy: string;
+    createdBy: string | null;
     createdAt: Date;
     updatedAt: Date;
     cancelledAt: Date | null;
