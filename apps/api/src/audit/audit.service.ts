@@ -50,7 +50,7 @@ export class AuditService {
 
   private buildData(input: AuditLogInput): Prisma.AuditLogCreateInput {
     return {
-      user: { connect: { id: input.userId } },
+      userId: input.userId,
       action: input.action,
       entityType: input.entityType,
       entityId: input.entityId ?? null,

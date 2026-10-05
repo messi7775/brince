@@ -1,6 +1,6 @@
 import type { ISODateString, UUID } from "./common";
 export type AuditAction =
-    | "LOGIN" | "LOGIN_FAILED" | "PACKAGE_CREATED" | "PACKAGE_UPDATED"
+    | "PACKAGE_CREATED" | "PACKAGE_UPDATED"
     | "INVENTORY_ADDED" | "INVENTORY_ADJUSTED" | "INVENTORY_RETURNED" | "INVENTORY_BATCH_UPDATED" | "INVENTORY_BATCH_DELETED"
     | "DISTRIBUTOR_CREATED" | "DISTRIBUTOR_UPDATED" | "DISTRIBUTOR_ACTIVATED" | "DISTRIBUTOR_DEACTIVATED"
     | "SALE_CREATED" | "SALE_CANCELLED" | "SALE_UPDATED"
@@ -16,5 +16,5 @@ export type AuditAction =
     | "CASH_CLOSING_CREATED"
     | "BACKUP_CREATED" | "BACKUP_RESTORED" | "BACKUP_EXPORTED"
     | "BACKUP_DELETED" | "BACKUPS_PURGED"
-    | "SETTINGS_UPDATED" | "PASSWORD_CHANGED";
-export interface AuditLog { id: UUID; userId: UUID; userEmail: string | null; action: AuditAction; entityType: string; entityId: UUID | null; oldValues: Record<string, unknown> | null; newValues: Record<string, unknown> | null; ipAddress: string | null; userAgent: string | null; createdAt: ISODateString; }
+    | "SETTINGS_UPDATED";
+export interface AuditLog { id: UUID; userId: UUID | null; userEmail: string | null; action: AuditAction; entityType: string; entityId: UUID | null; oldValues: Record<string, unknown> | null; newValues: Record<string, unknown> | null; ipAddress: string | null; userAgent: string | null; createdAt: ISODateString; }

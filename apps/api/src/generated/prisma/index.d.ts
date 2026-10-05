@@ -14,11 +14,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model User
- * 
- */
-export type User = $Result.DefaultSelection<Prisma.$UserPayload>
-/**
  * Model Package
  * 
  */
@@ -191,8 +186,6 @@ export type CashSourceType = (typeof CashSourceType)[keyof typeof CashSourceType
 
 
 export const AuditAction: {
-  LOGIN: 'LOGIN',
-  LOGIN_FAILED: 'LOGIN_FAILED',
   PACKAGE_CREATED: 'PACKAGE_CREATED',
   PACKAGE_UPDATED: 'PACKAGE_UPDATED',
   INVENTORY_ADDED: 'INVENTORY_ADDED',
@@ -241,8 +234,7 @@ export const AuditAction: {
   BACKUP_EXPORTED: 'BACKUP_EXPORTED',
   BACKUP_DELETED: 'BACKUP_DELETED',
   BACKUPS_PURGED: 'BACKUPS_PURGED',
-  SETTINGS_UPDATED: 'SETTINGS_UPDATED',
-  PASSWORD_CHANGED: 'PASSWORD_CHANGED'
+  SETTINGS_UPDATED: 'SETTINGS_UPDATED'
 };
 
 export type AuditAction = (typeof AuditAction)[keyof typeof AuditAction]
@@ -296,8 +288,8 @@ export const AuditAction: typeof $Enums.AuditAction
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Packages
+ * const packages = await prisma.package.findMany()
  * ```
  *
  *
@@ -317,8 +309,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Packages
+   * const packages = await prisma.package.findMany()
    * ```
    *
    *
@@ -408,16 +400,6 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.user`: Exposes CRUD operations for the **User** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Users
-    * const users = await prisma.user.findMany()
-    * ```
-    */
-  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.package`: Exposes CRUD operations for the **Package** model.
     * Example usage:
     * ```ts
@@ -1027,7 +1009,6 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User',
     Package: 'Package',
     PackageStock: 'PackageStock',
     InventoryMovement: 'InventoryMovement',
@@ -1063,84 +1044,10 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "package" | "packageStock" | "inventoryMovement" | "distributor" | "sale" | "saleItem" | "payment" | "line" | "linePayment" | "expenseCategory" | "expense" | "ownerWithdrawal" | "cashMovement" | "cashClosing" | "auditLog" | "backup" | "settings"
+      modelProps: "package" | "packageStock" | "inventoryMovement" | "distributor" | "sale" | "saleItem" | "payment" | "line" | "linePayment" | "expenseCategory" | "expense" | "ownerWithdrawal" | "cashMovement" | "cashClosing" | "auditLog" | "backup" | "settings"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      User: {
-        payload: Prisma.$UserPayload<ExtArgs>
-        fields: Prisma.UserFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          findFirst: {
-            args: Prisma.UserFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          findMany: {
-            args: Prisma.UserFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          create: {
-            args: Prisma.UserCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          createMany: {
-            args: Prisma.UserCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          delete: {
-            args: Prisma.UserDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          update: {
-            args: Prisma.UserUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          upsert: {
-            args: Prisma.UserUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          aggregate: {
-            args: Prisma.UserAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUser>
-          }
-          groupBy: {
-            args: Prisma.UserGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserCountArgs<ExtArgs>
-            result: $Utils.Optional<UserCountAggregateOutputType> | number
-          }
-        }
-      }
       Package: {
         payload: Prisma.$PackagePayload<ExtArgs>
         fields: Prisma.PackageFieldRefs
@@ -2495,7 +2402,6 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    user?: UserOmit
     package?: PackageOmit
     packageStock?: PackageStockOmit
     inventoryMovement?: InventoryMovementOmit
@@ -2586,172 +2492,6 @@ export namespace Prisma {
   /**
    * Count Types
    */
-
-
-  /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    packageStocks: number
-    inventoryMovements: number
-    salesCreated: number
-    salesCancelled: number
-    paymentsCreated: number
-    paymentsReversed: number
-    linePaymentsCreated: number
-    linePaymentsReversed: number
-    expensesCreated: number
-    expensesReversed: number
-    ownerWithdrawalsCreated: number
-    ownerWithdrawalsReversed: number
-    cashMovements: number
-    cashClosings: number
-    auditLogs: number
-    backups: number
-  }
-
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    packageStocks?: boolean | UserCountOutputTypeCountPackageStocksArgs
-    inventoryMovements?: boolean | UserCountOutputTypeCountInventoryMovementsArgs
-    salesCreated?: boolean | UserCountOutputTypeCountSalesCreatedArgs
-    salesCancelled?: boolean | UserCountOutputTypeCountSalesCancelledArgs
-    paymentsCreated?: boolean | UserCountOutputTypeCountPaymentsCreatedArgs
-    paymentsReversed?: boolean | UserCountOutputTypeCountPaymentsReversedArgs
-    linePaymentsCreated?: boolean | UserCountOutputTypeCountLinePaymentsCreatedArgs
-    linePaymentsReversed?: boolean | UserCountOutputTypeCountLinePaymentsReversedArgs
-    expensesCreated?: boolean | UserCountOutputTypeCountExpensesCreatedArgs
-    expensesReversed?: boolean | UserCountOutputTypeCountExpensesReversedArgs
-    ownerWithdrawalsCreated?: boolean | UserCountOutputTypeCountOwnerWithdrawalsCreatedArgs
-    ownerWithdrawalsReversed?: boolean | UserCountOutputTypeCountOwnerWithdrawalsReversedArgs
-    cashMovements?: boolean | UserCountOutputTypeCountCashMovementsArgs
-    cashClosings?: boolean | UserCountOutputTypeCountCashClosingsArgs
-    auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
-    backups?: boolean | UserCountOutputTypeCountBackupsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountPackageStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PackageStockWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountInventoryMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InventoryMovementWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSalesCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SaleWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSalesCancelledArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SaleWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountPaymentsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PaymentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountPaymentsReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PaymentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountLinePaymentsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LinePaymentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountLinePaymentsReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LinePaymentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountExpensesCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ExpenseWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountExpensesReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ExpenseWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountOwnerWithdrawalsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OwnerWithdrawalWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountOwnerWithdrawalsReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OwnerWithdrawalWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountCashMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CashMovementWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountCashClosingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CashClosingWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AuditLogWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountBackupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BackupWhereInput
-  }
 
 
   /**
@@ -2961,1543 +2701,6 @@ export namespace Prisma {
   /**
    * Models
    */
-
-  /**
-   * Model User
-   */
-
-  export type AggregateUser = {
-    _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
-
-  export type UserAvgAggregateOutputType = {
-    tokenVersion: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    tokenVersion: number | null
-  }
-
-  export type UserMinAggregateOutputType = {
-    id: string | null
-    email: string | null
-    passwordHash: string | null
-    tokenVersion: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type UserMaxAggregateOutputType = {
-    id: string | null
-    email: string | null
-    passwordHash: string | null
-    tokenVersion: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type UserCountAggregateOutputType = {
-    id: number
-    email: number
-    passwordHash: number
-    tokenVersion: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type UserAvgAggregateInputType = {
-    tokenVersion?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    tokenVersion?: true
-  }
-
-  export type UserMinAggregateInputType = {
-    id?: true
-    email?: true
-    passwordHash?: true
-    tokenVersion?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type UserMaxAggregateInputType = {
-    id?: true
-    email?: true
-    passwordHash?: true
-    tokenVersion?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type UserCountAggregateInputType = {
-    id?: true
-    email?: true
-    passwordHash?: true
-    tokenVersion?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which User to aggregate.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Users
-    **/
-    _count?: true | UserCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserMaxAggregateInputType
-  }
-
-  export type GetUserAggregateType<T extends UserAggregateArgs> = {
-        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUser[P]>
-      : GetScalarType<T[P], AggregateUser[P]>
-  }
-
-
-
-
-  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
-    by: UserScalarFieldEnum[] | UserScalarFieldEnum
-    having?: UserScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
-    _min?: UserMinAggregateInputType
-    _max?: UserMaxAggregateInputType
-  }
-
-  export type UserGroupByOutputType = {
-    id: string
-    email: string
-    passwordHash: string
-    tokenVersion: number
-    createdAt: Date
-    updatedAt: Date
-    _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
-
-  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserGroupByOutputType[P]>
-            : GetScalarType<T[P], UserGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    tokenVersion?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    packageStocks?: boolean | User$packageStocksArgs<ExtArgs>
-    inventoryMovements?: boolean | User$inventoryMovementsArgs<ExtArgs>
-    salesCreated?: boolean | User$salesCreatedArgs<ExtArgs>
-    salesCancelled?: boolean | User$salesCancelledArgs<ExtArgs>
-    paymentsCreated?: boolean | User$paymentsCreatedArgs<ExtArgs>
-    paymentsReversed?: boolean | User$paymentsReversedArgs<ExtArgs>
-    linePaymentsCreated?: boolean | User$linePaymentsCreatedArgs<ExtArgs>
-    linePaymentsReversed?: boolean | User$linePaymentsReversedArgs<ExtArgs>
-    expensesCreated?: boolean | User$expensesCreatedArgs<ExtArgs>
-    expensesReversed?: boolean | User$expensesReversedArgs<ExtArgs>
-    ownerWithdrawalsCreated?: boolean | User$ownerWithdrawalsCreatedArgs<ExtArgs>
-    ownerWithdrawalsReversed?: boolean | User$ownerWithdrawalsReversedArgs<ExtArgs>
-    cashMovements?: boolean | User$cashMovementsArgs<ExtArgs>
-    cashClosings?: boolean | User$cashClosingsArgs<ExtArgs>
-    auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
-    backups?: boolean | User$backupsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["user"]>
-
-  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    tokenVersion?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["user"]>
-
-  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    tokenVersion?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["user"]>
-
-  export type UserSelectScalar = {
-    id?: boolean
-    email?: boolean
-    passwordHash?: boolean
-    tokenVersion?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "passwordHash" | "tokenVersion" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    packageStocks?: boolean | User$packageStocksArgs<ExtArgs>
-    inventoryMovements?: boolean | User$inventoryMovementsArgs<ExtArgs>
-    salesCreated?: boolean | User$salesCreatedArgs<ExtArgs>
-    salesCancelled?: boolean | User$salesCancelledArgs<ExtArgs>
-    paymentsCreated?: boolean | User$paymentsCreatedArgs<ExtArgs>
-    paymentsReversed?: boolean | User$paymentsReversedArgs<ExtArgs>
-    linePaymentsCreated?: boolean | User$linePaymentsCreatedArgs<ExtArgs>
-    linePaymentsReversed?: boolean | User$linePaymentsReversedArgs<ExtArgs>
-    expensesCreated?: boolean | User$expensesCreatedArgs<ExtArgs>
-    expensesReversed?: boolean | User$expensesReversedArgs<ExtArgs>
-    ownerWithdrawalsCreated?: boolean | User$ownerWithdrawalsCreatedArgs<ExtArgs>
-    ownerWithdrawalsReversed?: boolean | User$ownerWithdrawalsReversedArgs<ExtArgs>
-    cashMovements?: boolean | User$cashMovementsArgs<ExtArgs>
-    cashClosings?: boolean | User$cashClosingsArgs<ExtArgs>
-    auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
-    backups?: boolean | User$backupsArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "User"
-    objects: {
-      packageStocks: Prisma.$PackageStockPayload<ExtArgs>[]
-      inventoryMovements: Prisma.$InventoryMovementPayload<ExtArgs>[]
-      salesCreated: Prisma.$SalePayload<ExtArgs>[]
-      salesCancelled: Prisma.$SalePayload<ExtArgs>[]
-      paymentsCreated: Prisma.$PaymentPayload<ExtArgs>[]
-      paymentsReversed: Prisma.$PaymentPayload<ExtArgs>[]
-      linePaymentsCreated: Prisma.$LinePaymentPayload<ExtArgs>[]
-      linePaymentsReversed: Prisma.$LinePaymentPayload<ExtArgs>[]
-      expensesCreated: Prisma.$ExpensePayload<ExtArgs>[]
-      expensesReversed: Prisma.$ExpensePayload<ExtArgs>[]
-      ownerWithdrawalsCreated: Prisma.$OwnerWithdrawalPayload<ExtArgs>[]
-      ownerWithdrawalsReversed: Prisma.$OwnerWithdrawalPayload<ExtArgs>[]
-      cashMovements: Prisma.$CashMovementPayload<ExtArgs>[]
-      cashClosings: Prisma.$CashClosingPayload<ExtArgs>[]
-      auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
-      backups: Prisma.$BackupPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      email: string
-      passwordHash: string
-      tokenVersion: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["user"]>
-    composites: {}
-  }
-
-  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
-
-  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UserCountAggregateInputType | true
-    }
-
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
-    /**
-     * Find zero or one User that matches the filter.
-     * @param {UserFindUniqueArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one User that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first User that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first User that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Users that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Users
-     * const users = await prisma.user.findMany()
-     * 
-     * // Get first 10 Users
-     * const users = await prisma.user.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a User.
-     * @param {UserCreateArgs} args - Arguments to create a User.
-     * @example
-     * // Create one User
-     * const User = await prisma.user.create({
-     *   data: {
-     *     // ... data to create a User
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Users.
-     * @param {UserCreateManyArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Users and returns the data saved in the database.
-     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a User.
-     * @param {UserDeleteArgs} args - Arguments to delete one User.
-     * @example
-     * // Delete one User
-     * const User = await prisma.user.delete({
-     *   where: {
-     *     // ... filter to delete one User
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one User.
-     * @param {UserUpdateArgs} args - Arguments to update one User.
-     * @example
-     * // Update one User
-     * const user = await prisma.user.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Users.
-     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
-     * @example
-     * // Delete a few Users
-     * const { count } = await prisma.user.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Users and returns the data updated in the database.
-     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one User.
-     * @param {UserUpsertArgs} args - Arguments to update or create a User.
-     * @example
-     * // Update or create a User
-     * const user = await prisma.user.upsert({
-     *   create: {
-     *     // ... data to create a User
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the User we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserCountArgs} args - Arguments to filter Users to count.
-     * @example
-     * // Count the number of Users
-     * const count = await prisma.user.count({
-     *   where: {
-     *     // ... the filter for the Users we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserCountArgs>(
-      args?: Subset<T, UserCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
-
-    /**
-     * Group by User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserGroupByArgs['orderBy'] }
-        : { orderBy?: UserGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the User model
-   */
-  readonly fields: UserFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for User.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    packageStocks<T extends User$packageStocksArgs<ExtArgs> = {}>(args?: Subset<T, User$packageStocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageStockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    inventoryMovements<T extends User$inventoryMovementsArgs<ExtArgs> = {}>(args?: Subset<T, User$inventoryMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    salesCreated<T extends User$salesCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$salesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    salesCancelled<T extends User$salesCancelledArgs<ExtArgs> = {}>(args?: Subset<T, User$salesCancelledArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    paymentsCreated<T extends User$paymentsCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$paymentsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    paymentsReversed<T extends User$paymentsReversedArgs<ExtArgs> = {}>(args?: Subset<T, User$paymentsReversedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    linePaymentsCreated<T extends User$linePaymentsCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$linePaymentsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinePaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    linePaymentsReversed<T extends User$linePaymentsReversedArgs<ExtArgs> = {}>(args?: Subset<T, User$linePaymentsReversedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinePaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    expensesCreated<T extends User$expensesCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$expensesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    expensesReversed<T extends User$expensesReversedArgs<ExtArgs> = {}>(args?: Subset<T, User$expensesReversedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ownerWithdrawalsCreated<T extends User$ownerWithdrawalsCreatedArgs<ExtArgs> = {}>(args?: Subset<T, User$ownerWithdrawalsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OwnerWithdrawalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ownerWithdrawalsReversed<T extends User$ownerWithdrawalsReversedArgs<ExtArgs> = {}>(args?: Subset<T, User$ownerWithdrawalsReversedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OwnerWithdrawalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    cashMovements<T extends User$cashMovementsArgs<ExtArgs> = {}>(args?: Subset<T, User$cashMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    cashClosings<T extends User$cashClosingsArgs<ExtArgs> = {}>(args?: Subset<T, User$cashClosingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashClosingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    auditLogs<T extends User$auditLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    backups<T extends User$backupsArgs<ExtArgs> = {}>(args?: Subset<T, User$backupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BackupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the User model
-   */
-  interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'String'>
-    readonly email: FieldRef<"User", 'String'>
-    readonly passwordHash: FieldRef<"User", 'String'>
-    readonly tokenVersion: FieldRef<"User", 'Int'>
-    readonly createdAt: FieldRef<"User", 'DateTime'>
-    readonly updatedAt: FieldRef<"User", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * User findUnique
-   */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User findUniqueOrThrow
-   */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User findFirst
-   */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * User findFirstOrThrow
-   */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * User findMany
-   */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which Users to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * User create
-   */
-  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to create a User.
-     */
-    data: XOR<UserCreateInput, UserUncheckedCreateInput>
-  }
-
-  /**
-   * User createMany
-   */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * User createManyAndReturn
-   */
-  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * User update
-   */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to update a User.
-     */
-    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-    /**
-     * Choose, which User to update.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User updateMany
-   */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * User updateManyAndReturn
-   */
-  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * User upsert
-   */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The filter to search for the User to update in case it exists.
-     */
-    where: UserWhereUniqueInput
-    /**
-     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
-     */
-    create: XOR<UserCreateInput, UserUncheckedCreateInput>
-    /**
-     * In case the User was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-  }
-
-  /**
-   * User delete
-   */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter which User to delete.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User deleteMany
-   */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Users to delete
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * User.packageStocks
-   */
-  export type User$packageStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PackageStock
-     */
-    select?: PackageStockSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PackageStock
-     */
-    omit?: PackageStockOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PackageStockInclude<ExtArgs> | null
-    where?: PackageStockWhereInput
-    orderBy?: PackageStockOrderByWithRelationInput | PackageStockOrderByWithRelationInput[]
-    cursor?: PackageStockWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PackageStockScalarFieldEnum | PackageStockScalarFieldEnum[]
-  }
-
-  /**
-   * User.inventoryMovements
-   */
-  export type User$inventoryMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the InventoryMovement
-     */
-    select?: InventoryMovementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the InventoryMovement
-     */
-    omit?: InventoryMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InventoryMovementInclude<ExtArgs> | null
-    where?: InventoryMovementWhereInput
-    orderBy?: InventoryMovementOrderByWithRelationInput | InventoryMovementOrderByWithRelationInput[]
-    cursor?: InventoryMovementWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: InventoryMovementScalarFieldEnum | InventoryMovementScalarFieldEnum[]
-  }
-
-  /**
-   * User.salesCreated
-   */
-  export type User$salesCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sale
-     */
-    select?: SaleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sale
-     */
-    omit?: SaleOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SaleInclude<ExtArgs> | null
-    where?: SaleWhereInput
-    orderBy?: SaleOrderByWithRelationInput | SaleOrderByWithRelationInput[]
-    cursor?: SaleWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SaleScalarFieldEnum | SaleScalarFieldEnum[]
-  }
-
-  /**
-   * User.salesCancelled
-   */
-  export type User$salesCancelledArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sale
-     */
-    select?: SaleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sale
-     */
-    omit?: SaleOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SaleInclude<ExtArgs> | null
-    where?: SaleWhereInput
-    orderBy?: SaleOrderByWithRelationInput | SaleOrderByWithRelationInput[]
-    cursor?: SaleWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SaleScalarFieldEnum | SaleScalarFieldEnum[]
-  }
-
-  /**
-   * User.paymentsCreated
-   */
-  export type User$paymentsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Payment
-     */
-    select?: PaymentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Payment
-     */
-    omit?: PaymentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PaymentInclude<ExtArgs> | null
-    where?: PaymentWhereInput
-    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
-    cursor?: PaymentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
-  }
-
-  /**
-   * User.paymentsReversed
-   */
-  export type User$paymentsReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Payment
-     */
-    select?: PaymentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Payment
-     */
-    omit?: PaymentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PaymentInclude<ExtArgs> | null
-    where?: PaymentWhereInput
-    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
-    cursor?: PaymentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
-  }
-
-  /**
-   * User.linePaymentsCreated
-   */
-  export type User$linePaymentsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinePayment
-     */
-    select?: LinePaymentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LinePayment
-     */
-    omit?: LinePaymentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LinePaymentInclude<ExtArgs> | null
-    where?: LinePaymentWhereInput
-    orderBy?: LinePaymentOrderByWithRelationInput | LinePaymentOrderByWithRelationInput[]
-    cursor?: LinePaymentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LinePaymentScalarFieldEnum | LinePaymentScalarFieldEnum[]
-  }
-
-  /**
-   * User.linePaymentsReversed
-   */
-  export type User$linePaymentsReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinePayment
-     */
-    select?: LinePaymentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LinePayment
-     */
-    omit?: LinePaymentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LinePaymentInclude<ExtArgs> | null
-    where?: LinePaymentWhereInput
-    orderBy?: LinePaymentOrderByWithRelationInput | LinePaymentOrderByWithRelationInput[]
-    cursor?: LinePaymentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LinePaymentScalarFieldEnum | LinePaymentScalarFieldEnum[]
-  }
-
-  /**
-   * User.expensesCreated
-   */
-  export type User$expensesCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Expense
-     */
-    select?: ExpenseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Expense
-     */
-    omit?: ExpenseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ExpenseInclude<ExtArgs> | null
-    where?: ExpenseWhereInput
-    orderBy?: ExpenseOrderByWithRelationInput | ExpenseOrderByWithRelationInput[]
-    cursor?: ExpenseWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ExpenseScalarFieldEnum | ExpenseScalarFieldEnum[]
-  }
-
-  /**
-   * User.expensesReversed
-   */
-  export type User$expensesReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Expense
-     */
-    select?: ExpenseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Expense
-     */
-    omit?: ExpenseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ExpenseInclude<ExtArgs> | null
-    where?: ExpenseWhereInput
-    orderBy?: ExpenseOrderByWithRelationInput | ExpenseOrderByWithRelationInput[]
-    cursor?: ExpenseWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ExpenseScalarFieldEnum | ExpenseScalarFieldEnum[]
-  }
-
-  /**
-   * User.ownerWithdrawalsCreated
-   */
-  export type User$ownerWithdrawalsCreatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OwnerWithdrawal
-     */
-    select?: OwnerWithdrawalSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OwnerWithdrawal
-     */
-    omit?: OwnerWithdrawalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    where?: OwnerWithdrawalWhereInput
-    orderBy?: OwnerWithdrawalOrderByWithRelationInput | OwnerWithdrawalOrderByWithRelationInput[]
-    cursor?: OwnerWithdrawalWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OwnerWithdrawalScalarFieldEnum | OwnerWithdrawalScalarFieldEnum[]
-  }
-
-  /**
-   * User.ownerWithdrawalsReversed
-   */
-  export type User$ownerWithdrawalsReversedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OwnerWithdrawal
-     */
-    select?: OwnerWithdrawalSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OwnerWithdrawal
-     */
-    omit?: OwnerWithdrawalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    where?: OwnerWithdrawalWhereInput
-    orderBy?: OwnerWithdrawalOrderByWithRelationInput | OwnerWithdrawalOrderByWithRelationInput[]
-    cursor?: OwnerWithdrawalWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OwnerWithdrawalScalarFieldEnum | OwnerWithdrawalScalarFieldEnum[]
-  }
-
-  /**
-   * User.cashMovements
-   */
-  export type User$cashMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CashMovement
-     */
-    select?: CashMovementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CashMovement
-     */
-    omit?: CashMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
-    where?: CashMovementWhereInput
-    orderBy?: CashMovementOrderByWithRelationInput | CashMovementOrderByWithRelationInput[]
-    cursor?: CashMovementWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CashMovementScalarFieldEnum | CashMovementScalarFieldEnum[]
-  }
-
-  /**
-   * User.cashClosings
-   */
-  export type User$cashClosingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CashClosing
-     */
-    select?: CashClosingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CashClosing
-     */
-    omit?: CashClosingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
-    where?: CashClosingWhereInput
-    orderBy?: CashClosingOrderByWithRelationInput | CashClosingOrderByWithRelationInput[]
-    cursor?: CashClosingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CashClosingScalarFieldEnum | CashClosingScalarFieldEnum[]
-  }
-
-  /**
-   * User.auditLogs
-   */
-  export type User$auditLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AuditLog
-     */
-    select?: AuditLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AuditLog
-     */
-    omit?: AuditLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
-    where?: AuditLogWhereInput
-    orderBy?: AuditLogOrderByWithRelationInput | AuditLogOrderByWithRelationInput[]
-    cursor?: AuditLogWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AuditLogScalarFieldEnum | AuditLogScalarFieldEnum[]
-  }
-
-  /**
-   * User.backups
-   */
-  export type User$backupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Backup
-     */
-    select?: BackupSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Backup
-     */
-    omit?: BackupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
-    where?: BackupWhereInput
-    orderBy?: BackupOrderByWithRelationInput | BackupOrderByWithRelationInput[]
-    cursor?: BackupWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BackupScalarFieldEnum | BackupScalarFieldEnum[]
-  }
-
-  /**
-   * User without action
-   */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-  }
-
 
   /**
    * Model Package
@@ -5893,7 +4096,7 @@ export namespace Prisma {
     unitPrice: Decimal
     receivedAt: Date
     notes: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     updatedAt: Date
     _count: PackageStockCountAggregateOutputType | null
@@ -5927,7 +4130,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
     inventoryMovements?: boolean | PackageStock$inventoryMovementsArgs<ExtArgs>
     _count?: boolean | PackageStockCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageStock"]>
@@ -5942,7 +4144,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageStock"]>
 
   export type PackageStockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5955,7 +4156,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     package?: boolean | PackageDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageStock"]>
 
   export type PackageStockSelectScalar = {
@@ -5972,24 +4172,20 @@ export namespace Prisma {
   export type PackageStockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "packageId" | "unitPrice" | "receivedAt" | "notes" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["packageStock"]>
   export type PackageStockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     package?: boolean | PackageDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
     inventoryMovements?: boolean | PackageStock$inventoryMovementsArgs<ExtArgs>
     _count?: boolean | PackageStockCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PackageStockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     package?: boolean | PackageDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type PackageStockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     package?: boolean | PackageDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $PackageStockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PackageStock"
     objects: {
       package: Prisma.$PackagePayload<ExtArgs>
-      createdByUser: Prisma.$UserPayload<ExtArgs>
       inventoryMovements: Prisma.$InventoryMovementPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5998,7 +4194,7 @@ export namespace Prisma {
       unitPrice: Prisma.Decimal
       receivedAt: Date
       notes: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["packageStock"]>
@@ -6396,7 +4592,6 @@ export namespace Prisma {
   export interface Prisma__PackageStockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     package<T extends PackageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PackageDefaultArgs<ExtArgs>>): Prisma__PackageClient<$Result.GetResult<Prisma.$PackagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     inventoryMovements<T extends PackageStock$inventoryMovementsArgs<ExtArgs> = {}>(args?: Subset<T, PackageStock$inventoryMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7081,7 +5276,7 @@ export namespace Prisma {
     referenceType: string | null
     referenceId: string | null
     description: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     _count: InventoryMovementCountAggregateOutputType | null
     _avg: InventoryMovementAvgAggregateOutputType | null
@@ -7116,7 +5311,6 @@ export namespace Prisma {
     createdBy?: boolean
     createdAt?: boolean
     packageStock?: boolean | PackageStockDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventoryMovement"]>
 
   export type InventoryMovementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7131,7 +5325,6 @@ export namespace Prisma {
     createdBy?: boolean
     createdAt?: boolean
     packageStock?: boolean | PackageStockDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventoryMovement"]>
 
   export type InventoryMovementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7146,7 +5339,6 @@ export namespace Prisma {
     createdBy?: boolean
     createdAt?: boolean
     packageStock?: boolean | PackageStockDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inventoryMovement"]>
 
   export type InventoryMovementSelectScalar = {
@@ -7165,22 +5357,18 @@ export namespace Prisma {
   export type InventoryMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "packageStockId" | "type" | "quantityDelta" | "unitPrice" | "referenceType" | "referenceId" | "description" | "createdBy" | "createdAt", ExtArgs["result"]["inventoryMovement"]>
   export type InventoryMovementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     packageStock?: boolean | PackageStockDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type InventoryMovementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     packageStock?: boolean | PackageStockDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type InventoryMovementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     packageStock?: boolean | PackageStockDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $InventoryMovementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "InventoryMovement"
     objects: {
       packageStock: Prisma.$PackageStockPayload<ExtArgs>
-      createdByUser: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7191,7 +5379,7 @@ export namespace Prisma {
       referenceType: string | null
       referenceId: string | null
       description: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
     }, ExtArgs["result"]["inventoryMovement"]>
     composites: {}
@@ -7588,7 +5776,6 @@ export namespace Prisma {
   export interface Prisma__InventoryMovementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     packageStock<T extends PackageStockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PackageStockDefaultArgs<ExtArgs>>): Prisma__PackageStockClient<$Result.GetResult<Prisma.$PackageStockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9385,7 +7572,7 @@ export namespace Prisma {
     status: $Enums.SaleStatus
     saleDate: Date
     notes: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     updatedAt: Date
     cancelledAt: Date | null
@@ -9427,8 +7614,6 @@ export namespace Prisma {
     cancelledBy?: boolean
     cancellationReason?: boolean
     distributor?: boolean | DistributorDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    cancelledByUser?: boolean | Sale$cancelledByUserArgs<ExtArgs>
     items?: boolean | Sale$itemsArgs<ExtArgs>
     payments?: boolean | Sale$paymentsArgs<ExtArgs>
     _count?: boolean | SaleCountOutputTypeDefaultArgs<ExtArgs>
@@ -9449,8 +7634,6 @@ export namespace Prisma {
     cancelledBy?: boolean
     cancellationReason?: boolean
     distributor?: boolean | DistributorDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    cancelledByUser?: boolean | Sale$cancelledByUserArgs<ExtArgs>
   }, ExtArgs["result"]["sale"]>
 
   export type SaleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9468,8 +7651,6 @@ export namespace Prisma {
     cancelledBy?: boolean
     cancellationReason?: boolean
     distributor?: boolean | DistributorDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    cancelledByUser?: boolean | Sale$cancelledByUserArgs<ExtArgs>
   }, ExtArgs["result"]["sale"]>
 
   export type SaleSelectScalar = {
@@ -9491,29 +7672,21 @@ export namespace Prisma {
   export type SaleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNumber" | "distributorId" | "totalAmount" | "status" | "saleDate" | "notes" | "createdBy" | "createdAt" | "updatedAt" | "cancelledAt" | "cancelledBy" | "cancellationReason", ExtArgs["result"]["sale"]>
   export type SaleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     distributor?: boolean | DistributorDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    cancelledByUser?: boolean | Sale$cancelledByUserArgs<ExtArgs>
     items?: boolean | Sale$itemsArgs<ExtArgs>
     payments?: boolean | Sale$paymentsArgs<ExtArgs>
     _count?: boolean | SaleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SaleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     distributor?: boolean | DistributorDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    cancelledByUser?: boolean | Sale$cancelledByUserArgs<ExtArgs>
   }
   export type SaleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     distributor?: boolean | DistributorDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    cancelledByUser?: boolean | Sale$cancelledByUserArgs<ExtArgs>
   }
 
   export type $SalePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Sale"
     objects: {
       distributor: Prisma.$DistributorPayload<ExtArgs>
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-      cancelledByUser: Prisma.$UserPayload<ExtArgs> | null
       items: Prisma.$SaleItemPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
     }
@@ -9525,7 +7698,7 @@ export namespace Prisma {
       status: $Enums.SaleStatus
       saleDate: Date
       notes: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
       updatedAt: Date
       cancelledAt: Date | null
@@ -9926,8 +8099,6 @@ export namespace Prisma {
   export interface Prisma__SaleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     distributor<T extends DistributorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DistributorDefaultArgs<ExtArgs>>): Prisma__DistributorClient<$Result.GetResult<Prisma.$DistributorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    cancelledByUser<T extends Sale$cancelledByUserArgs<ExtArgs> = {}>(args?: Subset<T, Sale$cancelledByUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     items<T extends Sale$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Sale$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SaleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Sale$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Sale$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -10365,25 +8536,6 @@ export namespace Prisma {
      * Limit how many Sales to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Sale.cancelledByUser
-   */
-  export type Sale$cancelledByUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -11808,7 +9960,7 @@ export namespace Prisma {
     status: $Enums.PaymentStatus
     paymentDate: Date
     notes: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     reversedAt: Date | null
     reversedBy: string | null
@@ -11847,8 +9999,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     sale?: boolean | SaleDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Payment$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
   export type PaymentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11864,8 +10014,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     sale?: boolean | SaleDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Payment$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
   export type PaymentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11881,8 +10029,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     sale?: boolean | SaleDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Payment$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
   export type PaymentSelectScalar = {
@@ -11902,26 +10048,18 @@ export namespace Prisma {
   export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "saleId" | "amount" | "status" | "paymentDate" | "notes" | "createdBy" | "createdAt" | "reversedAt" | "reversedBy" | "reversalReason", ExtArgs["result"]["payment"]>
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sale?: boolean | SaleDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Payment$reversedByUserArgs<ExtArgs>
   }
   export type PaymentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sale?: boolean | SaleDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Payment$reversedByUserArgs<ExtArgs>
   }
   export type PaymentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sale?: boolean | SaleDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Payment$reversedByUserArgs<ExtArgs>
   }
 
   export type $PaymentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Payment"
     objects: {
       sale: Prisma.$SalePayload<ExtArgs>
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-      reversedByUser: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11930,7 +10068,7 @@ export namespace Prisma {
       status: $Enums.PaymentStatus
       paymentDate: Date
       notes: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
       reversedAt: Date | null
       reversedBy: string | null
@@ -12330,8 +10468,6 @@ export namespace Prisma {
   export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     sale<T extends SaleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SaleDefaultArgs<ExtArgs>>): Prisma__SaleClient<$Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    reversedByUser<T extends Payment$reversedByUserArgs<ExtArgs> = {}>(args?: Subset<T, Payment$reversedByUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12765,25 +10901,6 @@ export namespace Prisma {
      * Limit how many Payments to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Payment.reversedByUser
-   */
-  export type Payment$reversedByUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -14202,7 +12319,7 @@ export namespace Prisma {
     status: $Enums.LinePaymentStatus
     paymentDate: Date
     notes: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     reversedAt: Date | null
     reversedBy: string | null
@@ -14242,8 +12359,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     line?: boolean | LineDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | LinePayment$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["linePayment"]>
 
   export type LinePaymentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14260,8 +12375,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     line?: boolean | LineDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | LinePayment$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["linePayment"]>
 
   export type LinePaymentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14278,8 +12391,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     line?: boolean | LineDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | LinePayment$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["linePayment"]>
 
   export type LinePaymentSelectScalar = {
@@ -14300,26 +12411,18 @@ export namespace Prisma {
   export type LinePaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lineId" | "amount" | "period" | "status" | "paymentDate" | "notes" | "createdBy" | "createdAt" | "reversedAt" | "reversedBy" | "reversalReason", ExtArgs["result"]["linePayment"]>
   export type LinePaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     line?: boolean | LineDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | LinePayment$reversedByUserArgs<ExtArgs>
   }
   export type LinePaymentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     line?: boolean | LineDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | LinePayment$reversedByUserArgs<ExtArgs>
   }
   export type LinePaymentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     line?: boolean | LineDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | LinePayment$reversedByUserArgs<ExtArgs>
   }
 
   export type $LinePaymentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LinePayment"
     objects: {
       line: Prisma.$LinePayload<ExtArgs>
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-      reversedByUser: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14329,7 +12432,7 @@ export namespace Prisma {
       status: $Enums.LinePaymentStatus
       paymentDate: Date
       notes: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
       reversedAt: Date | null
       reversedBy: string | null
@@ -14729,8 +12832,6 @@ export namespace Prisma {
   export interface Prisma__LinePaymentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     line<T extends LineDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LineDefaultArgs<ExtArgs>>): Prisma__LineClient<$Result.GetResult<Prisma.$LinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    reversedByUser<T extends LinePayment$reversedByUserArgs<ExtArgs> = {}>(args?: Subset<T, LinePayment$reversedByUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15165,25 +13266,6 @@ export namespace Prisma {
      * Limit how many LinePayments to delete.
      */
     limit?: number
-  }
-
-  /**
-   * LinePayment.reversedByUser
-   */
-  export type LinePayment$reversedByUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -16509,7 +14591,7 @@ export namespace Prisma {
     status: $Enums.ExpenseStatus
     expenseDate: Date
     notes: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     updatedAt: Date
     reversedAt: Date | null
@@ -16551,8 +14633,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     category?: boolean | ExpenseCategoryDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Expense$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["expense"]>
 
   export type ExpenseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -16570,8 +14650,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     category?: boolean | ExpenseCategoryDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Expense$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["expense"]>
 
   export type ExpenseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -16589,8 +14667,6 @@ export namespace Prisma {
     reversedBy?: boolean
     reversalReason?: boolean
     category?: boolean | ExpenseCategoryDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Expense$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["expense"]>
 
   export type ExpenseSelectScalar = {
@@ -16612,26 +14688,18 @@ export namespace Prisma {
   export type ExpenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "description" | "amount" | "status" | "expenseDate" | "notes" | "createdBy" | "createdAt" | "updatedAt" | "reversedAt" | "reversedBy" | "reversalReason", ExtArgs["result"]["expense"]>
   export type ExpenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | ExpenseCategoryDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Expense$reversedByUserArgs<ExtArgs>
   }
   export type ExpenseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | ExpenseCategoryDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Expense$reversedByUserArgs<ExtArgs>
   }
   export type ExpenseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | ExpenseCategoryDefaultArgs<ExtArgs>
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | Expense$reversedByUserArgs<ExtArgs>
   }
 
   export type $ExpensePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Expense"
     objects: {
       category: Prisma.$ExpenseCategoryPayload<ExtArgs>
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-      reversedByUser: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -16641,7 +14709,7 @@ export namespace Prisma {
       status: $Enums.ExpenseStatus
       expenseDate: Date
       notes: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
       updatedAt: Date
       reversedAt: Date | null
@@ -17042,8 +15110,6 @@ export namespace Prisma {
   export interface Prisma__ExpenseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends ExpenseCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExpenseCategoryDefaultArgs<ExtArgs>>): Prisma__ExpenseCategoryClient<$Result.GetResult<Prisma.$ExpenseCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    reversedByUser<T extends Expense$reversedByUserArgs<ExtArgs> = {}>(args?: Subset<T, Expense$reversedByUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17482,25 +15548,6 @@ export namespace Prisma {
   }
 
   /**
-   * Expense.reversedByUser
-   */
-  export type Expense$reversedByUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * Expense without action
    */
   export type ExpenseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17727,7 +15774,7 @@ export namespace Prisma {
     status: $Enums.OwnerWithdrawalStatus
     withdrawalDate: Date
     notes: string | null
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     reversedAt: Date | null
     reversedBy: string | null
@@ -17765,8 +15812,6 @@ export namespace Prisma {
     reversedAt?: boolean
     reversedBy?: boolean
     reversalReason?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | OwnerWithdrawal$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["ownerWithdrawal"]>
 
   export type OwnerWithdrawalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17781,8 +15826,6 @@ export namespace Prisma {
     reversedAt?: boolean
     reversedBy?: boolean
     reversalReason?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | OwnerWithdrawal$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["ownerWithdrawal"]>
 
   export type OwnerWithdrawalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17797,8 +15840,6 @@ export namespace Prisma {
     reversedAt?: boolean
     reversedBy?: boolean
     reversalReason?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | OwnerWithdrawal$reversedByUserArgs<ExtArgs>
   }, ExtArgs["result"]["ownerWithdrawal"]>
 
   export type OwnerWithdrawalSelectScalar = {
@@ -17816,25 +15857,10 @@ export namespace Prisma {
   }
 
   export type OwnerWithdrawalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "reason" | "status" | "withdrawalDate" | "notes" | "createdBy" | "createdAt" | "reversedAt" | "reversedBy" | "reversalReason", ExtArgs["result"]["ownerWithdrawal"]>
-  export type OwnerWithdrawalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | OwnerWithdrawal$reversedByUserArgs<ExtArgs>
-  }
-  export type OwnerWithdrawalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | OwnerWithdrawal$reversedByUserArgs<ExtArgs>
-  }
-  export type OwnerWithdrawalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-    reversedByUser?: boolean | OwnerWithdrawal$reversedByUserArgs<ExtArgs>
-  }
 
   export type $OwnerWithdrawalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OwnerWithdrawal"
-    objects: {
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-      reversedByUser: Prisma.$UserPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       amount: Prisma.Decimal
@@ -17842,7 +15868,7 @@ export namespace Prisma {
       status: $Enums.OwnerWithdrawalStatus
       withdrawalDate: Date
       notes: string | null
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
       reversedAt: Date | null
       reversedBy: string | null
@@ -18241,8 +16267,6 @@ export namespace Prisma {
    */
   export interface Prisma__OwnerWithdrawalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    reversedByUser<T extends OwnerWithdrawal$reversedByUserArgs<ExtArgs> = {}>(args?: Subset<T, OwnerWithdrawal$reversedByUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18300,10 +16324,6 @@ export namespace Prisma {
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    /**
      * Filter, which OwnerWithdrawal to fetch.
      */
     where: OwnerWithdrawalWhereUniqueInput
@@ -18322,10 +16342,6 @@ export namespace Prisma {
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    /**
      * Filter, which OwnerWithdrawal to fetch.
      */
     where: OwnerWithdrawalWhereUniqueInput
@@ -18343,10 +16359,6 @@ export namespace Prisma {
      * Omit specific fields from the OwnerWithdrawal
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
     /**
      * Filter, which OwnerWithdrawal to fetch.
      */
@@ -18396,10 +16408,6 @@ export namespace Prisma {
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    /**
      * Filter, which OwnerWithdrawal to fetch.
      */
     where?: OwnerWithdrawalWhereInput
@@ -18448,10 +16456,6 @@ export namespace Prisma {
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    /**
      * Filter, which OwnerWithdrawals to fetch.
      */
     where?: OwnerWithdrawalWhereInput
@@ -18495,10 +16499,6 @@ export namespace Prisma {
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    /**
      * The data needed to create a OwnerWithdrawal.
      */
     data: XOR<OwnerWithdrawalCreateInput, OwnerWithdrawalUncheckedCreateInput>
@@ -18532,10 +16532,6 @@ export namespace Prisma {
      */
     data: OwnerWithdrawalCreateManyInput | OwnerWithdrawalCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -18550,10 +16546,6 @@ export namespace Prisma {
      * Omit specific fields from the OwnerWithdrawal
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
     /**
      * The data needed to update a OwnerWithdrawal.
      */
@@ -18606,10 +16598,6 @@ export namespace Prisma {
      * Limit how many OwnerWithdrawals to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -18624,10 +16612,6 @@ export namespace Prisma {
      * Omit specific fields from the OwnerWithdrawal
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
     /**
      * The filter to search for the OwnerWithdrawal to update in case it exists.
      */
@@ -18655,10 +16639,6 @@ export namespace Prisma {
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
-    /**
      * Filter which OwnerWithdrawal to delete.
      */
     where: OwnerWithdrawalWhereUniqueInput
@@ -18679,25 +16659,6 @@ export namespace Prisma {
   }
 
   /**
-   * OwnerWithdrawal.reversedByUser
-   */
-  export type OwnerWithdrawal$reversedByUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * OwnerWithdrawal without action
    */
   export type OwnerWithdrawalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18709,10 +16670,6 @@ export namespace Prisma {
      * Omit specific fields from the OwnerWithdrawal
      */
     omit?: OwnerWithdrawalOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OwnerWithdrawalInclude<ExtArgs> | null
   }
 
 
@@ -18913,7 +16870,7 @@ export namespace Prisma {
     sourceId: string | null
     description: string | null
     movementDate: Date
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     _count: CashMovementCountAggregateOutputType | null
     _avg: CashMovementAvgAggregateOutputType | null
@@ -18946,7 +16903,6 @@ export namespace Prisma {
     movementDate?: boolean
     createdBy?: boolean
     createdAt?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashMovement"]>
 
   export type CashMovementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18959,7 +16915,6 @@ export namespace Prisma {
     movementDate?: boolean
     createdBy?: boolean
     createdAt?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashMovement"]>
 
   export type CashMovementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18972,7 +16927,6 @@ export namespace Prisma {
     movementDate?: boolean
     createdBy?: boolean
     createdAt?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashMovement"]>
 
   export type CashMovementSelectScalar = {
@@ -18988,21 +16942,10 @@ export namespace Prisma {
   }
 
   export type CashMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "direction" | "amount" | "sourceType" | "sourceId" | "description" | "movementDate" | "createdBy" | "createdAt", ExtArgs["result"]["cashMovement"]>
-  export type CashMovementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type CashMovementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type CashMovementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
 
   export type $CashMovementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CashMovement"
-    objects: {
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       direction: $Enums.CashDirection
@@ -19011,7 +16954,7 @@ export namespace Prisma {
       sourceId: string | null
       description: string | null
       movementDate: Date
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
     }, ExtArgs["result"]["cashMovement"]>
     composites: {}
@@ -19407,7 +17350,6 @@ export namespace Prisma {
    */
   export interface Prisma__CashMovementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19463,10 +17405,6 @@ export namespace Prisma {
      */
     omit?: CashMovementOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
-    /**
      * Filter, which CashMovement to fetch.
      */
     where: CashMovementWhereUniqueInput
@@ -19485,10 +17423,6 @@ export namespace Prisma {
      */
     omit?: CashMovementOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
-    /**
      * Filter, which CashMovement to fetch.
      */
     where: CashMovementWhereUniqueInput
@@ -19506,10 +17440,6 @@ export namespace Prisma {
      * Omit specific fields from the CashMovement
      */
     omit?: CashMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
     /**
      * Filter, which CashMovement to fetch.
      */
@@ -19559,10 +17489,6 @@ export namespace Prisma {
      */
     omit?: CashMovementOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
-    /**
      * Filter, which CashMovement to fetch.
      */
     where?: CashMovementWhereInput
@@ -19611,10 +17537,6 @@ export namespace Prisma {
      */
     omit?: CashMovementOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
-    /**
      * Filter, which CashMovements to fetch.
      */
     where?: CashMovementWhereInput
@@ -19658,10 +17580,6 @@ export namespace Prisma {
      */
     omit?: CashMovementOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
-    /**
      * The data needed to create a CashMovement.
      */
     data: XOR<CashMovementCreateInput, CashMovementUncheckedCreateInput>
@@ -19695,10 +17613,6 @@ export namespace Prisma {
      */
     data: CashMovementCreateManyInput | CashMovementCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -19713,10 +17627,6 @@ export namespace Prisma {
      * Omit specific fields from the CashMovement
      */
     omit?: CashMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
     /**
      * The data needed to update a CashMovement.
      */
@@ -19769,10 +17679,6 @@ export namespace Prisma {
      * Limit how many CashMovements to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -19787,10 +17693,6 @@ export namespace Prisma {
      * Omit specific fields from the CashMovement
      */
     omit?: CashMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
     /**
      * The filter to search for the CashMovement to update in case it exists.
      */
@@ -19817,10 +17719,6 @@ export namespace Prisma {
      * Omit specific fields from the CashMovement
      */
     omit?: CashMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
     /**
      * Filter which CashMovement to delete.
      */
@@ -19853,10 +17751,6 @@ export namespace Prisma {
      * Omit specific fields from the CashMovement
      */
     omit?: CashMovementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashMovementInclude<ExtArgs> | null
   }
 
 
@@ -20102,7 +17996,7 @@ export namespace Prisma {
     actualBalance: Decimal
     difference: Decimal
     notes: string | null
-    closedBy: string
+    closedBy: string | null
     closedAt: Date
     _count: CashClosingCountAggregateOutputType | null
     _avg: CashClosingAvgAggregateOutputType | null
@@ -20138,7 +18032,6 @@ export namespace Prisma {
     notes?: boolean
     closedBy?: boolean
     closedAt?: boolean
-    closedByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashClosing"]>
 
   export type CashClosingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20154,7 +18047,6 @@ export namespace Prisma {
     notes?: boolean
     closedBy?: boolean
     closedAt?: boolean
-    closedByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashClosing"]>
 
   export type CashClosingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20170,7 +18062,6 @@ export namespace Prisma {
     notes?: boolean
     closedBy?: boolean
     closedAt?: boolean
-    closedByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashClosing"]>
 
   export type CashClosingSelectScalar = {
@@ -20189,21 +18080,10 @@ export namespace Prisma {
   }
 
   export type CashClosingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "closingDate" | "openingBalance" | "totalIn" | "totalOut" | "ownerWithdrawals" | "expectedBalance" | "actualBalance" | "difference" | "notes" | "closedBy" | "closedAt", ExtArgs["result"]["cashClosing"]>
-  export type CashClosingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    closedByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type CashClosingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    closedByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type CashClosingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    closedByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
 
   export type $CashClosingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CashClosing"
-    objects: {
-      closedByUser: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       closingDate: Date
@@ -20215,7 +18095,7 @@ export namespace Prisma {
       actualBalance: Prisma.Decimal
       difference: Prisma.Decimal
       notes: string | null
-      closedBy: string
+      closedBy: string | null
       closedAt: Date
     }, ExtArgs["result"]["cashClosing"]>
     composites: {}
@@ -20611,7 +18491,6 @@ export namespace Prisma {
    */
   export interface Prisma__CashClosingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    closedByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20670,10 +18549,6 @@ export namespace Prisma {
      */
     omit?: CashClosingOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
-    /**
      * Filter, which CashClosing to fetch.
      */
     where: CashClosingWhereUniqueInput
@@ -20692,10 +18567,6 @@ export namespace Prisma {
      */
     omit?: CashClosingOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
-    /**
      * Filter, which CashClosing to fetch.
      */
     where: CashClosingWhereUniqueInput
@@ -20713,10 +18584,6 @@ export namespace Prisma {
      * Omit specific fields from the CashClosing
      */
     omit?: CashClosingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
     /**
      * Filter, which CashClosing to fetch.
      */
@@ -20766,10 +18633,6 @@ export namespace Prisma {
      */
     omit?: CashClosingOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
-    /**
      * Filter, which CashClosing to fetch.
      */
     where?: CashClosingWhereInput
@@ -20818,10 +18681,6 @@ export namespace Prisma {
      */
     omit?: CashClosingOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
-    /**
      * Filter, which CashClosings to fetch.
      */
     where?: CashClosingWhereInput
@@ -20865,10 +18724,6 @@ export namespace Prisma {
      */
     omit?: CashClosingOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
-    /**
      * The data needed to create a CashClosing.
      */
     data: XOR<CashClosingCreateInput, CashClosingUncheckedCreateInput>
@@ -20902,10 +18757,6 @@ export namespace Prisma {
      */
     data: CashClosingCreateManyInput | CashClosingCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -20920,10 +18771,6 @@ export namespace Prisma {
      * Omit specific fields from the CashClosing
      */
     omit?: CashClosingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
     /**
      * The data needed to update a CashClosing.
      */
@@ -20976,10 +18823,6 @@ export namespace Prisma {
      * Limit how many CashClosings to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -20994,10 +18837,6 @@ export namespace Prisma {
      * Omit specific fields from the CashClosing
      */
     omit?: CashClosingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
     /**
      * The filter to search for the CashClosing to update in case it exists.
      */
@@ -21024,10 +18863,6 @@ export namespace Prisma {
      * Omit specific fields from the CashClosing
      */
     omit?: CashClosingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
     /**
      * Filter which CashClosing to delete.
      */
@@ -21060,10 +18895,6 @@ export namespace Prisma {
      * Omit specific fields from the CashClosing
      */
     omit?: CashClosingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CashClosingInclude<ExtArgs> | null
   }
 
 
@@ -21224,7 +19055,7 @@ export namespace Prisma {
 
   export type AuditLogGroupByOutputType = {
     id: string
-    userId: string
+    userId: string | null
     action: $Enums.AuditAction
     entityType: string
     entityId: string | null
@@ -21263,7 +19094,6 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
 
   export type AuditLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -21277,7 +19107,6 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
 
   export type AuditLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -21291,7 +19120,6 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["auditLog"]>
 
   export type AuditLogSelectScalar = {
@@ -21308,24 +19136,13 @@ export namespace Prisma {
   }
 
   export type AuditLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "action" | "entityType" | "entityId" | "oldValues" | "newValues" | "ipAddress" | "userAgent" | "createdAt", ExtArgs["result"]["auditLog"]>
-  export type AuditLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AuditLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AuditLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
 
   export type $AuditLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AuditLog"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
+      userId: string | null
       action: $Enums.AuditAction
       entityType: string
       entityId: string | null
@@ -21728,7 +19545,6 @@ export namespace Prisma {
    */
   export interface Prisma__AuditLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21785,10 +19601,6 @@ export namespace Prisma {
      */
     omit?: AuditLogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
-    /**
      * Filter, which AuditLog to fetch.
      */
     where: AuditLogWhereUniqueInput
@@ -21807,10 +19619,6 @@ export namespace Prisma {
      */
     omit?: AuditLogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
-    /**
      * Filter, which AuditLog to fetch.
      */
     where: AuditLogWhereUniqueInput
@@ -21828,10 +19636,6 @@ export namespace Prisma {
      * Omit specific fields from the AuditLog
      */
     omit?: AuditLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
     /**
      * Filter, which AuditLog to fetch.
      */
@@ -21881,10 +19685,6 @@ export namespace Prisma {
      */
     omit?: AuditLogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
-    /**
      * Filter, which AuditLog to fetch.
      */
     where?: AuditLogWhereInput
@@ -21933,10 +19733,6 @@ export namespace Prisma {
      */
     omit?: AuditLogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
-    /**
      * Filter, which AuditLogs to fetch.
      */
     where?: AuditLogWhereInput
@@ -21980,10 +19776,6 @@ export namespace Prisma {
      */
     omit?: AuditLogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
-    /**
      * The data needed to create a AuditLog.
      */
     data: XOR<AuditLogCreateInput, AuditLogUncheckedCreateInput>
@@ -22017,10 +19809,6 @@ export namespace Prisma {
      */
     data: AuditLogCreateManyInput | AuditLogCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -22035,10 +19823,6 @@ export namespace Prisma {
      * Omit specific fields from the AuditLog
      */
     omit?: AuditLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
     /**
      * The data needed to update a AuditLog.
      */
@@ -22091,10 +19875,6 @@ export namespace Prisma {
      * Limit how many AuditLogs to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -22109,10 +19889,6 @@ export namespace Prisma {
      * Omit specific fields from the AuditLog
      */
     omit?: AuditLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
     /**
      * The filter to search for the AuditLog to update in case it exists.
      */
@@ -22139,10 +19915,6 @@ export namespace Prisma {
      * Omit specific fields from the AuditLog
      */
     omit?: AuditLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
     /**
      * Filter which AuditLog to delete.
      */
@@ -22175,10 +19947,6 @@ export namespace Prisma {
      * Omit specific fields from the AuditLog
      */
     omit?: AuditLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AuditLogInclude<ExtArgs> | null
   }
 
 
@@ -22376,7 +20144,7 @@ export namespace Prisma {
     sizeBytes: bigint
     recordCount: number
     checksum: string
-    createdBy: string
+    createdBy: string | null
     createdAt: Date
     _count: BackupCountAggregateOutputType | null
     _avg: BackupAvgAggregateOutputType | null
@@ -22408,7 +20176,6 @@ export namespace Prisma {
     checksum?: boolean
     createdBy?: boolean
     createdAt?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["backup"]>
 
   export type BackupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -22420,7 +20187,6 @@ export namespace Prisma {
     checksum?: boolean
     createdBy?: boolean
     createdAt?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["backup"]>
 
   export type BackupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -22432,7 +20198,6 @@ export namespace Prisma {
     checksum?: boolean
     createdBy?: boolean
     createdAt?: boolean
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["backup"]>
 
   export type BackupSelectScalar = {
@@ -22447,21 +20212,10 @@ export namespace Prisma {
   }
 
   export type BackupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fileName" | "storagePath" | "sizeBytes" | "recordCount" | "checksum" | "createdBy" | "createdAt", ExtArgs["result"]["backup"]>
-  export type BackupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type BackupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type BackupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdByUser?: boolean | UserDefaultArgs<ExtArgs>
-  }
 
   export type $BackupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Backup"
-    objects: {
-      createdByUser: Prisma.$UserPayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       fileName: string
@@ -22469,7 +20223,7 @@ export namespace Prisma {
       sizeBytes: bigint
       recordCount: number
       checksum: string
-      createdBy: string
+      createdBy: string | null
       createdAt: Date
     }, ExtArgs["result"]["backup"]>
     composites: {}
@@ -22865,7 +20619,6 @@ export namespace Prisma {
    */
   export interface Prisma__BackupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22920,10 +20673,6 @@ export namespace Prisma {
      */
     omit?: BackupOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
-    /**
      * Filter, which Backup to fetch.
      */
     where: BackupWhereUniqueInput
@@ -22942,10 +20691,6 @@ export namespace Prisma {
      */
     omit?: BackupOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
-    /**
      * Filter, which Backup to fetch.
      */
     where: BackupWhereUniqueInput
@@ -22963,10 +20708,6 @@ export namespace Prisma {
      * Omit specific fields from the Backup
      */
     omit?: BackupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
     /**
      * Filter, which Backup to fetch.
      */
@@ -23016,10 +20757,6 @@ export namespace Prisma {
      */
     omit?: BackupOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
-    /**
      * Filter, which Backup to fetch.
      */
     where?: BackupWhereInput
@@ -23068,10 +20805,6 @@ export namespace Prisma {
      */
     omit?: BackupOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
-    /**
      * Filter, which Backups to fetch.
      */
     where?: BackupWhereInput
@@ -23115,10 +20848,6 @@ export namespace Prisma {
      */
     omit?: BackupOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
-    /**
      * The data needed to create a Backup.
      */
     data: XOR<BackupCreateInput, BackupUncheckedCreateInput>
@@ -23152,10 +20881,6 @@ export namespace Prisma {
      */
     data: BackupCreateManyInput | BackupCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -23170,10 +20895,6 @@ export namespace Prisma {
      * Omit specific fields from the Backup
      */
     omit?: BackupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
     /**
      * The data needed to update a Backup.
      */
@@ -23226,10 +20947,6 @@ export namespace Prisma {
      * Limit how many Backups to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -23244,10 +20961,6 @@ export namespace Prisma {
      * Omit specific fields from the Backup
      */
     omit?: BackupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
     /**
      * The filter to search for the Backup to update in case it exists.
      */
@@ -23274,10 +20987,6 @@ export namespace Prisma {
      * Omit specific fields from the Backup
      */
     omit?: BackupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
     /**
      * Filter which Backup to delete.
      */
@@ -23310,10 +21019,6 @@ export namespace Prisma {
      * Omit specific fields from the Backup
      */
     omit?: BackupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BackupInclude<ExtArgs> | null
   }
 
 
@@ -24412,18 +22117,6 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const UserScalarFieldEnum: {
-    id: 'id',
-    email: 'email',
-    passwordHash: 'passwordHash',
-    tokenVersion: 'tokenVersion',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
   export const PackageScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -24757,34 +22450,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Decimal'
    */
   export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -24799,6 +22464,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'EntityStatus'
    */
   export type EnumEntityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EntityStatus'>
@@ -24809,6 +22488,20 @@ export namespace Prisma {
    * Reference to a field of type 'EntityStatus[]'
    */
   export type ListEnumEntityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EntityStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -24990,113 +22683,6 @@ export namespace Prisma {
    */
 
 
-  export type UserWhereInput = {
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    id?: UuidFilter<"User"> | string
-    email?: StringFilter<"User"> | string
-    passwordHash?: StringFilter<"User"> | string
-    tokenVersion?: IntFilter<"User"> | number
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    packageStocks?: PackageStockListRelationFilter
-    inventoryMovements?: InventoryMovementListRelationFilter
-    salesCreated?: SaleListRelationFilter
-    salesCancelled?: SaleListRelationFilter
-    paymentsCreated?: PaymentListRelationFilter
-    paymentsReversed?: PaymentListRelationFilter
-    linePaymentsCreated?: LinePaymentListRelationFilter
-    linePaymentsReversed?: LinePaymentListRelationFilter
-    expensesCreated?: ExpenseListRelationFilter
-    expensesReversed?: ExpenseListRelationFilter
-    ownerWithdrawalsCreated?: OwnerWithdrawalListRelationFilter
-    ownerWithdrawalsReversed?: OwnerWithdrawalListRelationFilter
-    cashMovements?: CashMovementListRelationFilter
-    cashClosings?: CashClosingListRelationFilter
-    auditLogs?: AuditLogListRelationFilter
-    backups?: BackupListRelationFilter
-  }
-
-  export type UserOrderByWithRelationInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    tokenVersion?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    packageStocks?: PackageStockOrderByRelationAggregateInput
-    inventoryMovements?: InventoryMovementOrderByRelationAggregateInput
-    salesCreated?: SaleOrderByRelationAggregateInput
-    salesCancelled?: SaleOrderByRelationAggregateInput
-    paymentsCreated?: PaymentOrderByRelationAggregateInput
-    paymentsReversed?: PaymentOrderByRelationAggregateInput
-    linePaymentsCreated?: LinePaymentOrderByRelationAggregateInput
-    linePaymentsReversed?: LinePaymentOrderByRelationAggregateInput
-    expensesCreated?: ExpenseOrderByRelationAggregateInput
-    expensesReversed?: ExpenseOrderByRelationAggregateInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalOrderByRelationAggregateInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalOrderByRelationAggregateInput
-    cashMovements?: CashMovementOrderByRelationAggregateInput
-    cashClosings?: CashClosingOrderByRelationAggregateInput
-    auditLogs?: AuditLogOrderByRelationAggregateInput
-    backups?: BackupOrderByRelationAggregateInput
-  }
-
-  export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    email?: string
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    passwordHash?: StringFilter<"User"> | string
-    tokenVersion?: IntFilter<"User"> | number
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    packageStocks?: PackageStockListRelationFilter
-    inventoryMovements?: InventoryMovementListRelationFilter
-    salesCreated?: SaleListRelationFilter
-    salesCancelled?: SaleListRelationFilter
-    paymentsCreated?: PaymentListRelationFilter
-    paymentsReversed?: PaymentListRelationFilter
-    linePaymentsCreated?: LinePaymentListRelationFilter
-    linePaymentsReversed?: LinePaymentListRelationFilter
-    expensesCreated?: ExpenseListRelationFilter
-    expensesReversed?: ExpenseListRelationFilter
-    ownerWithdrawalsCreated?: OwnerWithdrawalListRelationFilter
-    ownerWithdrawalsReversed?: OwnerWithdrawalListRelationFilter
-    cashMovements?: CashMovementListRelationFilter
-    cashClosings?: CashClosingListRelationFilter
-    auditLogs?: AuditLogListRelationFilter
-    backups?: BackupListRelationFilter
-  }, "id" | "email">
-
-  export type UserOrderByWithAggregationInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    tokenVersion?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
-    _max?: UserMaxOrderByAggregateInput
-    _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
-  }
-
-  export type UserScalarWhereWithAggregatesInput = {
-    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    OR?: UserScalarWhereWithAggregatesInput[]
-    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"User"> | string
-    email?: StringWithAggregatesFilter<"User"> | string
-    passwordHash?: StringWithAggregatesFilter<"User"> | string
-    tokenVersion?: IntWithAggregatesFilter<"User"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-  }
-
   export type PackageWhereInput = {
     AND?: PackageWhereInput | PackageWhereInput[]
     OR?: PackageWhereInput[]
@@ -25191,11 +22777,10 @@ export namespace Prisma {
     unitPrice?: DecimalFilter<"PackageStock"> | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFilter<"PackageStock"> | Date | string
     notes?: StringNullableFilter<"PackageStock"> | string | null
-    createdBy?: UuidFilter<"PackageStock"> | string
+    createdBy?: StringNullableFilter<"PackageStock"> | string | null
     createdAt?: DateTimeFilter<"PackageStock"> | Date | string
     updatedAt?: DateTimeFilter<"PackageStock"> | Date | string
     package?: XOR<PackageScalarRelationFilter, PackageWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
     inventoryMovements?: InventoryMovementListRelationFilter
   }
 
@@ -25205,11 +22790,10 @@ export namespace Prisma {
     unitPrice?: SortOrder
     receivedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     package?: PackageOrderByWithRelationInput
-    createdByUser?: UserOrderByWithRelationInput
     inventoryMovements?: InventoryMovementOrderByRelationAggregateInput
   }
 
@@ -25222,11 +22806,10 @@ export namespace Prisma {
     unitPrice?: DecimalFilter<"PackageStock"> | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFilter<"PackageStock"> | Date | string
     notes?: StringNullableFilter<"PackageStock"> | string | null
-    createdBy?: UuidFilter<"PackageStock"> | string
+    createdBy?: StringNullableFilter<"PackageStock"> | string | null
     createdAt?: DateTimeFilter<"PackageStock"> | Date | string
     updatedAt?: DateTimeFilter<"PackageStock"> | Date | string
     package?: XOR<PackageScalarRelationFilter, PackageWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
     inventoryMovements?: InventoryMovementListRelationFilter
   }, "id">
 
@@ -25236,7 +22819,7 @@ export namespace Prisma {
     unitPrice?: SortOrder
     receivedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PackageStockCountOrderByAggregateInput
@@ -25255,7 +22838,7 @@ export namespace Prisma {
     unitPrice?: DecimalWithAggregatesFilter<"PackageStock"> | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeWithAggregatesFilter<"PackageStock"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"PackageStock"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"PackageStock"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"PackageStock"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PackageStock"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PackageStock"> | Date | string
   }
@@ -25272,10 +22855,9 @@ export namespace Prisma {
     referenceType?: StringNullableFilter<"InventoryMovement"> | string | null
     referenceId?: UuidNullableFilter<"InventoryMovement"> | string | null
     description?: StringNullableFilter<"InventoryMovement"> | string | null
-    createdBy?: UuidFilter<"InventoryMovement"> | string
+    createdBy?: StringNullableFilter<"InventoryMovement"> | string | null
     createdAt?: DateTimeFilter<"InventoryMovement"> | Date | string
     packageStock?: XOR<PackageStockScalarRelationFilter, PackageStockWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type InventoryMovementOrderByWithRelationInput = {
@@ -25287,10 +22869,9 @@ export namespace Prisma {
     referenceType?: SortOrderInput | SortOrder
     referenceId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     packageStock?: PackageStockOrderByWithRelationInput
-    createdByUser?: UserOrderByWithRelationInput
   }
 
   export type InventoryMovementWhereUniqueInput = Prisma.AtLeast<{
@@ -25305,10 +22886,9 @@ export namespace Prisma {
     referenceType?: StringNullableFilter<"InventoryMovement"> | string | null
     referenceId?: UuidNullableFilter<"InventoryMovement"> | string | null
     description?: StringNullableFilter<"InventoryMovement"> | string | null
-    createdBy?: UuidFilter<"InventoryMovement"> | string
+    createdBy?: StringNullableFilter<"InventoryMovement"> | string | null
     createdAt?: DateTimeFilter<"InventoryMovement"> | Date | string
     packageStock?: XOR<PackageStockScalarRelationFilter, PackageStockWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type InventoryMovementOrderByWithAggregationInput = {
@@ -25320,7 +22900,7 @@ export namespace Prisma {
     referenceType?: SortOrderInput | SortOrder
     referenceId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: InventoryMovementCountOrderByAggregateInput
     _avg?: InventoryMovementAvgOrderByAggregateInput
@@ -25341,7 +22921,7 @@ export namespace Prisma {
     referenceType?: StringNullableWithAggregatesFilter<"InventoryMovement"> | string | null
     referenceId?: UuidNullableWithAggregatesFilter<"InventoryMovement"> | string | null
     description?: StringNullableWithAggregatesFilter<"InventoryMovement"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"InventoryMovement"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"InventoryMovement"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"InventoryMovement"> | Date | string
   }
 
@@ -25431,15 +23011,13 @@ export namespace Prisma {
     status?: EnumSaleStatusFilter<"Sale"> | $Enums.SaleStatus
     saleDate?: DateTimeFilter<"Sale"> | Date | string
     notes?: StringNullableFilter<"Sale"> | string | null
-    createdBy?: UuidFilter<"Sale"> | string
+    createdBy?: StringNullableFilter<"Sale"> | string | null
     createdAt?: DateTimeFilter<"Sale"> | Date | string
     updatedAt?: DateTimeFilter<"Sale"> | Date | string
     cancelledAt?: DateTimeNullableFilter<"Sale"> | Date | string | null
-    cancelledBy?: UuidNullableFilter<"Sale"> | string | null
+    cancelledBy?: StringNullableFilter<"Sale"> | string | null
     cancellationReason?: StringNullableFilter<"Sale"> | string | null
     distributor?: XOR<DistributorScalarRelationFilter, DistributorWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    cancelledByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     items?: SaleItemListRelationFilter
     payments?: PaymentListRelationFilter
   }
@@ -25452,15 +23030,13 @@ export namespace Prisma {
     status?: SortOrder
     saleDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     cancelledAt?: SortOrderInput | SortOrder
     cancelledBy?: SortOrderInput | SortOrder
     cancellationReason?: SortOrderInput | SortOrder
     distributor?: DistributorOrderByWithRelationInput
-    createdByUser?: UserOrderByWithRelationInput
-    cancelledByUser?: UserOrderByWithRelationInput
     items?: SaleItemOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
   }
@@ -25476,15 +23052,13 @@ export namespace Prisma {
     status?: EnumSaleStatusFilter<"Sale"> | $Enums.SaleStatus
     saleDate?: DateTimeFilter<"Sale"> | Date | string
     notes?: StringNullableFilter<"Sale"> | string | null
-    createdBy?: UuidFilter<"Sale"> | string
+    createdBy?: StringNullableFilter<"Sale"> | string | null
     createdAt?: DateTimeFilter<"Sale"> | Date | string
     updatedAt?: DateTimeFilter<"Sale"> | Date | string
     cancelledAt?: DateTimeNullableFilter<"Sale"> | Date | string | null
-    cancelledBy?: UuidNullableFilter<"Sale"> | string | null
+    cancelledBy?: StringNullableFilter<"Sale"> | string | null
     cancellationReason?: StringNullableFilter<"Sale"> | string | null
     distributor?: XOR<DistributorScalarRelationFilter, DistributorWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    cancelledByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     items?: SaleItemListRelationFilter
     payments?: PaymentListRelationFilter
   }, "id" | "invoiceNumber">
@@ -25497,7 +23071,7 @@ export namespace Prisma {
     status?: SortOrder
     saleDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     cancelledAt?: SortOrderInput | SortOrder
@@ -25521,11 +23095,11 @@ export namespace Prisma {
     status?: EnumSaleStatusWithAggregatesFilter<"Sale"> | $Enums.SaleStatus
     saleDate?: DateTimeWithAggregatesFilter<"Sale"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"Sale"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"Sale"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"Sale"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Sale"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Sale"> | Date | string
     cancelledAt?: DateTimeNullableWithAggregatesFilter<"Sale"> | Date | string | null
-    cancelledBy?: UuidNullableWithAggregatesFilter<"Sale"> | string | null
+    cancelledBy?: StringNullableWithAggregatesFilter<"Sale"> | string | null
     cancellationReason?: StringNullableWithAggregatesFilter<"Sale"> | string | null
   }
 
@@ -25614,14 +23188,12 @@ export namespace Prisma {
     status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
     paymentDate?: DateTimeFilter<"Payment"> | Date | string
     notes?: StringNullableFilter<"Payment"> | string | null
-    createdBy?: UuidFilter<"Payment"> | string
+    createdBy?: StringNullableFilter<"Payment"> | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     reversedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"Payment"> | string | null
+    reversedBy?: StringNullableFilter<"Payment"> | string | null
     reversalReason?: StringNullableFilter<"Payment"> | string | null
     sale?: XOR<SaleScalarRelationFilter, SaleWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type PaymentOrderByWithRelationInput = {
@@ -25631,14 +23203,12 @@ export namespace Prisma {
     status?: SortOrder
     paymentDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
     reversalReason?: SortOrderInput | SortOrder
     sale?: SaleOrderByWithRelationInput
-    createdByUser?: UserOrderByWithRelationInput
-    reversedByUser?: UserOrderByWithRelationInput
   }
 
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
@@ -25651,14 +23221,12 @@ export namespace Prisma {
     status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
     paymentDate?: DateTimeFilter<"Payment"> | Date | string
     notes?: StringNullableFilter<"Payment"> | string | null
-    createdBy?: UuidFilter<"Payment"> | string
+    createdBy?: StringNullableFilter<"Payment"> | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     reversedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"Payment"> | string | null
+    reversedBy?: StringNullableFilter<"Payment"> | string | null
     reversalReason?: StringNullableFilter<"Payment"> | string | null
     sale?: XOR<SaleScalarRelationFilter, SaleWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type PaymentOrderByWithAggregationInput = {
@@ -25668,7 +23236,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
@@ -25690,10 +23258,10 @@ export namespace Prisma {
     status?: EnumPaymentStatusWithAggregatesFilter<"Payment"> | $Enums.PaymentStatus
     paymentDate?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"Payment"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"Payment"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     reversedAt?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
-    reversedBy?: UuidNullableWithAggregatesFilter<"Payment"> | string | null
+    reversedBy?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     reversalReason?: StringNullableWithAggregatesFilter<"Payment"> | string | null
   }
 
@@ -25795,14 +23363,12 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFilter<"LinePayment"> | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFilter<"LinePayment"> | Date | string
     notes?: StringNullableFilter<"LinePayment"> | string | null
-    createdBy?: UuidFilter<"LinePayment"> | string
+    createdBy?: StringNullableFilter<"LinePayment"> | string | null
     createdAt?: DateTimeFilter<"LinePayment"> | Date | string
     reversedAt?: DateTimeNullableFilter<"LinePayment"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"LinePayment"> | string | null
+    reversedBy?: StringNullableFilter<"LinePayment"> | string | null
     reversalReason?: StringNullableFilter<"LinePayment"> | string | null
     line?: XOR<LineScalarRelationFilter, LineWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type LinePaymentOrderByWithRelationInput = {
@@ -25813,14 +23379,12 @@ export namespace Prisma {
     status?: SortOrder
     paymentDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
     reversalReason?: SortOrderInput | SortOrder
     line?: LineOrderByWithRelationInput
-    createdByUser?: UserOrderByWithRelationInput
-    reversedByUser?: UserOrderByWithRelationInput
   }
 
   export type LinePaymentWhereUniqueInput = Prisma.AtLeast<{
@@ -25834,14 +23398,12 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFilter<"LinePayment"> | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFilter<"LinePayment"> | Date | string
     notes?: StringNullableFilter<"LinePayment"> | string | null
-    createdBy?: UuidFilter<"LinePayment"> | string
+    createdBy?: StringNullableFilter<"LinePayment"> | string | null
     createdAt?: DateTimeFilter<"LinePayment"> | Date | string
     reversedAt?: DateTimeNullableFilter<"LinePayment"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"LinePayment"> | string | null
+    reversedBy?: StringNullableFilter<"LinePayment"> | string | null
     reversalReason?: StringNullableFilter<"LinePayment"> | string | null
     line?: XOR<LineScalarRelationFilter, LineWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type LinePaymentOrderByWithAggregationInput = {
@@ -25852,7 +23414,7 @@ export namespace Prisma {
     status?: SortOrder
     paymentDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
@@ -25875,10 +23437,10 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusWithAggregatesFilter<"LinePayment"> | $Enums.LinePaymentStatus
     paymentDate?: DateTimeWithAggregatesFilter<"LinePayment"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"LinePayment"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"LinePayment"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"LinePayment"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"LinePayment"> | Date | string
     reversedAt?: DateTimeNullableWithAggregatesFilter<"LinePayment"> | Date | string | null
-    reversedBy?: UuidNullableWithAggregatesFilter<"LinePayment"> | string | null
+    reversedBy?: StringNullableWithAggregatesFilter<"LinePayment"> | string | null
     reversalReason?: StringNullableWithAggregatesFilter<"LinePayment"> | string | null
   }
 
@@ -25953,15 +23515,13 @@ export namespace Prisma {
     status?: EnumExpenseStatusFilter<"Expense"> | $Enums.ExpenseStatus
     expenseDate?: DateTimeFilter<"Expense"> | Date | string
     notes?: StringNullableFilter<"Expense"> | string | null
-    createdBy?: UuidFilter<"Expense"> | string
+    createdBy?: StringNullableFilter<"Expense"> | string | null
     createdAt?: DateTimeFilter<"Expense"> | Date | string
     updatedAt?: DateTimeFilter<"Expense"> | Date | string
     reversedAt?: DateTimeNullableFilter<"Expense"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"Expense"> | string | null
+    reversedBy?: StringNullableFilter<"Expense"> | string | null
     reversalReason?: StringNullableFilter<"Expense"> | string | null
     category?: XOR<ExpenseCategoryScalarRelationFilter, ExpenseCategoryWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type ExpenseOrderByWithRelationInput = {
@@ -25972,15 +23532,13 @@ export namespace Prisma {
     status?: SortOrder
     expenseDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
     reversalReason?: SortOrderInput | SortOrder
     category?: ExpenseCategoryOrderByWithRelationInput
-    createdByUser?: UserOrderByWithRelationInput
-    reversedByUser?: UserOrderByWithRelationInput
   }
 
   export type ExpenseWhereUniqueInput = Prisma.AtLeast<{
@@ -25994,15 +23552,13 @@ export namespace Prisma {
     status?: EnumExpenseStatusFilter<"Expense"> | $Enums.ExpenseStatus
     expenseDate?: DateTimeFilter<"Expense"> | Date | string
     notes?: StringNullableFilter<"Expense"> | string | null
-    createdBy?: UuidFilter<"Expense"> | string
+    createdBy?: StringNullableFilter<"Expense"> | string | null
     createdAt?: DateTimeFilter<"Expense"> | Date | string
     updatedAt?: DateTimeFilter<"Expense"> | Date | string
     reversedAt?: DateTimeNullableFilter<"Expense"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"Expense"> | string | null
+    reversedBy?: StringNullableFilter<"Expense"> | string | null
     reversalReason?: StringNullableFilter<"Expense"> | string | null
     category?: XOR<ExpenseCategoryScalarRelationFilter, ExpenseCategoryWhereInput>
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type ExpenseOrderByWithAggregationInput = {
@@ -26013,7 +23569,7 @@ export namespace Prisma {
     status?: SortOrder
     expenseDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
@@ -26037,11 +23593,11 @@ export namespace Prisma {
     status?: EnumExpenseStatusWithAggregatesFilter<"Expense"> | $Enums.ExpenseStatus
     expenseDate?: DateTimeWithAggregatesFilter<"Expense"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"Expense"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"Expense"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"Expense"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Expense"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Expense"> | Date | string
     reversedAt?: DateTimeNullableWithAggregatesFilter<"Expense"> | Date | string | null
-    reversedBy?: UuidNullableWithAggregatesFilter<"Expense"> | string | null
+    reversedBy?: StringNullableWithAggregatesFilter<"Expense"> | string | null
     reversalReason?: StringNullableWithAggregatesFilter<"Expense"> | string | null
   }
 
@@ -26055,13 +23611,11 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusFilter<"OwnerWithdrawal"> | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeFilter<"OwnerWithdrawal"> | Date | string
     notes?: StringNullableFilter<"OwnerWithdrawal"> | string | null
-    createdBy?: UuidFilter<"OwnerWithdrawal"> | string
+    createdBy?: StringNullableFilter<"OwnerWithdrawal"> | string | null
     createdAt?: DateTimeFilter<"OwnerWithdrawal"> | Date | string
     reversedAt?: DateTimeNullableFilter<"OwnerWithdrawal"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"OwnerWithdrawal"> | string | null
+    reversedBy?: StringNullableFilter<"OwnerWithdrawal"> | string | null
     reversalReason?: StringNullableFilter<"OwnerWithdrawal"> | string | null
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type OwnerWithdrawalOrderByWithRelationInput = {
@@ -26071,13 +23625,11 @@ export namespace Prisma {
     status?: SortOrder
     withdrawalDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
     reversalReason?: SortOrderInput | SortOrder
-    createdByUser?: UserOrderByWithRelationInput
-    reversedByUser?: UserOrderByWithRelationInput
   }
 
   export type OwnerWithdrawalWhereUniqueInput = Prisma.AtLeast<{
@@ -26090,13 +23642,11 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusFilter<"OwnerWithdrawal"> | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeFilter<"OwnerWithdrawal"> | Date | string
     notes?: StringNullableFilter<"OwnerWithdrawal"> | string | null
-    createdBy?: UuidFilter<"OwnerWithdrawal"> | string
+    createdBy?: StringNullableFilter<"OwnerWithdrawal"> | string | null
     createdAt?: DateTimeFilter<"OwnerWithdrawal"> | Date | string
     reversedAt?: DateTimeNullableFilter<"OwnerWithdrawal"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"OwnerWithdrawal"> | string | null
+    reversedBy?: StringNullableFilter<"OwnerWithdrawal"> | string | null
     reversalReason?: StringNullableFilter<"OwnerWithdrawal"> | string | null
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
-    reversedByUser?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type OwnerWithdrawalOrderByWithAggregationInput = {
@@ -26106,7 +23656,7 @@ export namespace Prisma {
     status?: SortOrder
     withdrawalDate?: SortOrder
     notes?: SortOrderInput | SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reversedAt?: SortOrderInput | SortOrder
     reversedBy?: SortOrderInput | SortOrder
@@ -26128,10 +23678,10 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusWithAggregatesFilter<"OwnerWithdrawal"> | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeWithAggregatesFilter<"OwnerWithdrawal"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"OwnerWithdrawal"> | string | null
-    createdBy?: UuidWithAggregatesFilter<"OwnerWithdrawal"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"OwnerWithdrawal"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"OwnerWithdrawal"> | Date | string
     reversedAt?: DateTimeNullableWithAggregatesFilter<"OwnerWithdrawal"> | Date | string | null
-    reversedBy?: UuidNullableWithAggregatesFilter<"OwnerWithdrawal"> | string | null
+    reversedBy?: StringNullableWithAggregatesFilter<"OwnerWithdrawal"> | string | null
     reversalReason?: StringNullableWithAggregatesFilter<"OwnerWithdrawal"> | string | null
   }
 
@@ -26146,9 +23696,8 @@ export namespace Prisma {
     sourceId?: UuidNullableFilter<"CashMovement"> | string | null
     description?: StringNullableFilter<"CashMovement"> | string | null
     movementDate?: DateTimeFilter<"CashMovement"> | Date | string
-    createdBy?: UuidFilter<"CashMovement"> | string
+    createdBy?: StringNullableFilter<"CashMovement"> | string | null
     createdAt?: DateTimeFilter<"CashMovement"> | Date | string
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type CashMovementOrderByWithRelationInput = {
@@ -26159,9 +23708,8 @@ export namespace Prisma {
     sourceId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     movementDate?: SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    createdByUser?: UserOrderByWithRelationInput
   }
 
   export type CashMovementWhereUniqueInput = Prisma.AtLeast<{
@@ -26175,9 +23723,8 @@ export namespace Prisma {
     sourceId?: UuidNullableFilter<"CashMovement"> | string | null
     description?: StringNullableFilter<"CashMovement"> | string | null
     movementDate?: DateTimeFilter<"CashMovement"> | Date | string
-    createdBy?: UuidFilter<"CashMovement"> | string
+    createdBy?: StringNullableFilter<"CashMovement"> | string | null
     createdAt?: DateTimeFilter<"CashMovement"> | Date | string
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type CashMovementOrderByWithAggregationInput = {
@@ -26188,7 +23735,7 @@ export namespace Prisma {
     sourceId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     movementDate?: SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: CashMovementCountOrderByAggregateInput
     _avg?: CashMovementAvgOrderByAggregateInput
@@ -26208,7 +23755,7 @@ export namespace Prisma {
     sourceId?: UuidNullableWithAggregatesFilter<"CashMovement"> | string | null
     description?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
     movementDate?: DateTimeWithAggregatesFilter<"CashMovement"> | Date | string
-    createdBy?: UuidWithAggregatesFilter<"CashMovement"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CashMovement"> | Date | string
   }
 
@@ -26226,9 +23773,8 @@ export namespace Prisma {
     actualBalance?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
     difference?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableFilter<"CashClosing"> | string | null
-    closedBy?: UuidFilter<"CashClosing"> | string
+    closedBy?: StringNullableFilter<"CashClosing"> | string | null
     closedAt?: DateTimeFilter<"CashClosing"> | Date | string
-    closedByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type CashClosingOrderByWithRelationInput = {
@@ -26242,9 +23788,8 @@ export namespace Prisma {
     actualBalance?: SortOrder
     difference?: SortOrder
     notes?: SortOrderInput | SortOrder
-    closedBy?: SortOrder
+    closedBy?: SortOrderInput | SortOrder
     closedAt?: SortOrder
-    closedByUser?: UserOrderByWithRelationInput
   }
 
   export type CashClosingWhereUniqueInput = Prisma.AtLeast<{
@@ -26261,9 +23806,8 @@ export namespace Prisma {
     actualBalance?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
     difference?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableFilter<"CashClosing"> | string | null
-    closedBy?: UuidFilter<"CashClosing"> | string
+    closedBy?: StringNullableFilter<"CashClosing"> | string | null
     closedAt?: DateTimeFilter<"CashClosing"> | Date | string
-    closedByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "closingDate">
 
   export type CashClosingOrderByWithAggregationInput = {
@@ -26277,7 +23821,7 @@ export namespace Prisma {
     actualBalance?: SortOrder
     difference?: SortOrder
     notes?: SortOrderInput | SortOrder
-    closedBy?: SortOrder
+    closedBy?: SortOrderInput | SortOrder
     closedAt?: SortOrder
     _count?: CashClosingCountOrderByAggregateInput
     _avg?: CashClosingAvgOrderByAggregateInput
@@ -26300,7 +23844,7 @@ export namespace Prisma {
     actualBalance?: DecimalWithAggregatesFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
     difference?: DecimalWithAggregatesFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableWithAggregatesFilter<"CashClosing"> | string | null
-    closedBy?: UuidWithAggregatesFilter<"CashClosing"> | string
+    closedBy?: StringNullableWithAggregatesFilter<"CashClosing"> | string | null
     closedAt?: DateTimeWithAggregatesFilter<"CashClosing"> | Date | string
   }
 
@@ -26309,7 +23853,7 @@ export namespace Prisma {
     OR?: AuditLogWhereInput[]
     NOT?: AuditLogWhereInput | AuditLogWhereInput[]
     id?: UuidFilter<"AuditLog"> | string
-    userId?: UuidFilter<"AuditLog"> | string
+    userId?: StringNullableFilter<"AuditLog"> | string | null
     action?: EnumAuditActionFilter<"AuditLog"> | $Enums.AuditAction
     entityType?: StringFilter<"AuditLog"> | string
     entityId?: UuidNullableFilter<"AuditLog"> | string | null
@@ -26318,12 +23862,11 @@ export namespace Prisma {
     ipAddress?: StringNullableFilter<"AuditLog"> | string | null
     userAgent?: StringNullableFilter<"AuditLog"> | string | null
     createdAt?: DateTimeFilter<"AuditLog"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type AuditLogOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     action?: SortOrder
     entityType?: SortOrder
     entityId?: SortOrderInput | SortOrder
@@ -26332,7 +23875,6 @@ export namespace Prisma {
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
   }
 
   export type AuditLogWhereUniqueInput = Prisma.AtLeast<{
@@ -26340,7 +23882,7 @@ export namespace Prisma {
     AND?: AuditLogWhereInput | AuditLogWhereInput[]
     OR?: AuditLogWhereInput[]
     NOT?: AuditLogWhereInput | AuditLogWhereInput[]
-    userId?: UuidFilter<"AuditLog"> | string
+    userId?: StringNullableFilter<"AuditLog"> | string | null
     action?: EnumAuditActionFilter<"AuditLog"> | $Enums.AuditAction
     entityType?: StringFilter<"AuditLog"> | string
     entityId?: UuidNullableFilter<"AuditLog"> | string | null
@@ -26349,12 +23891,11 @@ export namespace Prisma {
     ipAddress?: StringNullableFilter<"AuditLog"> | string | null
     userAgent?: StringNullableFilter<"AuditLog"> | string | null
     createdAt?: DateTimeFilter<"AuditLog"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type AuditLogOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     action?: SortOrder
     entityType?: SortOrder
     entityId?: SortOrderInput | SortOrder
@@ -26373,7 +23914,7 @@ export namespace Prisma {
     OR?: AuditLogScalarWhereWithAggregatesInput[]
     NOT?: AuditLogScalarWhereWithAggregatesInput | AuditLogScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"AuditLog"> | string
-    userId?: UuidWithAggregatesFilter<"AuditLog"> | string
+    userId?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
     action?: EnumAuditActionWithAggregatesFilter<"AuditLog"> | $Enums.AuditAction
     entityType?: StringWithAggregatesFilter<"AuditLog"> | string
     entityId?: UuidNullableWithAggregatesFilter<"AuditLog"> | string | null
@@ -26394,9 +23935,8 @@ export namespace Prisma {
     sizeBytes?: BigIntFilter<"Backup"> | bigint | number
     recordCount?: IntFilter<"Backup"> | number
     checksum?: StringFilter<"Backup"> | string
-    createdBy?: UuidFilter<"Backup"> | string
+    createdBy?: StringNullableFilter<"Backup"> | string | null
     createdAt?: DateTimeFilter<"Backup"> | Date | string
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type BackupOrderByWithRelationInput = {
@@ -26406,9 +23946,8 @@ export namespace Prisma {
     sizeBytes?: SortOrder
     recordCount?: SortOrder
     checksum?: SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    createdByUser?: UserOrderByWithRelationInput
   }
 
   export type BackupWhereUniqueInput = Prisma.AtLeast<{
@@ -26421,9 +23960,8 @@ export namespace Prisma {
     sizeBytes?: BigIntFilter<"Backup"> | bigint | number
     recordCount?: IntFilter<"Backup"> | number
     checksum?: StringFilter<"Backup"> | string
-    createdBy?: UuidFilter<"Backup"> | string
+    createdBy?: StringNullableFilter<"Backup"> | string | null
     createdAt?: DateTimeFilter<"Backup"> | Date | string
-    createdByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type BackupOrderByWithAggregationInput = {
@@ -26433,7 +23971,7 @@ export namespace Prisma {
     sizeBytes?: SortOrder
     recordCount?: SortOrder
     checksum?: SortOrder
-    createdBy?: SortOrder
+    createdBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: BackupCountOrderByAggregateInput
     _avg?: BackupAvgOrderByAggregateInput
@@ -26452,7 +23990,7 @@ export namespace Prisma {
     sizeBytes?: BigIntWithAggregatesFilter<"Backup"> | bigint | number
     recordCount?: IntWithAggregatesFilter<"Backup"> | number
     checksum?: StringWithAggregatesFilter<"Backup"> | string
-    createdBy?: UuidWithAggregatesFilter<"Backup"> | string
+    createdBy?: StringNullableWithAggregatesFilter<"Backup"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Backup"> | Date | string
   }
 
@@ -26528,133 +24066,6 @@ export namespace Prisma {
     lowStockThreshold?: IntWithAggregatesFilter<"Settings"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Settings"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Settings"> | Date | string
-  }
-
-  export type UserCreateInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserCreateManyInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PackageCreateInput = {
@@ -26761,10 +24172,10 @@ export namespace Prisma {
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     package: PackageCreateNestedOneWithoutStocksInput
-    createdByUser: UserCreateNestedOneWithoutPackageStocksInput
     inventoryMovements?: InventoryMovementCreateNestedManyWithoutPackageStockInput
   }
 
@@ -26774,7 +24185,7 @@ export namespace Prisma {
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutPackageStockInput
@@ -26785,10 +24196,10 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     package?: PackageUpdateOneRequiredWithoutStocksNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutPackageStocksNestedInput
     inventoryMovements?: InventoryMovementUpdateManyWithoutPackageStockNestedInput
   }
 
@@ -26798,7 +24209,7 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutPackageStockNestedInput
@@ -26810,7 +24221,7 @@ export namespace Prisma {
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26820,6 +24231,7 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26830,7 +24242,7 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26843,9 +24255,9 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     description?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     packageStock: PackageStockCreateNestedOneWithoutInventoryMovementsInput
-    createdByUser: UserCreateNestedOneWithoutInventoryMovementsInput
   }
 
   export type InventoryMovementUncheckedCreateInput = {
@@ -26857,7 +24269,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     description?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -26869,9 +24281,9 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packageStock?: PackageStockUpdateOneRequiredWithoutInventoryMovementsNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutInventoryMovementsNestedInput
   }
 
   export type InventoryMovementUncheckedUpdateInput = {
@@ -26883,7 +24295,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -26896,7 +24308,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     description?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -26908,6 +24320,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -26920,7 +24333,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27019,13 +24432,13 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
+    cancelledBy?: string | null
     cancellationReason?: string | null
     distributor: DistributorCreateNestedOneWithoutSalesInput
-    createdByUser: UserCreateNestedOneWithoutSalesCreatedInput
-    cancelledByUser?: UserCreateNestedOneWithoutSalesCancelledInput
     items?: SaleItemCreateNestedManyWithoutSaleInput
     payments?: PaymentCreateNestedManyWithoutSaleInput
   }
@@ -27038,7 +24451,7 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
@@ -27055,13 +24468,13 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
     cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
     distributor?: DistributorUpdateOneRequiredWithoutSalesNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutSalesCreatedNestedInput
-    cancelledByUser?: UserUpdateOneWithoutSalesCancelledNestedInput
     items?: SaleItemUpdateManyWithoutSaleNestedInput
     payments?: PaymentUpdateManyWithoutSaleNestedInput
   }
@@ -27074,7 +24487,7 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27092,7 +24505,7 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
@@ -27107,9 +24520,11 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
     cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -27121,7 +24536,7 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27210,12 +24625,12 @@ export namespace Prisma {
     status?: $Enums.PaymentStatus
     paymentDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
     sale: SaleCreateNestedOneWithoutPaymentsInput
-    createdByUser: UserCreateNestedOneWithoutPaymentsCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutPaymentsReversedInput
   }
 
   export type PaymentUncheckedCreateInput = {
@@ -27225,7 +24640,7 @@ export namespace Prisma {
     status?: $Enums.PaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -27238,12 +24653,12 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
     sale?: SaleUpdateOneRequiredWithoutPaymentsNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutPaymentsCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutPaymentsReversedNestedInput
   }
 
   export type PaymentUncheckedUpdateInput = {
@@ -27253,7 +24668,7 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27267,7 +24682,7 @@ export namespace Prisma {
     status?: $Enums.PaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -27280,8 +24695,10 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -27292,7 +24709,7 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27408,12 +24825,12 @@ export namespace Prisma {
     status?: $Enums.LinePaymentStatus
     paymentDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
     line: LineCreateNestedOneWithoutPaymentsInput
-    createdByUser: UserCreateNestedOneWithoutLinePaymentsCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutLinePaymentsReversedInput
   }
 
   export type LinePaymentUncheckedCreateInput = {
@@ -27424,7 +24841,7 @@ export namespace Prisma {
     status?: $Enums.LinePaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -27438,12 +24855,12 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
     line?: LineUpdateOneRequiredWithoutPaymentsNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutLinePaymentsCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutLinePaymentsReversedNestedInput
   }
 
   export type LinePaymentUncheckedUpdateInput = {
@@ -27454,7 +24871,7 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27469,7 +24886,7 @@ export namespace Prisma {
     status?: $Enums.LinePaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -27483,8 +24900,10 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -27496,7 +24915,7 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27577,13 +24996,13 @@ export namespace Prisma {
     status?: $Enums.ExpenseStatus
     expenseDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
     category: ExpenseCategoryCreateNestedOneWithoutExpensesInput
-    createdByUser: UserCreateNestedOneWithoutExpensesCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutExpensesReversedInput
   }
 
   export type ExpenseUncheckedCreateInput = {
@@ -27594,7 +25013,7 @@ export namespace Prisma {
     status?: $Enums.ExpenseStatus
     expenseDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reversedAt?: Date | string | null
@@ -27609,13 +25028,13 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
     category?: ExpenseCategoryUpdateOneRequiredWithoutExpensesNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutExpensesCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutExpensesReversedNestedInput
   }
 
   export type ExpenseUncheckedUpdateInput = {
@@ -27626,7 +25045,7 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27642,7 +25061,7 @@ export namespace Prisma {
     status?: $Enums.ExpenseStatus
     expenseDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reversedAt?: Date | string | null
@@ -27657,9 +25076,11 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -27671,7 +25092,7 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27686,11 +25107,11 @@ export namespace Prisma {
     status?: $Enums.OwnerWithdrawalStatus
     withdrawalDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
-    createdByUser: UserCreateNestedOneWithoutOwnerWithdrawalsCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutOwnerWithdrawalsReversedInput
   }
 
   export type OwnerWithdrawalUncheckedCreateInput = {
@@ -27700,7 +25121,7 @@ export namespace Prisma {
     status?: $Enums.OwnerWithdrawalStatus
     withdrawalDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -27714,11 +25135,11 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    createdByUser?: UserUpdateOneRequiredWithoutOwnerWithdrawalsCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutOwnerWithdrawalsReversedNestedInput
   }
 
   export type OwnerWithdrawalUncheckedUpdateInput = {
@@ -27728,7 +25149,7 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27742,7 +25163,7 @@ export namespace Prisma {
     status?: $Enums.OwnerWithdrawalStatus
     withdrawalDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -27756,8 +25177,10 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -27768,7 +25191,7 @@ export namespace Prisma {
     status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
     withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27783,8 +25206,8 @@ export namespace Prisma {
     sourceId?: string | null
     description?: string | null
     movementDate?: Date | string
+    createdBy?: string | null
     createdAt?: Date | string
-    createdByUser: UserCreateNestedOneWithoutCashMovementsInput
   }
 
   export type CashMovementUncheckedCreateInput = {
@@ -27795,7 +25218,7 @@ export namespace Prisma {
     sourceId?: string | null
     description?: string | null
     movementDate?: Date | string
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -27807,8 +25230,8 @@ export namespace Prisma {
     sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdByUser?: UserUpdateOneRequiredWithoutCashMovementsNestedInput
   }
 
   export type CashMovementUncheckedUpdateInput = {
@@ -27819,7 +25242,7 @@ export namespace Prisma {
     sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27831,7 +25254,7 @@ export namespace Prisma {
     sourceId?: string | null
     description?: string | null
     movementDate?: Date | string
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -27843,6 +25266,7 @@ export namespace Prisma {
     sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27854,7 +25278,7 @@ export namespace Prisma {
     sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27869,8 +25293,8 @@ export namespace Prisma {
     actualBalance: Decimal | DecimalJsLike | number | string
     difference: Decimal | DecimalJsLike | number | string
     notes?: string | null
+    closedBy?: string | null
     closedAt?: Date | string
-    closedByUser: UserCreateNestedOneWithoutCashClosingsInput
   }
 
   export type CashClosingUncheckedCreateInput = {
@@ -27884,7 +25308,7 @@ export namespace Prisma {
     actualBalance: Decimal | DecimalJsLike | number | string
     difference: Decimal | DecimalJsLike | number | string
     notes?: string | null
-    closedBy: string
+    closedBy?: string | null
     closedAt?: Date | string
   }
 
@@ -27899,8 +25323,8 @@ export namespace Prisma {
     actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    closedByUser?: UserUpdateOneRequiredWithoutCashClosingsNestedInput
   }
 
   export type CashClosingUncheckedUpdateInput = {
@@ -27914,7 +25338,7 @@ export namespace Prisma {
     actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    closedBy?: StringFieldUpdateOperationsInput | string
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27929,7 +25353,7 @@ export namespace Prisma {
     actualBalance: Decimal | DecimalJsLike | number | string
     difference: Decimal | DecimalJsLike | number | string
     notes?: string | null
-    closedBy: string
+    closedBy?: string | null
     closedAt?: Date | string
   }
 
@@ -27944,6 +25368,7 @@ export namespace Prisma {
     actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27958,12 +25383,13 @@ export namespace Prisma {
     actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    closedBy?: StringFieldUpdateOperationsInput | string
+    closedBy?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AuditLogCreateInput = {
     id?: string
+    userId?: string | null
     action: $Enums.AuditAction
     entityType: string
     entityId?: string | null
@@ -27972,12 +25398,11 @@ export namespace Prisma {
     ipAddress?: string | null
     userAgent?: string | null
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutAuditLogsInput
   }
 
   export type AuditLogUncheckedCreateInput = {
     id?: string
-    userId: string
+    userId?: string | null
     action: $Enums.AuditAction
     entityType: string
     entityId?: string | null
@@ -27990,6 +25415,7 @@ export namespace Prisma {
 
   export type AuditLogUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
     entityType?: StringFieldUpdateOperationsInput | string
     entityId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27998,12 +25424,11 @@ export namespace Prisma {
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutAuditLogsNestedInput
   }
 
   export type AuditLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
     entityType?: StringFieldUpdateOperationsInput | string
     entityId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28016,7 +25441,7 @@ export namespace Prisma {
 
   export type AuditLogCreateManyInput = {
     id?: string
-    userId: string
+    userId?: string | null
     action: $Enums.AuditAction
     entityType: string
     entityId?: string | null
@@ -28029,6 +25454,7 @@ export namespace Prisma {
 
   export type AuditLogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
     entityType?: StringFieldUpdateOperationsInput | string
     entityId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28041,7 +25467,7 @@ export namespace Prisma {
 
   export type AuditLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
     entityType?: StringFieldUpdateOperationsInput | string
     entityId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28059,8 +25485,8 @@ export namespace Prisma {
     sizeBytes: bigint | number
     recordCount: number
     checksum: string
+    createdBy?: string | null
     createdAt?: Date | string
-    createdByUser: UserCreateNestedOneWithoutBackupsInput
   }
 
   export type BackupUncheckedCreateInput = {
@@ -28070,7 +25496,7 @@ export namespace Prisma {
     sizeBytes: bigint | number
     recordCount: number
     checksum: string
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -28081,8 +25507,8 @@ export namespace Prisma {
     sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
     recordCount?: IntFieldUpdateOperationsInput | number
     checksum?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdByUser?: UserUpdateOneRequiredWithoutBackupsNestedInput
   }
 
   export type BackupUncheckedUpdateInput = {
@@ -28092,7 +25518,7 @@ export namespace Prisma {
     sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
     recordCount?: IntFieldUpdateOperationsInput | number
     checksum?: StringFieldUpdateOperationsInput | string
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -28103,7 +25529,7 @@ export namespace Prisma {
     sizeBytes: bigint | number
     recordCount: number
     checksum: string
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -28114,6 +25540,7 @@ export namespace Prisma {
     sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
     recordCount?: IntFieldUpdateOperationsInput | number
     checksum?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -28124,7 +25551,7 @@ export namespace Prisma {
     sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
     recordCount?: IntFieldUpdateOperationsInput | number
     checksum?: StringFieldUpdateOperationsInput | string
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -28239,236 +25666,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type PackageStockListRelationFilter = {
-    every?: PackageStockWhereInput
-    some?: PackageStockWhereInput
-    none?: PackageStockWhereInput
-  }
-
-  export type InventoryMovementListRelationFilter = {
-    every?: InventoryMovementWhereInput
-    some?: InventoryMovementWhereInput
-    none?: InventoryMovementWhereInput
-  }
-
-  export type SaleListRelationFilter = {
-    every?: SaleWhereInput
-    some?: SaleWhereInput
-    none?: SaleWhereInput
-  }
-
-  export type PaymentListRelationFilter = {
-    every?: PaymentWhereInput
-    some?: PaymentWhereInput
-    none?: PaymentWhereInput
-  }
-
-  export type LinePaymentListRelationFilter = {
-    every?: LinePaymentWhereInput
-    some?: LinePaymentWhereInput
-    none?: LinePaymentWhereInput
-  }
-
-  export type ExpenseListRelationFilter = {
-    every?: ExpenseWhereInput
-    some?: ExpenseWhereInput
-    none?: ExpenseWhereInput
-  }
-
-  export type OwnerWithdrawalListRelationFilter = {
-    every?: OwnerWithdrawalWhereInput
-    some?: OwnerWithdrawalWhereInput
-    none?: OwnerWithdrawalWhereInput
-  }
-
-  export type CashMovementListRelationFilter = {
-    every?: CashMovementWhereInput
-    some?: CashMovementWhereInput
-    none?: CashMovementWhereInput
-  }
-
-  export type CashClosingListRelationFilter = {
-    every?: CashClosingWhereInput
-    some?: CashClosingWhereInput
-    none?: CashClosingWhereInput
-  }
-
-  export type AuditLogListRelationFilter = {
-    every?: AuditLogWhereInput
-    some?: AuditLogWhereInput
-    none?: AuditLogWhereInput
-  }
-
-  export type BackupListRelationFilter = {
-    every?: BackupWhereInput
-    some?: BackupWhereInput
-    none?: BackupWhereInput
-  }
-
-  export type PackageStockOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type InventoryMovementOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type SaleOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PaymentOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type LinePaymentOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ExpenseOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type OwnerWithdrawalOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CashMovementOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CashClosingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AuditLogOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type BackupOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserCountOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    tokenVersion?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    tokenVersion?: SortOrder
-  }
-
-  export type UserMaxOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    tokenVersion?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserMinOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
-    tokenVersion?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    tokenVersion?: SortOrder
-  }
-
-  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -28478,6 +25675,17 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -28502,6 +25710,23 @@ export namespace Prisma {
     not?: NestedEnumEntityStatusFilter<$PrismaModel> | $Enums.EntityStatus
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type PackageStockListRelationFilter = {
+    every?: PackageStockWhereInput
+    some?: PackageStockWhereInput
+    none?: PackageStockWhereInput
+  }
+
   export type SaleItemListRelationFilter = {
     every?: SaleItemWhereInput
     some?: SaleItemWhereInput
@@ -28511,6 +25736,10 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type PackageStockOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type SaleItemOrderByRelationAggregateInput = {
@@ -28568,6 +25797,39 @@ export namespace Prisma {
     hours?: SortOrder
   }
 
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -28582,6 +25844,22 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -28612,14 +25890,33 @@ export namespace Prisma {
     _max?: NestedEnumEntityStatusFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type PackageScalarRelationFilter = {
     is?: PackageWhereInput
     isNot?: PackageWhereInput
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type InventoryMovementListRelationFilter = {
+    every?: InventoryMovementWhereInput
+    some?: InventoryMovementWhereInput
+    none?: InventoryMovementWhereInput
+  }
+
+  export type InventoryMovementOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type PackageStockCountOrderByAggregateInput = {
@@ -28761,6 +26058,16 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type SaleListRelationFilter = {
+    every?: SaleWhereInput
+    some?: SaleWhereInput
+    none?: SaleWhereInput
+  }
+
+  export type SaleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type DistributorCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -28820,9 +26127,14 @@ export namespace Prisma {
     isNot?: DistributorWhereInput
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
+  export type PaymentListRelationFilter = {
+    every?: PaymentWhereInput
+    some?: PaymentWhereInput
+    none?: PaymentWhereInput
+  }
+
+  export type PaymentOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type SaleCountOrderByAggregateInput = {
@@ -29022,6 +26334,16 @@ export namespace Prisma {
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
   }
 
+  export type LinePaymentListRelationFilter = {
+    every?: LinePaymentWhereInput
+    some?: LinePaymentWhereInput
+    none?: LinePaymentWhereInput
+  }
+
+  export type LinePaymentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type LineCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -29150,6 +26472,16 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type ExpenseListRelationFilter = {
+    every?: ExpenseWhereInput
+    some?: ExpenseWhereInput
+    none?: ExpenseWhereInput
+  }
+
+  export type ExpenseOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ExpenseCategoryCountOrderByAggregateInput = {
@@ -29690,694 +27022,6 @@ export namespace Prisma {
     lowStockThreshold?: SortOrder
   }
 
-  export type PackageStockCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<PackageStockCreateWithoutCreatedByUserInput, PackageStockUncheckedCreateWithoutCreatedByUserInput> | PackageStockCreateWithoutCreatedByUserInput[] | PackageStockUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PackageStockCreateOrConnectWithoutCreatedByUserInput | PackageStockCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: PackageStockCreateManyCreatedByUserInputEnvelope
-    connect?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-  }
-
-  export type InventoryMovementCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<InventoryMovementCreateWithoutCreatedByUserInput, InventoryMovementUncheckedCreateWithoutCreatedByUserInput> | InventoryMovementCreateWithoutCreatedByUserInput[] | InventoryMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: InventoryMovementCreateOrConnectWithoutCreatedByUserInput | InventoryMovementCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: InventoryMovementCreateManyCreatedByUserInputEnvelope
-    connect?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-  }
-
-  export type SaleCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<SaleCreateWithoutCreatedByUserInput, SaleUncheckedCreateWithoutCreatedByUserInput> | SaleCreateWithoutCreatedByUserInput[] | SaleUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCreatedByUserInput | SaleCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: SaleCreateManyCreatedByUserInputEnvelope
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-  }
-
-  export type SaleCreateNestedManyWithoutCancelledByUserInput = {
-    create?: XOR<SaleCreateWithoutCancelledByUserInput, SaleUncheckedCreateWithoutCancelledByUserInput> | SaleCreateWithoutCancelledByUserInput[] | SaleUncheckedCreateWithoutCancelledByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCancelledByUserInput | SaleCreateOrConnectWithoutCancelledByUserInput[]
-    createMany?: SaleCreateManyCancelledByUserInputEnvelope
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-  }
-
-  export type PaymentCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<PaymentCreateWithoutCreatedByUserInput, PaymentUncheckedCreateWithoutCreatedByUserInput> | PaymentCreateWithoutCreatedByUserInput[] | PaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreatedByUserInput | PaymentCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: PaymentCreateManyCreatedByUserInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-  }
-
-  export type PaymentCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<PaymentCreateWithoutReversedByUserInput, PaymentUncheckedCreateWithoutReversedByUserInput> | PaymentCreateWithoutReversedByUserInput[] | PaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutReversedByUserInput | PaymentCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: PaymentCreateManyReversedByUserInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-  }
-
-  export type LinePaymentCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<LinePaymentCreateWithoutCreatedByUserInput, LinePaymentUncheckedCreateWithoutCreatedByUserInput> | LinePaymentCreateWithoutCreatedByUserInput[] | LinePaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutCreatedByUserInput | LinePaymentCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: LinePaymentCreateManyCreatedByUserInputEnvelope
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-  }
-
-  export type LinePaymentCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<LinePaymentCreateWithoutReversedByUserInput, LinePaymentUncheckedCreateWithoutReversedByUserInput> | LinePaymentCreateWithoutReversedByUserInput[] | LinePaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutReversedByUserInput | LinePaymentCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: LinePaymentCreateManyReversedByUserInputEnvelope
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-  }
-
-  export type ExpenseCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<ExpenseCreateWithoutCreatedByUserInput, ExpenseUncheckedCreateWithoutCreatedByUserInput> | ExpenseCreateWithoutCreatedByUserInput[] | ExpenseUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutCreatedByUserInput | ExpenseCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: ExpenseCreateManyCreatedByUserInputEnvelope
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-  }
-
-  export type ExpenseCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<ExpenseCreateWithoutReversedByUserInput, ExpenseUncheckedCreateWithoutReversedByUserInput> | ExpenseCreateWithoutReversedByUserInput[] | ExpenseUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutReversedByUserInput | ExpenseCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: ExpenseCreateManyReversedByUserInputEnvelope
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-  }
-
-  export type OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput> | OwnerWithdrawalCreateWithoutCreatedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput | OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyCreatedByUserInputEnvelope
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-  }
-
-  export type OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutReversedByUserInput, OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput> | OwnerWithdrawalCreateWithoutReversedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput | OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyReversedByUserInputEnvelope
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-  }
-
-  export type CashMovementCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<CashMovementCreateWithoutCreatedByUserInput, CashMovementUncheckedCreateWithoutCreatedByUserInput> | CashMovementCreateWithoutCreatedByUserInput[] | CashMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: CashMovementCreateOrConnectWithoutCreatedByUserInput | CashMovementCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: CashMovementCreateManyCreatedByUserInputEnvelope
-    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-  }
-
-  export type CashClosingCreateNestedManyWithoutClosedByUserInput = {
-    create?: XOR<CashClosingCreateWithoutClosedByUserInput, CashClosingUncheckedCreateWithoutClosedByUserInput> | CashClosingCreateWithoutClosedByUserInput[] | CashClosingUncheckedCreateWithoutClosedByUserInput[]
-    connectOrCreate?: CashClosingCreateOrConnectWithoutClosedByUserInput | CashClosingCreateOrConnectWithoutClosedByUserInput[]
-    createMany?: CashClosingCreateManyClosedByUserInputEnvelope
-    connect?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-  }
-
-  export type AuditLogCreateNestedManyWithoutUserInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
-    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-  }
-
-  export type BackupCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<BackupCreateWithoutCreatedByUserInput, BackupUncheckedCreateWithoutCreatedByUserInput> | BackupCreateWithoutCreatedByUserInput[] | BackupUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: BackupCreateOrConnectWithoutCreatedByUserInput | BackupCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: BackupCreateManyCreatedByUserInputEnvelope
-    connect?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-  }
-
-  export type PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<PackageStockCreateWithoutCreatedByUserInput, PackageStockUncheckedCreateWithoutCreatedByUserInput> | PackageStockCreateWithoutCreatedByUserInput[] | PackageStockUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PackageStockCreateOrConnectWithoutCreatedByUserInput | PackageStockCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: PackageStockCreateManyCreatedByUserInputEnvelope
-    connect?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-  }
-
-  export type InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<InventoryMovementCreateWithoutCreatedByUserInput, InventoryMovementUncheckedCreateWithoutCreatedByUserInput> | InventoryMovementCreateWithoutCreatedByUserInput[] | InventoryMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: InventoryMovementCreateOrConnectWithoutCreatedByUserInput | InventoryMovementCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: InventoryMovementCreateManyCreatedByUserInputEnvelope
-    connect?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-  }
-
-  export type SaleUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<SaleCreateWithoutCreatedByUserInput, SaleUncheckedCreateWithoutCreatedByUserInput> | SaleCreateWithoutCreatedByUserInput[] | SaleUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCreatedByUserInput | SaleCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: SaleCreateManyCreatedByUserInputEnvelope
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-  }
-
-  export type SaleUncheckedCreateNestedManyWithoutCancelledByUserInput = {
-    create?: XOR<SaleCreateWithoutCancelledByUserInput, SaleUncheckedCreateWithoutCancelledByUserInput> | SaleCreateWithoutCancelledByUserInput[] | SaleUncheckedCreateWithoutCancelledByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCancelledByUserInput | SaleCreateOrConnectWithoutCancelledByUserInput[]
-    createMany?: SaleCreateManyCancelledByUserInputEnvelope
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-  }
-
-  export type PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<PaymentCreateWithoutCreatedByUserInput, PaymentUncheckedCreateWithoutCreatedByUserInput> | PaymentCreateWithoutCreatedByUserInput[] | PaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreatedByUserInput | PaymentCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: PaymentCreateManyCreatedByUserInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-  }
-
-  export type PaymentUncheckedCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<PaymentCreateWithoutReversedByUserInput, PaymentUncheckedCreateWithoutReversedByUserInput> | PaymentCreateWithoutReversedByUserInput[] | PaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutReversedByUserInput | PaymentCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: PaymentCreateManyReversedByUserInputEnvelope
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-  }
-
-  export type LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<LinePaymentCreateWithoutCreatedByUserInput, LinePaymentUncheckedCreateWithoutCreatedByUserInput> | LinePaymentCreateWithoutCreatedByUserInput[] | LinePaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutCreatedByUserInput | LinePaymentCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: LinePaymentCreateManyCreatedByUserInputEnvelope
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-  }
-
-  export type LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<LinePaymentCreateWithoutReversedByUserInput, LinePaymentUncheckedCreateWithoutReversedByUserInput> | LinePaymentCreateWithoutReversedByUserInput[] | LinePaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutReversedByUserInput | LinePaymentCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: LinePaymentCreateManyReversedByUserInputEnvelope
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-  }
-
-  export type ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<ExpenseCreateWithoutCreatedByUserInput, ExpenseUncheckedCreateWithoutCreatedByUserInput> | ExpenseCreateWithoutCreatedByUserInput[] | ExpenseUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutCreatedByUserInput | ExpenseCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: ExpenseCreateManyCreatedByUserInputEnvelope
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-  }
-
-  export type ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<ExpenseCreateWithoutReversedByUserInput, ExpenseUncheckedCreateWithoutReversedByUserInput> | ExpenseCreateWithoutReversedByUserInput[] | ExpenseUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutReversedByUserInput | ExpenseCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: ExpenseCreateManyReversedByUserInputEnvelope
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-  }
-
-  export type OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput> | OwnerWithdrawalCreateWithoutCreatedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput | OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyCreatedByUserInputEnvelope
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-  }
-
-  export type OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutReversedByUserInput, OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput> | OwnerWithdrawalCreateWithoutReversedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput | OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyReversedByUserInputEnvelope
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-  }
-
-  export type CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<CashMovementCreateWithoutCreatedByUserInput, CashMovementUncheckedCreateWithoutCreatedByUserInput> | CashMovementCreateWithoutCreatedByUserInput[] | CashMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: CashMovementCreateOrConnectWithoutCreatedByUserInput | CashMovementCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: CashMovementCreateManyCreatedByUserInputEnvelope
-    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-  }
-
-  export type CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput = {
-    create?: XOR<CashClosingCreateWithoutClosedByUserInput, CashClosingUncheckedCreateWithoutClosedByUserInput> | CashClosingCreateWithoutClosedByUserInput[] | CashClosingUncheckedCreateWithoutClosedByUserInput[]
-    connectOrCreate?: CashClosingCreateOrConnectWithoutClosedByUserInput | CashClosingCreateOrConnectWithoutClosedByUserInput[]
-    createMany?: CashClosingCreateManyClosedByUserInputEnvelope
-    connect?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-  }
-
-  export type AuditLogUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
-    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-  }
-
-  export type BackupUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<BackupCreateWithoutCreatedByUserInput, BackupUncheckedCreateWithoutCreatedByUserInput> | BackupCreateWithoutCreatedByUserInput[] | BackupUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: BackupCreateOrConnectWithoutCreatedByUserInput | BackupCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: BackupCreateManyCreatedByUserInputEnvelope
-    connect?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type PackageStockUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<PackageStockCreateWithoutCreatedByUserInput, PackageStockUncheckedCreateWithoutCreatedByUserInput> | PackageStockCreateWithoutCreatedByUserInput[] | PackageStockUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PackageStockCreateOrConnectWithoutCreatedByUserInput | PackageStockCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: PackageStockUpsertWithWhereUniqueWithoutCreatedByUserInput | PackageStockUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: PackageStockCreateManyCreatedByUserInputEnvelope
-    set?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    disconnect?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    delete?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    connect?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    update?: PackageStockUpdateWithWhereUniqueWithoutCreatedByUserInput | PackageStockUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: PackageStockUpdateManyWithWhereWithoutCreatedByUserInput | PackageStockUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: PackageStockScalarWhereInput | PackageStockScalarWhereInput[]
-  }
-
-  export type InventoryMovementUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<InventoryMovementCreateWithoutCreatedByUserInput, InventoryMovementUncheckedCreateWithoutCreatedByUserInput> | InventoryMovementCreateWithoutCreatedByUserInput[] | InventoryMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: InventoryMovementCreateOrConnectWithoutCreatedByUserInput | InventoryMovementCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: InventoryMovementUpsertWithWhereUniqueWithoutCreatedByUserInput | InventoryMovementUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: InventoryMovementCreateManyCreatedByUserInputEnvelope
-    set?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    disconnect?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    delete?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    connect?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    update?: InventoryMovementUpdateWithWhereUniqueWithoutCreatedByUserInput | InventoryMovementUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: InventoryMovementUpdateManyWithWhereWithoutCreatedByUserInput | InventoryMovementUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: InventoryMovementScalarWhereInput | InventoryMovementScalarWhereInput[]
-  }
-
-  export type SaleUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<SaleCreateWithoutCreatedByUserInput, SaleUncheckedCreateWithoutCreatedByUserInput> | SaleCreateWithoutCreatedByUserInput[] | SaleUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCreatedByUserInput | SaleCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: SaleUpsertWithWhereUniqueWithoutCreatedByUserInput | SaleUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: SaleCreateManyCreatedByUserInputEnvelope
-    set?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    disconnect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    delete?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    update?: SaleUpdateWithWhereUniqueWithoutCreatedByUserInput | SaleUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: SaleUpdateManyWithWhereWithoutCreatedByUserInput | SaleUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: SaleScalarWhereInput | SaleScalarWhereInput[]
-  }
-
-  export type SaleUpdateManyWithoutCancelledByUserNestedInput = {
-    create?: XOR<SaleCreateWithoutCancelledByUserInput, SaleUncheckedCreateWithoutCancelledByUserInput> | SaleCreateWithoutCancelledByUserInput[] | SaleUncheckedCreateWithoutCancelledByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCancelledByUserInput | SaleCreateOrConnectWithoutCancelledByUserInput[]
-    upsert?: SaleUpsertWithWhereUniqueWithoutCancelledByUserInput | SaleUpsertWithWhereUniqueWithoutCancelledByUserInput[]
-    createMany?: SaleCreateManyCancelledByUserInputEnvelope
-    set?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    disconnect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    delete?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    update?: SaleUpdateWithWhereUniqueWithoutCancelledByUserInput | SaleUpdateWithWhereUniqueWithoutCancelledByUserInput[]
-    updateMany?: SaleUpdateManyWithWhereWithoutCancelledByUserInput | SaleUpdateManyWithWhereWithoutCancelledByUserInput[]
-    deleteMany?: SaleScalarWhereInput | SaleScalarWhereInput[]
-  }
-
-  export type PaymentUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<PaymentCreateWithoutCreatedByUserInput, PaymentUncheckedCreateWithoutCreatedByUserInput> | PaymentCreateWithoutCreatedByUserInput[] | PaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreatedByUserInput | PaymentCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutCreatedByUserInput | PaymentUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: PaymentCreateManyCreatedByUserInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutCreatedByUserInput | PaymentUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutCreatedByUserInput | PaymentUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-  }
-
-  export type PaymentUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<PaymentCreateWithoutReversedByUserInput, PaymentUncheckedCreateWithoutReversedByUserInput> | PaymentCreateWithoutReversedByUserInput[] | PaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutReversedByUserInput | PaymentCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutReversedByUserInput | PaymentUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: PaymentCreateManyReversedByUserInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutReversedByUserInput | PaymentUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutReversedByUserInput | PaymentUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-  }
-
-  export type LinePaymentUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<LinePaymentCreateWithoutCreatedByUserInput, LinePaymentUncheckedCreateWithoutCreatedByUserInput> | LinePaymentCreateWithoutCreatedByUserInput[] | LinePaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutCreatedByUserInput | LinePaymentCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: LinePaymentUpsertWithWhereUniqueWithoutCreatedByUserInput | LinePaymentUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: LinePaymentCreateManyCreatedByUserInputEnvelope
-    set?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    disconnect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    delete?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    update?: LinePaymentUpdateWithWhereUniqueWithoutCreatedByUserInput | LinePaymentUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: LinePaymentUpdateManyWithWhereWithoutCreatedByUserInput | LinePaymentUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
-  }
-
-  export type LinePaymentUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<LinePaymentCreateWithoutReversedByUserInput, LinePaymentUncheckedCreateWithoutReversedByUserInput> | LinePaymentCreateWithoutReversedByUserInput[] | LinePaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutReversedByUserInput | LinePaymentCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: LinePaymentUpsertWithWhereUniqueWithoutReversedByUserInput | LinePaymentUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: LinePaymentCreateManyReversedByUserInputEnvelope
-    set?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    disconnect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    delete?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    update?: LinePaymentUpdateWithWhereUniqueWithoutReversedByUserInput | LinePaymentUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: LinePaymentUpdateManyWithWhereWithoutReversedByUserInput | LinePaymentUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
-  }
-
-  export type ExpenseUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<ExpenseCreateWithoutCreatedByUserInput, ExpenseUncheckedCreateWithoutCreatedByUserInput> | ExpenseCreateWithoutCreatedByUserInput[] | ExpenseUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutCreatedByUserInput | ExpenseCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: ExpenseUpsertWithWhereUniqueWithoutCreatedByUserInput | ExpenseUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: ExpenseCreateManyCreatedByUserInputEnvelope
-    set?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    disconnect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    delete?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    update?: ExpenseUpdateWithWhereUniqueWithoutCreatedByUserInput | ExpenseUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: ExpenseUpdateManyWithWhereWithoutCreatedByUserInput | ExpenseUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
-  }
-
-  export type ExpenseUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<ExpenseCreateWithoutReversedByUserInput, ExpenseUncheckedCreateWithoutReversedByUserInput> | ExpenseCreateWithoutReversedByUserInput[] | ExpenseUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutReversedByUserInput | ExpenseCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: ExpenseUpsertWithWhereUniqueWithoutReversedByUserInput | ExpenseUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: ExpenseCreateManyReversedByUserInputEnvelope
-    set?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    disconnect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    delete?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    update?: ExpenseUpdateWithWhereUniqueWithoutReversedByUserInput | ExpenseUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: ExpenseUpdateManyWithWhereWithoutReversedByUserInput | ExpenseUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
-  }
-
-  export type OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput> | OwnerWithdrawalCreateWithoutCreatedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput | OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: OwnerWithdrawalUpsertWithWhereUniqueWithoutCreatedByUserInput | OwnerWithdrawalUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyCreatedByUserInputEnvelope
-    set?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    disconnect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    delete?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    update?: OwnerWithdrawalUpdateWithWhereUniqueWithoutCreatedByUserInput | OwnerWithdrawalUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: OwnerWithdrawalUpdateManyWithWhereWithoutCreatedByUserInput | OwnerWithdrawalUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: OwnerWithdrawalScalarWhereInput | OwnerWithdrawalScalarWhereInput[]
-  }
-
-  export type OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutReversedByUserInput, OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput> | OwnerWithdrawalCreateWithoutReversedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput | OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: OwnerWithdrawalUpsertWithWhereUniqueWithoutReversedByUserInput | OwnerWithdrawalUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyReversedByUserInputEnvelope
-    set?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    disconnect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    delete?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    update?: OwnerWithdrawalUpdateWithWhereUniqueWithoutReversedByUserInput | OwnerWithdrawalUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: OwnerWithdrawalUpdateManyWithWhereWithoutReversedByUserInput | OwnerWithdrawalUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: OwnerWithdrawalScalarWhereInput | OwnerWithdrawalScalarWhereInput[]
-  }
-
-  export type CashMovementUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<CashMovementCreateWithoutCreatedByUserInput, CashMovementUncheckedCreateWithoutCreatedByUserInput> | CashMovementCreateWithoutCreatedByUserInput[] | CashMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: CashMovementCreateOrConnectWithoutCreatedByUserInput | CashMovementCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: CashMovementUpsertWithWhereUniqueWithoutCreatedByUserInput | CashMovementUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: CashMovementCreateManyCreatedByUserInputEnvelope
-    set?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    disconnect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    delete?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    update?: CashMovementUpdateWithWhereUniqueWithoutCreatedByUserInput | CashMovementUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: CashMovementUpdateManyWithWhereWithoutCreatedByUserInput | CashMovementUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
-  }
-
-  export type CashClosingUpdateManyWithoutClosedByUserNestedInput = {
-    create?: XOR<CashClosingCreateWithoutClosedByUserInput, CashClosingUncheckedCreateWithoutClosedByUserInput> | CashClosingCreateWithoutClosedByUserInput[] | CashClosingUncheckedCreateWithoutClosedByUserInput[]
-    connectOrCreate?: CashClosingCreateOrConnectWithoutClosedByUserInput | CashClosingCreateOrConnectWithoutClosedByUserInput[]
-    upsert?: CashClosingUpsertWithWhereUniqueWithoutClosedByUserInput | CashClosingUpsertWithWhereUniqueWithoutClosedByUserInput[]
-    createMany?: CashClosingCreateManyClosedByUserInputEnvelope
-    set?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    disconnect?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    delete?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    connect?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    update?: CashClosingUpdateWithWhereUniqueWithoutClosedByUserInput | CashClosingUpdateWithWhereUniqueWithoutClosedByUserInput[]
-    updateMany?: CashClosingUpdateManyWithWhereWithoutClosedByUserInput | CashClosingUpdateManyWithWhereWithoutClosedByUserInput[]
-    deleteMany?: CashClosingScalarWhereInput | CashClosingScalarWhereInput[]
-  }
-
-  export type AuditLogUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    upsert?: AuditLogUpsertWithWhereUniqueWithoutUserInput | AuditLogUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
-    set?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    disconnect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    delete?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    update?: AuditLogUpdateWithWhereUniqueWithoutUserInput | AuditLogUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AuditLogUpdateManyWithWhereWithoutUserInput | AuditLogUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
-  }
-
-  export type BackupUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<BackupCreateWithoutCreatedByUserInput, BackupUncheckedCreateWithoutCreatedByUserInput> | BackupCreateWithoutCreatedByUserInput[] | BackupUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: BackupCreateOrConnectWithoutCreatedByUserInput | BackupCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: BackupUpsertWithWhereUniqueWithoutCreatedByUserInput | BackupUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: BackupCreateManyCreatedByUserInputEnvelope
-    set?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    disconnect?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    delete?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    connect?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    update?: BackupUpdateWithWhereUniqueWithoutCreatedByUserInput | BackupUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: BackupUpdateManyWithWhereWithoutCreatedByUserInput | BackupUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: BackupScalarWhereInput | BackupScalarWhereInput[]
-  }
-
-  export type PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<PackageStockCreateWithoutCreatedByUserInput, PackageStockUncheckedCreateWithoutCreatedByUserInput> | PackageStockCreateWithoutCreatedByUserInput[] | PackageStockUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PackageStockCreateOrConnectWithoutCreatedByUserInput | PackageStockCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: PackageStockUpsertWithWhereUniqueWithoutCreatedByUserInput | PackageStockUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: PackageStockCreateManyCreatedByUserInputEnvelope
-    set?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    disconnect?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    delete?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    connect?: PackageStockWhereUniqueInput | PackageStockWhereUniqueInput[]
-    update?: PackageStockUpdateWithWhereUniqueWithoutCreatedByUserInput | PackageStockUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: PackageStockUpdateManyWithWhereWithoutCreatedByUserInput | PackageStockUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: PackageStockScalarWhereInput | PackageStockScalarWhereInput[]
-  }
-
-  export type InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<InventoryMovementCreateWithoutCreatedByUserInput, InventoryMovementUncheckedCreateWithoutCreatedByUserInput> | InventoryMovementCreateWithoutCreatedByUserInput[] | InventoryMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: InventoryMovementCreateOrConnectWithoutCreatedByUserInput | InventoryMovementCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: InventoryMovementUpsertWithWhereUniqueWithoutCreatedByUserInput | InventoryMovementUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: InventoryMovementCreateManyCreatedByUserInputEnvelope
-    set?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    disconnect?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    delete?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    connect?: InventoryMovementWhereUniqueInput | InventoryMovementWhereUniqueInput[]
-    update?: InventoryMovementUpdateWithWhereUniqueWithoutCreatedByUserInput | InventoryMovementUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: InventoryMovementUpdateManyWithWhereWithoutCreatedByUserInput | InventoryMovementUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: InventoryMovementScalarWhereInput | InventoryMovementScalarWhereInput[]
-  }
-
-  export type SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<SaleCreateWithoutCreatedByUserInput, SaleUncheckedCreateWithoutCreatedByUserInput> | SaleCreateWithoutCreatedByUserInput[] | SaleUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCreatedByUserInput | SaleCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: SaleUpsertWithWhereUniqueWithoutCreatedByUserInput | SaleUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: SaleCreateManyCreatedByUserInputEnvelope
-    set?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    disconnect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    delete?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    update?: SaleUpdateWithWhereUniqueWithoutCreatedByUserInput | SaleUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: SaleUpdateManyWithWhereWithoutCreatedByUserInput | SaleUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: SaleScalarWhereInput | SaleScalarWhereInput[]
-  }
-
-  export type SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput = {
-    create?: XOR<SaleCreateWithoutCancelledByUserInput, SaleUncheckedCreateWithoutCancelledByUserInput> | SaleCreateWithoutCancelledByUserInput[] | SaleUncheckedCreateWithoutCancelledByUserInput[]
-    connectOrCreate?: SaleCreateOrConnectWithoutCancelledByUserInput | SaleCreateOrConnectWithoutCancelledByUserInput[]
-    upsert?: SaleUpsertWithWhereUniqueWithoutCancelledByUserInput | SaleUpsertWithWhereUniqueWithoutCancelledByUserInput[]
-    createMany?: SaleCreateManyCancelledByUserInputEnvelope
-    set?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    disconnect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    delete?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
-    update?: SaleUpdateWithWhereUniqueWithoutCancelledByUserInput | SaleUpdateWithWhereUniqueWithoutCancelledByUserInput[]
-    updateMany?: SaleUpdateManyWithWhereWithoutCancelledByUserInput | SaleUpdateManyWithWhereWithoutCancelledByUserInput[]
-    deleteMany?: SaleScalarWhereInput | SaleScalarWhereInput[]
-  }
-
-  export type PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<PaymentCreateWithoutCreatedByUserInput, PaymentUncheckedCreateWithoutCreatedByUserInput> | PaymentCreateWithoutCreatedByUserInput[] | PaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutCreatedByUserInput | PaymentCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutCreatedByUserInput | PaymentUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: PaymentCreateManyCreatedByUserInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutCreatedByUserInput | PaymentUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutCreatedByUserInput | PaymentUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-  }
-
-  export type PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<PaymentCreateWithoutReversedByUserInput, PaymentUncheckedCreateWithoutReversedByUserInput> | PaymentCreateWithoutReversedByUserInput[] | PaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: PaymentCreateOrConnectWithoutReversedByUserInput | PaymentCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: PaymentUpsertWithWhereUniqueWithoutReversedByUserInput | PaymentUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: PaymentCreateManyReversedByUserInputEnvelope
-    set?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    disconnect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    delete?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
-    update?: PaymentUpdateWithWhereUniqueWithoutReversedByUserInput | PaymentUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: PaymentUpdateManyWithWhereWithoutReversedByUserInput | PaymentUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-  }
-
-  export type LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<LinePaymentCreateWithoutCreatedByUserInput, LinePaymentUncheckedCreateWithoutCreatedByUserInput> | LinePaymentCreateWithoutCreatedByUserInput[] | LinePaymentUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutCreatedByUserInput | LinePaymentCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: LinePaymentUpsertWithWhereUniqueWithoutCreatedByUserInput | LinePaymentUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: LinePaymentCreateManyCreatedByUserInputEnvelope
-    set?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    disconnect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    delete?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    update?: LinePaymentUpdateWithWhereUniqueWithoutCreatedByUserInput | LinePaymentUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: LinePaymentUpdateManyWithWhereWithoutCreatedByUserInput | LinePaymentUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
-  }
-
-  export type LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<LinePaymentCreateWithoutReversedByUserInput, LinePaymentUncheckedCreateWithoutReversedByUserInput> | LinePaymentCreateWithoutReversedByUserInput[] | LinePaymentUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: LinePaymentCreateOrConnectWithoutReversedByUserInput | LinePaymentCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: LinePaymentUpsertWithWhereUniqueWithoutReversedByUserInput | LinePaymentUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: LinePaymentCreateManyReversedByUserInputEnvelope
-    set?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    disconnect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    delete?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    connect?: LinePaymentWhereUniqueInput | LinePaymentWhereUniqueInput[]
-    update?: LinePaymentUpdateWithWhereUniqueWithoutReversedByUserInput | LinePaymentUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: LinePaymentUpdateManyWithWhereWithoutReversedByUserInput | LinePaymentUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
-  }
-
-  export type ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<ExpenseCreateWithoutCreatedByUserInput, ExpenseUncheckedCreateWithoutCreatedByUserInput> | ExpenseCreateWithoutCreatedByUserInput[] | ExpenseUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutCreatedByUserInput | ExpenseCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: ExpenseUpsertWithWhereUniqueWithoutCreatedByUserInput | ExpenseUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: ExpenseCreateManyCreatedByUserInputEnvelope
-    set?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    disconnect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    delete?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    update?: ExpenseUpdateWithWhereUniqueWithoutCreatedByUserInput | ExpenseUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: ExpenseUpdateManyWithWhereWithoutCreatedByUserInput | ExpenseUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
-  }
-
-  export type ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<ExpenseCreateWithoutReversedByUserInput, ExpenseUncheckedCreateWithoutReversedByUserInput> | ExpenseCreateWithoutReversedByUserInput[] | ExpenseUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: ExpenseCreateOrConnectWithoutReversedByUserInput | ExpenseCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: ExpenseUpsertWithWhereUniqueWithoutReversedByUserInput | ExpenseUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: ExpenseCreateManyReversedByUserInputEnvelope
-    set?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    disconnect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    delete?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    connect?: ExpenseWhereUniqueInput | ExpenseWhereUniqueInput[]
-    update?: ExpenseUpdateWithWhereUniqueWithoutReversedByUserInput | ExpenseUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: ExpenseUpdateManyWithWhereWithoutReversedByUserInput | ExpenseUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
-  }
-
-  export type OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput> | OwnerWithdrawalCreateWithoutCreatedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput | OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: OwnerWithdrawalUpsertWithWhereUniqueWithoutCreatedByUserInput | OwnerWithdrawalUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyCreatedByUserInputEnvelope
-    set?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    disconnect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    delete?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    update?: OwnerWithdrawalUpdateWithWhereUniqueWithoutCreatedByUserInput | OwnerWithdrawalUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: OwnerWithdrawalUpdateManyWithWhereWithoutCreatedByUserInput | OwnerWithdrawalUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: OwnerWithdrawalScalarWhereInput | OwnerWithdrawalScalarWhereInput[]
-  }
-
-  export type OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput = {
-    create?: XOR<OwnerWithdrawalCreateWithoutReversedByUserInput, OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput> | OwnerWithdrawalCreateWithoutReversedByUserInput[] | OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput[]
-    connectOrCreate?: OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput | OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput[]
-    upsert?: OwnerWithdrawalUpsertWithWhereUniqueWithoutReversedByUserInput | OwnerWithdrawalUpsertWithWhereUniqueWithoutReversedByUserInput[]
-    createMany?: OwnerWithdrawalCreateManyReversedByUserInputEnvelope
-    set?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    disconnect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    delete?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    connect?: OwnerWithdrawalWhereUniqueInput | OwnerWithdrawalWhereUniqueInput[]
-    update?: OwnerWithdrawalUpdateWithWhereUniqueWithoutReversedByUserInput | OwnerWithdrawalUpdateWithWhereUniqueWithoutReversedByUserInput[]
-    updateMany?: OwnerWithdrawalUpdateManyWithWhereWithoutReversedByUserInput | OwnerWithdrawalUpdateManyWithWhereWithoutReversedByUserInput[]
-    deleteMany?: OwnerWithdrawalScalarWhereInput | OwnerWithdrawalScalarWhereInput[]
-  }
-
-  export type CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<CashMovementCreateWithoutCreatedByUserInput, CashMovementUncheckedCreateWithoutCreatedByUserInput> | CashMovementCreateWithoutCreatedByUserInput[] | CashMovementUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: CashMovementCreateOrConnectWithoutCreatedByUserInput | CashMovementCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: CashMovementUpsertWithWhereUniqueWithoutCreatedByUserInput | CashMovementUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: CashMovementCreateManyCreatedByUserInputEnvelope
-    set?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    disconnect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    delete?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
-    update?: CashMovementUpdateWithWhereUniqueWithoutCreatedByUserInput | CashMovementUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: CashMovementUpdateManyWithWhereWithoutCreatedByUserInput | CashMovementUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
-  }
-
-  export type CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput = {
-    create?: XOR<CashClosingCreateWithoutClosedByUserInput, CashClosingUncheckedCreateWithoutClosedByUserInput> | CashClosingCreateWithoutClosedByUserInput[] | CashClosingUncheckedCreateWithoutClosedByUserInput[]
-    connectOrCreate?: CashClosingCreateOrConnectWithoutClosedByUserInput | CashClosingCreateOrConnectWithoutClosedByUserInput[]
-    upsert?: CashClosingUpsertWithWhereUniqueWithoutClosedByUserInput | CashClosingUpsertWithWhereUniqueWithoutClosedByUserInput[]
-    createMany?: CashClosingCreateManyClosedByUserInputEnvelope
-    set?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    disconnect?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    delete?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    connect?: CashClosingWhereUniqueInput | CashClosingWhereUniqueInput[]
-    update?: CashClosingUpdateWithWhereUniqueWithoutClosedByUserInput | CashClosingUpdateWithWhereUniqueWithoutClosedByUserInput[]
-    updateMany?: CashClosingUpdateManyWithWhereWithoutClosedByUserInput | CashClosingUpdateManyWithWhereWithoutClosedByUserInput[]
-    deleteMany?: CashClosingScalarWhereInput | CashClosingScalarWhereInput[]
-  }
-
-  export type AuditLogUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
-    upsert?: AuditLogUpsertWithWhereUniqueWithoutUserInput | AuditLogUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AuditLogCreateManyUserInputEnvelope
-    set?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    disconnect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    delete?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
-    update?: AuditLogUpdateWithWhereUniqueWithoutUserInput | AuditLogUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AuditLogUpdateManyWithWhereWithoutUserInput | AuditLogUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
-  }
-
-  export type BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<BackupCreateWithoutCreatedByUserInput, BackupUncheckedCreateWithoutCreatedByUserInput> | BackupCreateWithoutCreatedByUserInput[] | BackupUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: BackupCreateOrConnectWithoutCreatedByUserInput | BackupCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: BackupUpsertWithWhereUniqueWithoutCreatedByUserInput | BackupUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: BackupCreateManyCreatedByUserInputEnvelope
-    set?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    disconnect?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    delete?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    connect?: BackupWhereUniqueInput | BackupWhereUniqueInput[]
-    update?: BackupUpdateWithWhereUniqueWithoutCreatedByUserInput | BackupUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: BackupUpdateManyWithWhereWithoutCreatedByUserInput | BackupUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: BackupScalarWhereInput | BackupScalarWhereInput[]
-  }
-
   export type PackageStockCreateNestedManyWithoutPackageInput = {
     create?: XOR<PackageStockCreateWithoutPackageInput, PackageStockUncheckedCreateWithoutPackageInput> | PackageStockCreateWithoutPackageInput[] | PackageStockUncheckedCreateWithoutPackageInput[]
     connectOrCreate?: PackageStockCreateOrConnectWithoutPackageInput | PackageStockCreateOrConnectWithoutPackageInput[]
@@ -30406,6 +27050,10 @@ export namespace Prisma {
     connect?: SaleItemWhereUniqueInput | SaleItemWhereUniqueInput[]
   }
 
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -30414,12 +27062,24 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
   export type EnumEntityStatusFieldUpdateOperationsInput = {
     set?: $Enums.EntityStatus
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type PackageStockUpdateManyWithoutPackageNestedInput = {
@@ -30484,12 +27144,6 @@ export namespace Prisma {
     connect?: PackageWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutPackageStocksInput = {
-    create?: XOR<UserCreateWithoutPackageStocksInput, UserUncheckedCreateWithoutPackageStocksInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPackageStocksInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type InventoryMovementCreateNestedManyWithoutPackageStockInput = {
     create?: XOR<InventoryMovementCreateWithoutPackageStockInput, InventoryMovementUncheckedCreateWithoutPackageStockInput> | InventoryMovementCreateWithoutPackageStockInput[] | InventoryMovementUncheckedCreateWithoutPackageStockInput[]
     connectOrCreate?: InventoryMovementCreateOrConnectWithoutPackageStockInput | InventoryMovementCreateOrConnectWithoutPackageStockInput[]
@@ -30510,14 +27164,6 @@ export namespace Prisma {
     upsert?: PackageUpsertWithoutStocksInput
     connect?: PackageWhereUniqueInput
     update?: XOR<XOR<PackageUpdateToOneWithWhereWithoutStocksInput, PackageUpdateWithoutStocksInput>, PackageUncheckedUpdateWithoutStocksInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutPackageStocksNestedInput = {
-    create?: XOR<UserCreateWithoutPackageStocksInput, UserUncheckedCreateWithoutPackageStocksInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPackageStocksInput
-    upsert?: UserUpsertWithoutPackageStocksInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPackageStocksInput, UserUpdateWithoutPackageStocksInput>, UserUncheckedUpdateWithoutPackageStocksInput>
   }
 
   export type InventoryMovementUpdateManyWithoutPackageStockNestedInput = {
@@ -30554,12 +27200,6 @@ export namespace Prisma {
     connect?: PackageStockWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutInventoryMovementsInput = {
-    create?: XOR<UserCreateWithoutInventoryMovementsInput, UserUncheckedCreateWithoutInventoryMovementsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutInventoryMovementsInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumInventoryMovementTypeFieldUpdateOperationsInput = {
     set?: $Enums.InventoryMovementType
   }
@@ -30570,14 +27210,6 @@ export namespace Prisma {
     upsert?: PackageStockUpsertWithoutInventoryMovementsInput
     connect?: PackageStockWhereUniqueInput
     update?: XOR<XOR<PackageStockUpdateToOneWithWhereWithoutInventoryMovementsInput, PackageStockUpdateWithoutInventoryMovementsInput>, PackageStockUncheckedUpdateWithoutInventoryMovementsInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutInventoryMovementsNestedInput = {
-    create?: XOR<UserCreateWithoutInventoryMovementsInput, UserUncheckedCreateWithoutInventoryMovementsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutInventoryMovementsInput
-    upsert?: UserUpsertWithoutInventoryMovementsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutInventoryMovementsInput, UserUpdateWithoutInventoryMovementsInput>, UserUncheckedUpdateWithoutInventoryMovementsInput>
   }
 
   export type SaleCreateNestedManyWithoutDistributorInput = {
@@ -30628,18 +27260,6 @@ export namespace Prisma {
     connect?: DistributorWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSalesCreatedInput = {
-    create?: XOR<UserCreateWithoutSalesCreatedInput, UserUncheckedCreateWithoutSalesCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSalesCreatedInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutSalesCancelledInput = {
-    create?: XOR<UserCreateWithoutSalesCancelledInput, UserUncheckedCreateWithoutSalesCancelledInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSalesCancelledInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type SaleItemCreateNestedManyWithoutSaleInput = {
     create?: XOR<SaleItemCreateWithoutSaleInput, SaleItemUncheckedCreateWithoutSaleInput> | SaleItemCreateWithoutSaleInput[] | SaleItemUncheckedCreateWithoutSaleInput[]
     connectOrCreate?: SaleItemCreateOrConnectWithoutSaleInput | SaleItemCreateOrConnectWithoutSaleInput[]
@@ -30682,24 +27302,6 @@ export namespace Prisma {
     upsert?: DistributorUpsertWithoutSalesInput
     connect?: DistributorWhereUniqueInput
     update?: XOR<XOR<DistributorUpdateToOneWithWhereWithoutSalesInput, DistributorUpdateWithoutSalesInput>, DistributorUncheckedUpdateWithoutSalesInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutSalesCreatedNestedInput = {
-    create?: XOR<UserCreateWithoutSalesCreatedInput, UserUncheckedCreateWithoutSalesCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSalesCreatedInput
-    upsert?: UserUpsertWithoutSalesCreatedInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSalesCreatedInput, UserUpdateWithoutSalesCreatedInput>, UserUncheckedUpdateWithoutSalesCreatedInput>
-  }
-
-  export type UserUpdateOneWithoutSalesCancelledNestedInput = {
-    create?: XOR<UserCreateWithoutSalesCancelledInput, UserUncheckedCreateWithoutSalesCancelledInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSalesCancelledInput
-    upsert?: UserUpsertWithoutSalesCancelledInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSalesCancelledInput, UserUpdateWithoutSalesCancelledInput>, UserUncheckedUpdateWithoutSalesCancelledInput>
   }
 
   export type SaleItemUpdateManyWithoutSaleNestedInput = {
@@ -30792,18 +27394,6 @@ export namespace Prisma {
     connect?: SaleWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutPaymentsCreatedInput = {
-    create?: XOR<UserCreateWithoutPaymentsCreatedInput, UserUncheckedCreateWithoutPaymentsCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPaymentsCreatedInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutPaymentsReversedInput = {
-    create?: XOR<UserCreateWithoutPaymentsReversedInput, UserUncheckedCreateWithoutPaymentsReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPaymentsReversedInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumPaymentStatusFieldUpdateOperationsInput = {
     set?: $Enums.PaymentStatus
   }
@@ -30814,24 +27404,6 @@ export namespace Prisma {
     upsert?: SaleUpsertWithoutPaymentsInput
     connect?: SaleWhereUniqueInput
     update?: XOR<XOR<SaleUpdateToOneWithWhereWithoutPaymentsInput, SaleUpdateWithoutPaymentsInput>, SaleUncheckedUpdateWithoutPaymentsInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutPaymentsCreatedNestedInput = {
-    create?: XOR<UserCreateWithoutPaymentsCreatedInput, UserUncheckedCreateWithoutPaymentsCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPaymentsCreatedInput
-    upsert?: UserUpsertWithoutPaymentsCreatedInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPaymentsCreatedInput, UserUpdateWithoutPaymentsCreatedInput>, UserUncheckedUpdateWithoutPaymentsCreatedInput>
-  }
-
-  export type UserUpdateOneWithoutPaymentsReversedNestedInput = {
-    create?: XOR<UserCreateWithoutPaymentsReversedInput, UserUncheckedCreateWithoutPaymentsReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPaymentsReversedInput
-    upsert?: UserUpsertWithoutPaymentsReversedInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPaymentsReversedInput, UserUpdateWithoutPaymentsReversedInput>, UserUncheckedUpdateWithoutPaymentsReversedInput>
   }
 
   export type LinePaymentCreateNestedManyWithoutLineInput = {
@@ -30882,18 +27454,6 @@ export namespace Prisma {
     connect?: LineWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutLinePaymentsCreatedInput = {
-    create?: XOR<UserCreateWithoutLinePaymentsCreatedInput, UserUncheckedCreateWithoutLinePaymentsCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLinePaymentsCreatedInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutLinePaymentsReversedInput = {
-    create?: XOR<UserCreateWithoutLinePaymentsReversedInput, UserUncheckedCreateWithoutLinePaymentsReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLinePaymentsReversedInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumLinePaymentStatusFieldUpdateOperationsInput = {
     set?: $Enums.LinePaymentStatus
   }
@@ -30904,24 +27464,6 @@ export namespace Prisma {
     upsert?: LineUpsertWithoutPaymentsInput
     connect?: LineWhereUniqueInput
     update?: XOR<XOR<LineUpdateToOneWithWhereWithoutPaymentsInput, LineUpdateWithoutPaymentsInput>, LineUncheckedUpdateWithoutPaymentsInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutLinePaymentsCreatedNestedInput = {
-    create?: XOR<UserCreateWithoutLinePaymentsCreatedInput, UserUncheckedCreateWithoutLinePaymentsCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLinePaymentsCreatedInput
-    upsert?: UserUpsertWithoutLinePaymentsCreatedInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinePaymentsCreatedInput, UserUpdateWithoutLinePaymentsCreatedInput>, UserUncheckedUpdateWithoutLinePaymentsCreatedInput>
-  }
-
-  export type UserUpdateOneWithoutLinePaymentsReversedNestedInput = {
-    create?: XOR<UserCreateWithoutLinePaymentsReversedInput, UserUncheckedCreateWithoutLinePaymentsReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLinePaymentsReversedInput
-    upsert?: UserUpsertWithoutLinePaymentsReversedInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinePaymentsReversedInput, UserUpdateWithoutLinePaymentsReversedInput>, UserUncheckedUpdateWithoutLinePaymentsReversedInput>
   }
 
   export type ExpenseCreateNestedManyWithoutCategoryInput = {
@@ -30976,18 +27518,6 @@ export namespace Prisma {
     connect?: ExpenseCategoryWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutExpensesCreatedInput = {
-    create?: XOR<UserCreateWithoutExpensesCreatedInput, UserUncheckedCreateWithoutExpensesCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutExpensesCreatedInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutExpensesReversedInput = {
-    create?: XOR<UserCreateWithoutExpensesReversedInput, UserUncheckedCreateWithoutExpensesReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutExpensesReversedInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumExpenseStatusFieldUpdateOperationsInput = {
     set?: $Enums.ExpenseStatus
   }
@@ -31000,62 +27530,8 @@ export namespace Prisma {
     update?: XOR<XOR<ExpenseCategoryUpdateToOneWithWhereWithoutExpensesInput, ExpenseCategoryUpdateWithoutExpensesInput>, ExpenseCategoryUncheckedUpdateWithoutExpensesInput>
   }
 
-  export type UserUpdateOneRequiredWithoutExpensesCreatedNestedInput = {
-    create?: XOR<UserCreateWithoutExpensesCreatedInput, UserUncheckedCreateWithoutExpensesCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutExpensesCreatedInput
-    upsert?: UserUpsertWithoutExpensesCreatedInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExpensesCreatedInput, UserUpdateWithoutExpensesCreatedInput>, UserUncheckedUpdateWithoutExpensesCreatedInput>
-  }
-
-  export type UserUpdateOneWithoutExpensesReversedNestedInput = {
-    create?: XOR<UserCreateWithoutExpensesReversedInput, UserUncheckedCreateWithoutExpensesReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutExpensesReversedInput
-    upsert?: UserUpsertWithoutExpensesReversedInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExpensesReversedInput, UserUpdateWithoutExpensesReversedInput>, UserUncheckedUpdateWithoutExpensesReversedInput>
-  }
-
-  export type UserCreateNestedOneWithoutOwnerWithdrawalsCreatedInput = {
-    create?: XOR<UserCreateWithoutOwnerWithdrawalsCreatedInput, UserUncheckedCreateWithoutOwnerWithdrawalsCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOwnerWithdrawalsCreatedInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutOwnerWithdrawalsReversedInput = {
-    create?: XOR<UserCreateWithoutOwnerWithdrawalsReversedInput, UserUncheckedCreateWithoutOwnerWithdrawalsReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOwnerWithdrawalsReversedInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumOwnerWithdrawalStatusFieldUpdateOperationsInput = {
     set?: $Enums.OwnerWithdrawalStatus
-  }
-
-  export type UserUpdateOneRequiredWithoutOwnerWithdrawalsCreatedNestedInput = {
-    create?: XOR<UserCreateWithoutOwnerWithdrawalsCreatedInput, UserUncheckedCreateWithoutOwnerWithdrawalsCreatedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOwnerWithdrawalsCreatedInput
-    upsert?: UserUpsertWithoutOwnerWithdrawalsCreatedInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOwnerWithdrawalsCreatedInput, UserUpdateWithoutOwnerWithdrawalsCreatedInput>, UserUncheckedUpdateWithoutOwnerWithdrawalsCreatedInput>
-  }
-
-  export type UserUpdateOneWithoutOwnerWithdrawalsReversedNestedInput = {
-    create?: XOR<UserCreateWithoutOwnerWithdrawalsReversedInput, UserUncheckedCreateWithoutOwnerWithdrawalsReversedInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOwnerWithdrawalsReversedInput
-    upsert?: UserUpsertWithoutOwnerWithdrawalsReversedInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOwnerWithdrawalsReversedInput, UserUpdateWithoutOwnerWithdrawalsReversedInput>, UserUncheckedUpdateWithoutOwnerWithdrawalsReversedInput>
-  }
-
-  export type UserCreateNestedOneWithoutCashMovementsInput = {
-    create?: XOR<UserCreateWithoutCashMovementsInput, UserUncheckedCreateWithoutCashMovementsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCashMovementsInput
-    connect?: UserWhereUniqueInput
   }
 
   export type EnumCashDirectionFieldUpdateOperationsInput = {
@@ -31066,50 +27542,8 @@ export namespace Prisma {
     set?: $Enums.CashSourceType
   }
 
-  export type UserUpdateOneRequiredWithoutCashMovementsNestedInput = {
-    create?: XOR<UserCreateWithoutCashMovementsInput, UserUncheckedCreateWithoutCashMovementsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCashMovementsInput
-    upsert?: UserUpsertWithoutCashMovementsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCashMovementsInput, UserUpdateWithoutCashMovementsInput>, UserUncheckedUpdateWithoutCashMovementsInput>
-  }
-
-  export type UserCreateNestedOneWithoutCashClosingsInput = {
-    create?: XOR<UserCreateWithoutCashClosingsInput, UserUncheckedCreateWithoutCashClosingsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCashClosingsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutCashClosingsNestedInput = {
-    create?: XOR<UserCreateWithoutCashClosingsInput, UserUncheckedCreateWithoutCashClosingsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCashClosingsInput
-    upsert?: UserUpsertWithoutCashClosingsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCashClosingsInput, UserUpdateWithoutCashClosingsInput>, UserUncheckedUpdateWithoutCashClosingsInput>
-  }
-
-  export type UserCreateNestedOneWithoutAuditLogsInput = {
-    create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumAuditActionFieldUpdateOperationsInput = {
     set?: $Enums.AuditAction
-  }
-
-  export type UserUpdateOneRequiredWithoutAuditLogsNestedInput = {
-    create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
-    upsert?: UserUpsertWithoutAuditLogsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuditLogsInput, UserUpdateWithoutAuditLogsInput>, UserUncheckedUpdateWithoutAuditLogsInput>
-  }
-
-  export type UserCreateNestedOneWithoutBackupsInput = {
-    create?: XOR<UserCreateWithoutBackupsInput, UserUncheckedCreateWithoutBackupsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBackupsInput
-    connect?: UserWhereUniqueInput
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -31118,14 +27552,6 @@ export namespace Prisma {
     decrement?: bigint | number
     multiply?: bigint | number
     divide?: bigint | number
-  }
-
-  export type UserUpdateOneRequiredWithoutBackupsNestedInput = {
-    create?: XOR<UserCreateWithoutBackupsInput, UserUncheckedCreateWithoutBackupsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBackupsInput
-    upsert?: UserUpsertWithoutBackupsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBackupsInput, UserUpdateWithoutBackupsInput>, UserUncheckedUpdateWithoutBackupsInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -31153,6 +27579,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -31162,6 +27599,27 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumEntityStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.EntityStatus | EnumEntityStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.EntityStatus[] | ListEnumEntityStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EntityStatus[] | ListEnumEntityStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumEntityStatusFilter<$PrismaModel> | $Enums.EntityStatus
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -31206,6 +27664,22 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -31231,68 +27705,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedEnumEntityStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.EntityStatus | EnumEntityStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EntityStatus[] | ListEnumEntityStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EntityStatus[] | ListEnumEntityStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEntityStatusFilter<$PrismaModel> | $Enums.EntityStatus
-  }
-
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -31331,6 +27743,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEntityStatusFilter<$PrismaModel>
     _max?: NestedEnumEntityStatusFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedEnumInventoryMovementTypeFilter<$PrismaModel = never> = {
@@ -31599,1041 +28025,14 @@ export namespace Prisma {
     _max?: NestedBigIntFilter<$PrismaModel>
   }
 
-  export type PackageStockCreateWithoutCreatedByUserInput = {
-    id?: string
-    unitPrice: Decimal | DecimalJsLike | number | string
-    receivedAt: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    package: PackageCreateNestedOneWithoutStocksInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutPackageStockInput
-  }
-
-  export type PackageStockUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    packageId: string
-    unitPrice: Decimal | DecimalJsLike | number | string
-    receivedAt: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutPackageStockInput
-  }
-
-  export type PackageStockCreateOrConnectWithoutCreatedByUserInput = {
-    where: PackageStockWhereUniqueInput
-    create: XOR<PackageStockCreateWithoutCreatedByUserInput, PackageStockUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type PackageStockCreateManyCreatedByUserInputEnvelope = {
-    data: PackageStockCreateManyCreatedByUserInput | PackageStockCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type InventoryMovementCreateWithoutCreatedByUserInput = {
-    id?: string
-    type: $Enums.InventoryMovementType
-    quantityDelta: number
-    unitPrice: Decimal | DecimalJsLike | number | string
-    referenceType?: string | null
-    referenceId?: string | null
-    description?: string | null
-    createdAt?: Date | string
-    packageStock: PackageStockCreateNestedOneWithoutInventoryMovementsInput
-  }
-
-  export type InventoryMovementUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    packageStockId: string
-    type: $Enums.InventoryMovementType
-    quantityDelta: number
-    unitPrice: Decimal | DecimalJsLike | number | string
-    referenceType?: string | null
-    referenceId?: string | null
-    description?: string | null
-    createdAt?: Date | string
-  }
-
-  export type InventoryMovementCreateOrConnectWithoutCreatedByUserInput = {
-    where: InventoryMovementWhereUniqueInput
-    create: XOR<InventoryMovementCreateWithoutCreatedByUserInput, InventoryMovementUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type InventoryMovementCreateManyCreatedByUserInputEnvelope = {
-    data: InventoryMovementCreateManyCreatedByUserInput | InventoryMovementCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SaleCreateWithoutCreatedByUserInput = {
-    id?: string
-    invoiceNumber: string
-    totalAmount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.SaleStatus
-    saleDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    cancelledAt?: Date | string | null
-    cancellationReason?: string | null
-    distributor: DistributorCreateNestedOneWithoutSalesInput
-    cancelledByUser?: UserCreateNestedOneWithoutSalesCancelledInput
-    items?: SaleItemCreateNestedManyWithoutSaleInput
-    payments?: PaymentCreateNestedManyWithoutSaleInput
-  }
-
-  export type SaleUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    invoiceNumber: string
-    distributorId: string
-    totalAmount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.SaleStatus
-    saleDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    cancelledAt?: Date | string | null
-    cancelledBy?: string | null
-    cancellationReason?: string | null
-    items?: SaleItemUncheckedCreateNestedManyWithoutSaleInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutSaleInput
-  }
-
-  export type SaleCreateOrConnectWithoutCreatedByUserInput = {
-    where: SaleWhereUniqueInput
-    create: XOR<SaleCreateWithoutCreatedByUserInput, SaleUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type SaleCreateManyCreatedByUserInputEnvelope = {
-    data: SaleCreateManyCreatedByUserInput | SaleCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SaleCreateWithoutCancelledByUserInput = {
-    id?: string
-    invoiceNumber: string
-    totalAmount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.SaleStatus
-    saleDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    cancelledAt?: Date | string | null
-    cancellationReason?: string | null
-    distributor: DistributorCreateNestedOneWithoutSalesInput
-    createdByUser: UserCreateNestedOneWithoutSalesCreatedInput
-    items?: SaleItemCreateNestedManyWithoutSaleInput
-    payments?: PaymentCreateNestedManyWithoutSaleInput
-  }
-
-  export type SaleUncheckedCreateWithoutCancelledByUserInput = {
-    id?: string
-    invoiceNumber: string
-    distributorId: string
-    totalAmount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.SaleStatus
-    saleDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    cancelledAt?: Date | string | null
-    cancellationReason?: string | null
-    items?: SaleItemUncheckedCreateNestedManyWithoutSaleInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutSaleInput
-  }
-
-  export type SaleCreateOrConnectWithoutCancelledByUserInput = {
-    where: SaleWhereUniqueInput
-    create: XOR<SaleCreateWithoutCancelledByUserInput, SaleUncheckedCreateWithoutCancelledByUserInput>
-  }
-
-  export type SaleCreateManyCancelledByUserInputEnvelope = {
-    data: SaleCreateManyCancelledByUserInput | SaleCreateManyCancelledByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PaymentCreateWithoutCreatedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.PaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    sale: SaleCreateNestedOneWithoutPaymentsInput
-    reversedByUser?: UserCreateNestedOneWithoutPaymentsReversedInput
-  }
-
-  export type PaymentUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    saleId: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.PaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type PaymentCreateOrConnectWithoutCreatedByUserInput = {
-    where: PaymentWhereUniqueInput
-    create: XOR<PaymentCreateWithoutCreatedByUserInput, PaymentUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type PaymentCreateManyCreatedByUserInputEnvelope = {
-    data: PaymentCreateManyCreatedByUserInput | PaymentCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PaymentCreateWithoutReversedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.PaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    sale: SaleCreateNestedOneWithoutPaymentsInput
-    createdByUser: UserCreateNestedOneWithoutPaymentsCreatedInput
-  }
-
-  export type PaymentUncheckedCreateWithoutReversedByUserInput = {
-    id?: string
-    saleId: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.PaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type PaymentCreateOrConnectWithoutReversedByUserInput = {
-    where: PaymentWhereUniqueInput
-    create: XOR<PaymentCreateWithoutReversedByUserInput, PaymentUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type PaymentCreateManyReversedByUserInputEnvelope = {
-    data: PaymentCreateManyReversedByUserInput | PaymentCreateManyReversedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LinePaymentCreateWithoutCreatedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    period: string
-    status?: $Enums.LinePaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    line: LineCreateNestedOneWithoutPaymentsInput
-    reversedByUser?: UserCreateNestedOneWithoutLinePaymentsReversedInput
-  }
-
-  export type LinePaymentUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    lineId: string
-    amount: Decimal | DecimalJsLike | number | string
-    period: string
-    status?: $Enums.LinePaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type LinePaymentCreateOrConnectWithoutCreatedByUserInput = {
-    where: LinePaymentWhereUniqueInput
-    create: XOR<LinePaymentCreateWithoutCreatedByUserInput, LinePaymentUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type LinePaymentCreateManyCreatedByUserInputEnvelope = {
-    data: LinePaymentCreateManyCreatedByUserInput | LinePaymentCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LinePaymentCreateWithoutReversedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    period: string
-    status?: $Enums.LinePaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    line: LineCreateNestedOneWithoutPaymentsInput
-    createdByUser: UserCreateNestedOneWithoutLinePaymentsCreatedInput
-  }
-
-  export type LinePaymentUncheckedCreateWithoutReversedByUserInput = {
-    id?: string
-    lineId: string
-    amount: Decimal | DecimalJsLike | number | string
-    period: string
-    status?: $Enums.LinePaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type LinePaymentCreateOrConnectWithoutReversedByUserInput = {
-    where: LinePaymentWhereUniqueInput
-    create: XOR<LinePaymentCreateWithoutReversedByUserInput, LinePaymentUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type LinePaymentCreateManyReversedByUserInputEnvelope = {
-    data: LinePaymentCreateManyReversedByUserInput | LinePaymentCreateManyReversedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ExpenseCreateWithoutCreatedByUserInput = {
-    id?: string
-    description: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.ExpenseStatus
-    expenseDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    category: ExpenseCategoryCreateNestedOneWithoutExpensesInput
-    reversedByUser?: UserCreateNestedOneWithoutExpensesReversedInput
-  }
-
-  export type ExpenseUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    categoryId: string
-    description: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.ExpenseStatus
-    expenseDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type ExpenseCreateOrConnectWithoutCreatedByUserInput = {
-    where: ExpenseWhereUniqueInput
-    create: XOR<ExpenseCreateWithoutCreatedByUserInput, ExpenseUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type ExpenseCreateManyCreatedByUserInputEnvelope = {
-    data: ExpenseCreateManyCreatedByUserInput | ExpenseCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ExpenseCreateWithoutReversedByUserInput = {
-    id?: string
-    description: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.ExpenseStatus
-    expenseDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    category: ExpenseCategoryCreateNestedOneWithoutExpensesInput
-    createdByUser: UserCreateNestedOneWithoutExpensesCreatedInput
-  }
-
-  export type ExpenseUncheckedCreateWithoutReversedByUserInput = {
-    id?: string
-    categoryId: string
-    description: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.ExpenseStatus
-    expenseDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type ExpenseCreateOrConnectWithoutReversedByUserInput = {
-    where: ExpenseWhereUniqueInput
-    create: XOR<ExpenseCreateWithoutReversedByUserInput, ExpenseUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type ExpenseCreateManyReversedByUserInputEnvelope = {
-    data: ExpenseCreateManyReversedByUserInput | ExpenseCreateManyReversedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type OwnerWithdrawalCreateWithoutCreatedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    reason: string
-    status?: $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    reversedByUser?: UserCreateNestedOneWithoutOwnerWithdrawalsReversedInput
-  }
-
-  export type OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    reason: string
-    status?: $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type OwnerWithdrawalCreateOrConnectWithoutCreatedByUserInput = {
-    where: OwnerWithdrawalWhereUniqueInput
-    create: XOR<OwnerWithdrawalCreateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type OwnerWithdrawalCreateManyCreatedByUserInputEnvelope = {
-    data: OwnerWithdrawalCreateManyCreatedByUserInput | OwnerWithdrawalCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type OwnerWithdrawalCreateWithoutReversedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    reason: string
-    status?: $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-    createdByUser: UserCreateNestedOneWithoutOwnerWithdrawalsCreatedInput
-  }
-
-  export type OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    reason: string
-    status?: $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type OwnerWithdrawalCreateOrConnectWithoutReversedByUserInput = {
-    where: OwnerWithdrawalWhereUniqueInput
-    create: XOR<OwnerWithdrawalCreateWithoutReversedByUserInput, OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type OwnerWithdrawalCreateManyReversedByUserInputEnvelope = {
-    data: OwnerWithdrawalCreateManyReversedByUserInput | OwnerWithdrawalCreateManyReversedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CashMovementCreateWithoutCreatedByUserInput = {
-    id?: string
-    direction: $Enums.CashDirection
-    amount: Decimal | DecimalJsLike | number | string
-    sourceType: $Enums.CashSourceType
-    sourceId?: string | null
-    description?: string | null
-    movementDate?: Date | string
-    createdAt?: Date | string
-  }
-
-  export type CashMovementUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    direction: $Enums.CashDirection
-    amount: Decimal | DecimalJsLike | number | string
-    sourceType: $Enums.CashSourceType
-    sourceId?: string | null
-    description?: string | null
-    movementDate?: Date | string
-    createdAt?: Date | string
-  }
-
-  export type CashMovementCreateOrConnectWithoutCreatedByUserInput = {
-    where: CashMovementWhereUniqueInput
-    create: XOR<CashMovementCreateWithoutCreatedByUserInput, CashMovementUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type CashMovementCreateManyCreatedByUserInputEnvelope = {
-    data: CashMovementCreateManyCreatedByUserInput | CashMovementCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CashClosingCreateWithoutClosedByUserInput = {
-    id?: string
-    closingDate: Date | string
-    openingBalance: Decimal | DecimalJsLike | number | string
-    totalIn: Decimal | DecimalJsLike | number | string
-    totalOut: Decimal | DecimalJsLike | number | string
-    ownerWithdrawals: Decimal | DecimalJsLike | number | string
-    expectedBalance: Decimal | DecimalJsLike | number | string
-    actualBalance: Decimal | DecimalJsLike | number | string
-    difference: Decimal | DecimalJsLike | number | string
-    notes?: string | null
-    closedAt?: Date | string
-  }
-
-  export type CashClosingUncheckedCreateWithoutClosedByUserInput = {
-    id?: string
-    closingDate: Date | string
-    openingBalance: Decimal | DecimalJsLike | number | string
-    totalIn: Decimal | DecimalJsLike | number | string
-    totalOut: Decimal | DecimalJsLike | number | string
-    ownerWithdrawals: Decimal | DecimalJsLike | number | string
-    expectedBalance: Decimal | DecimalJsLike | number | string
-    actualBalance: Decimal | DecimalJsLike | number | string
-    difference: Decimal | DecimalJsLike | number | string
-    notes?: string | null
-    closedAt?: Date | string
-  }
-
-  export type CashClosingCreateOrConnectWithoutClosedByUserInput = {
-    where: CashClosingWhereUniqueInput
-    create: XOR<CashClosingCreateWithoutClosedByUserInput, CashClosingUncheckedCreateWithoutClosedByUserInput>
-  }
-
-  export type CashClosingCreateManyClosedByUserInputEnvelope = {
-    data: CashClosingCreateManyClosedByUserInput | CashClosingCreateManyClosedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AuditLogCreateWithoutUserInput = {
-    id?: string
-    action: $Enums.AuditAction
-    entityType: string
-    entityId?: string | null
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    ipAddress?: string | null
-    userAgent?: string | null
-    createdAt?: Date | string
-  }
-
-  export type AuditLogUncheckedCreateWithoutUserInput = {
-    id?: string
-    action: $Enums.AuditAction
-    entityType: string
-    entityId?: string | null
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    ipAddress?: string | null
-    userAgent?: string | null
-    createdAt?: Date | string
-  }
-
-  export type AuditLogCreateOrConnectWithoutUserInput = {
-    where: AuditLogWhereUniqueInput
-    create: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput>
-  }
-
-  export type AuditLogCreateManyUserInputEnvelope = {
-    data: AuditLogCreateManyUserInput | AuditLogCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BackupCreateWithoutCreatedByUserInput = {
-    id?: string
-    fileName: string
-    storagePath: string
-    sizeBytes: bigint | number
-    recordCount: number
-    checksum: string
-    createdAt?: Date | string
-  }
-
-  export type BackupUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    fileName: string
-    storagePath: string
-    sizeBytes: bigint | number
-    recordCount: number
-    checksum: string
-    createdAt?: Date | string
-  }
-
-  export type BackupCreateOrConnectWithoutCreatedByUserInput = {
-    where: BackupWhereUniqueInput
-    create: XOR<BackupCreateWithoutCreatedByUserInput, BackupUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type BackupCreateManyCreatedByUserInputEnvelope = {
-    data: BackupCreateManyCreatedByUserInput | BackupCreateManyCreatedByUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PackageStockUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: PackageStockWhereUniqueInput
-    update: XOR<PackageStockUpdateWithoutCreatedByUserInput, PackageStockUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<PackageStockCreateWithoutCreatedByUserInput, PackageStockUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type PackageStockUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: PackageStockWhereUniqueInput
-    data: XOR<PackageStockUpdateWithoutCreatedByUserInput, PackageStockUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type PackageStockUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: PackageStockScalarWhereInput
-    data: XOR<PackageStockUpdateManyMutationInput, PackageStockUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type PackageStockScalarWhereInput = {
-    AND?: PackageStockScalarWhereInput | PackageStockScalarWhereInput[]
-    OR?: PackageStockScalarWhereInput[]
-    NOT?: PackageStockScalarWhereInput | PackageStockScalarWhereInput[]
-    id?: UuidFilter<"PackageStock"> | string
-    packageId?: UuidFilter<"PackageStock"> | string
-    unitPrice?: DecimalFilter<"PackageStock"> | Decimal | DecimalJsLike | number | string
-    receivedAt?: DateTimeFilter<"PackageStock"> | Date | string
-    notes?: StringNullableFilter<"PackageStock"> | string | null
-    createdBy?: UuidFilter<"PackageStock"> | string
-    createdAt?: DateTimeFilter<"PackageStock"> | Date | string
-    updatedAt?: DateTimeFilter<"PackageStock"> | Date | string
-  }
-
-  export type InventoryMovementUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: InventoryMovementWhereUniqueInput
-    update: XOR<InventoryMovementUpdateWithoutCreatedByUserInput, InventoryMovementUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<InventoryMovementCreateWithoutCreatedByUserInput, InventoryMovementUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type InventoryMovementUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: InventoryMovementWhereUniqueInput
-    data: XOR<InventoryMovementUpdateWithoutCreatedByUserInput, InventoryMovementUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type InventoryMovementUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: InventoryMovementScalarWhereInput
-    data: XOR<InventoryMovementUpdateManyMutationInput, InventoryMovementUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type InventoryMovementScalarWhereInput = {
-    AND?: InventoryMovementScalarWhereInput | InventoryMovementScalarWhereInput[]
-    OR?: InventoryMovementScalarWhereInput[]
-    NOT?: InventoryMovementScalarWhereInput | InventoryMovementScalarWhereInput[]
-    id?: UuidFilter<"InventoryMovement"> | string
-    packageStockId?: UuidFilter<"InventoryMovement"> | string
-    type?: EnumInventoryMovementTypeFilter<"InventoryMovement"> | $Enums.InventoryMovementType
-    quantityDelta?: IntFilter<"InventoryMovement"> | number
-    unitPrice?: DecimalFilter<"InventoryMovement"> | Decimal | DecimalJsLike | number | string
-    referenceType?: StringNullableFilter<"InventoryMovement"> | string | null
-    referenceId?: UuidNullableFilter<"InventoryMovement"> | string | null
-    description?: StringNullableFilter<"InventoryMovement"> | string | null
-    createdBy?: UuidFilter<"InventoryMovement"> | string
-    createdAt?: DateTimeFilter<"InventoryMovement"> | Date | string
-  }
-
-  export type SaleUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: SaleWhereUniqueInput
-    update: XOR<SaleUpdateWithoutCreatedByUserInput, SaleUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<SaleCreateWithoutCreatedByUserInput, SaleUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type SaleUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: SaleWhereUniqueInput
-    data: XOR<SaleUpdateWithoutCreatedByUserInput, SaleUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type SaleUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: SaleScalarWhereInput
-    data: XOR<SaleUpdateManyMutationInput, SaleUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type SaleScalarWhereInput = {
-    AND?: SaleScalarWhereInput | SaleScalarWhereInput[]
-    OR?: SaleScalarWhereInput[]
-    NOT?: SaleScalarWhereInput | SaleScalarWhereInput[]
-    id?: UuidFilter<"Sale"> | string
-    invoiceNumber?: StringFilter<"Sale"> | string
-    distributorId?: UuidFilter<"Sale"> | string
-    totalAmount?: DecimalFilter<"Sale"> | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFilter<"Sale"> | $Enums.SaleStatus
-    saleDate?: DateTimeFilter<"Sale"> | Date | string
-    notes?: StringNullableFilter<"Sale"> | string | null
-    createdBy?: UuidFilter<"Sale"> | string
-    createdAt?: DateTimeFilter<"Sale"> | Date | string
-    updatedAt?: DateTimeFilter<"Sale"> | Date | string
-    cancelledAt?: DateTimeNullableFilter<"Sale"> | Date | string | null
-    cancelledBy?: UuidNullableFilter<"Sale"> | string | null
-    cancellationReason?: StringNullableFilter<"Sale"> | string | null
-  }
-
-  export type SaleUpsertWithWhereUniqueWithoutCancelledByUserInput = {
-    where: SaleWhereUniqueInput
-    update: XOR<SaleUpdateWithoutCancelledByUserInput, SaleUncheckedUpdateWithoutCancelledByUserInput>
-    create: XOR<SaleCreateWithoutCancelledByUserInput, SaleUncheckedCreateWithoutCancelledByUserInput>
-  }
-
-  export type SaleUpdateWithWhereUniqueWithoutCancelledByUserInput = {
-    where: SaleWhereUniqueInput
-    data: XOR<SaleUpdateWithoutCancelledByUserInput, SaleUncheckedUpdateWithoutCancelledByUserInput>
-  }
-
-  export type SaleUpdateManyWithWhereWithoutCancelledByUserInput = {
-    where: SaleScalarWhereInput
-    data: XOR<SaleUpdateManyMutationInput, SaleUncheckedUpdateManyWithoutCancelledByUserInput>
-  }
-
-  export type PaymentUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: PaymentWhereUniqueInput
-    update: XOR<PaymentUpdateWithoutCreatedByUserInput, PaymentUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<PaymentCreateWithoutCreatedByUserInput, PaymentUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type PaymentUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: PaymentWhereUniqueInput
-    data: XOR<PaymentUpdateWithoutCreatedByUserInput, PaymentUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type PaymentUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: PaymentScalarWhereInput
-    data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type PaymentScalarWhereInput = {
-    AND?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-    OR?: PaymentScalarWhereInput[]
-    NOT?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
-    id?: UuidFilter<"Payment"> | string
-    saleId?: UuidFilter<"Payment"> | string
-    amount?: DecimalFilter<"Payment"> | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
-    paymentDate?: DateTimeFilter<"Payment"> | Date | string
-    notes?: StringNullableFilter<"Payment"> | string | null
-    createdBy?: UuidFilter<"Payment"> | string
-    createdAt?: DateTimeFilter<"Payment"> | Date | string
-    reversedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"Payment"> | string | null
-    reversalReason?: StringNullableFilter<"Payment"> | string | null
-  }
-
-  export type PaymentUpsertWithWhereUniqueWithoutReversedByUserInput = {
-    where: PaymentWhereUniqueInput
-    update: XOR<PaymentUpdateWithoutReversedByUserInput, PaymentUncheckedUpdateWithoutReversedByUserInput>
-    create: XOR<PaymentCreateWithoutReversedByUserInput, PaymentUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type PaymentUpdateWithWhereUniqueWithoutReversedByUserInput = {
-    where: PaymentWhereUniqueInput
-    data: XOR<PaymentUpdateWithoutReversedByUserInput, PaymentUncheckedUpdateWithoutReversedByUserInput>
-  }
-
-  export type PaymentUpdateManyWithWhereWithoutReversedByUserInput = {
-    where: PaymentScalarWhereInput
-    data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutReversedByUserInput>
-  }
-
-  export type LinePaymentUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: LinePaymentWhereUniqueInput
-    update: XOR<LinePaymentUpdateWithoutCreatedByUserInput, LinePaymentUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<LinePaymentCreateWithoutCreatedByUserInput, LinePaymentUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type LinePaymentUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: LinePaymentWhereUniqueInput
-    data: XOR<LinePaymentUpdateWithoutCreatedByUserInput, LinePaymentUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type LinePaymentUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: LinePaymentScalarWhereInput
-    data: XOR<LinePaymentUpdateManyMutationInput, LinePaymentUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type LinePaymentScalarWhereInput = {
-    AND?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
-    OR?: LinePaymentScalarWhereInput[]
-    NOT?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
-    id?: UuidFilter<"LinePayment"> | string
-    lineId?: UuidFilter<"LinePayment"> | string
-    amount?: DecimalFilter<"LinePayment"> | Decimal | DecimalJsLike | number | string
-    period?: StringFilter<"LinePayment"> | string
-    status?: EnumLinePaymentStatusFilter<"LinePayment"> | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFilter<"LinePayment"> | Date | string
-    notes?: StringNullableFilter<"LinePayment"> | string | null
-    createdBy?: UuidFilter<"LinePayment"> | string
-    createdAt?: DateTimeFilter<"LinePayment"> | Date | string
-    reversedAt?: DateTimeNullableFilter<"LinePayment"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"LinePayment"> | string | null
-    reversalReason?: StringNullableFilter<"LinePayment"> | string | null
-  }
-
-  export type LinePaymentUpsertWithWhereUniqueWithoutReversedByUserInput = {
-    where: LinePaymentWhereUniqueInput
-    update: XOR<LinePaymentUpdateWithoutReversedByUserInput, LinePaymentUncheckedUpdateWithoutReversedByUserInput>
-    create: XOR<LinePaymentCreateWithoutReversedByUserInput, LinePaymentUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type LinePaymentUpdateWithWhereUniqueWithoutReversedByUserInput = {
-    where: LinePaymentWhereUniqueInput
-    data: XOR<LinePaymentUpdateWithoutReversedByUserInput, LinePaymentUncheckedUpdateWithoutReversedByUserInput>
-  }
-
-  export type LinePaymentUpdateManyWithWhereWithoutReversedByUserInput = {
-    where: LinePaymentScalarWhereInput
-    data: XOR<LinePaymentUpdateManyMutationInput, LinePaymentUncheckedUpdateManyWithoutReversedByUserInput>
-  }
-
-  export type ExpenseUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: ExpenseWhereUniqueInput
-    update: XOR<ExpenseUpdateWithoutCreatedByUserInput, ExpenseUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<ExpenseCreateWithoutCreatedByUserInput, ExpenseUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type ExpenseUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: ExpenseWhereUniqueInput
-    data: XOR<ExpenseUpdateWithoutCreatedByUserInput, ExpenseUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type ExpenseUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: ExpenseScalarWhereInput
-    data: XOR<ExpenseUpdateManyMutationInput, ExpenseUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type ExpenseScalarWhereInput = {
-    AND?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
-    OR?: ExpenseScalarWhereInput[]
-    NOT?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
-    id?: UuidFilter<"Expense"> | string
-    categoryId?: UuidFilter<"Expense"> | string
-    description?: StringFilter<"Expense"> | string
-    amount?: DecimalFilter<"Expense"> | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFilter<"Expense"> | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFilter<"Expense"> | Date | string
-    notes?: StringNullableFilter<"Expense"> | string | null
-    createdBy?: UuidFilter<"Expense"> | string
-    createdAt?: DateTimeFilter<"Expense"> | Date | string
-    updatedAt?: DateTimeFilter<"Expense"> | Date | string
-    reversedAt?: DateTimeNullableFilter<"Expense"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"Expense"> | string | null
-    reversalReason?: StringNullableFilter<"Expense"> | string | null
-  }
-
-  export type ExpenseUpsertWithWhereUniqueWithoutReversedByUserInput = {
-    where: ExpenseWhereUniqueInput
-    update: XOR<ExpenseUpdateWithoutReversedByUserInput, ExpenseUncheckedUpdateWithoutReversedByUserInput>
-    create: XOR<ExpenseCreateWithoutReversedByUserInput, ExpenseUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type ExpenseUpdateWithWhereUniqueWithoutReversedByUserInput = {
-    where: ExpenseWhereUniqueInput
-    data: XOR<ExpenseUpdateWithoutReversedByUserInput, ExpenseUncheckedUpdateWithoutReversedByUserInput>
-  }
-
-  export type ExpenseUpdateManyWithWhereWithoutReversedByUserInput = {
-    where: ExpenseScalarWhereInput
-    data: XOR<ExpenseUpdateManyMutationInput, ExpenseUncheckedUpdateManyWithoutReversedByUserInput>
-  }
-
-  export type OwnerWithdrawalUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: OwnerWithdrawalWhereUniqueInput
-    update: XOR<OwnerWithdrawalUpdateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<OwnerWithdrawalCreateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type OwnerWithdrawalUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: OwnerWithdrawalWhereUniqueInput
-    data: XOR<OwnerWithdrawalUpdateWithoutCreatedByUserInput, OwnerWithdrawalUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type OwnerWithdrawalUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: OwnerWithdrawalScalarWhereInput
-    data: XOR<OwnerWithdrawalUpdateManyMutationInput, OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type OwnerWithdrawalScalarWhereInput = {
-    AND?: OwnerWithdrawalScalarWhereInput | OwnerWithdrawalScalarWhereInput[]
-    OR?: OwnerWithdrawalScalarWhereInput[]
-    NOT?: OwnerWithdrawalScalarWhereInput | OwnerWithdrawalScalarWhereInput[]
-    id?: UuidFilter<"OwnerWithdrawal"> | string
-    amount?: DecimalFilter<"OwnerWithdrawal"> | Decimal | DecimalJsLike | number | string
-    reason?: StringFilter<"OwnerWithdrawal"> | string
-    status?: EnumOwnerWithdrawalStatusFilter<"OwnerWithdrawal"> | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFilter<"OwnerWithdrawal"> | Date | string
-    notes?: StringNullableFilter<"OwnerWithdrawal"> | string | null
-    createdBy?: UuidFilter<"OwnerWithdrawal"> | string
-    createdAt?: DateTimeFilter<"OwnerWithdrawal"> | Date | string
-    reversedAt?: DateTimeNullableFilter<"OwnerWithdrawal"> | Date | string | null
-    reversedBy?: UuidNullableFilter<"OwnerWithdrawal"> | string | null
-    reversalReason?: StringNullableFilter<"OwnerWithdrawal"> | string | null
-  }
-
-  export type OwnerWithdrawalUpsertWithWhereUniqueWithoutReversedByUserInput = {
-    where: OwnerWithdrawalWhereUniqueInput
-    update: XOR<OwnerWithdrawalUpdateWithoutReversedByUserInput, OwnerWithdrawalUncheckedUpdateWithoutReversedByUserInput>
-    create: XOR<OwnerWithdrawalCreateWithoutReversedByUserInput, OwnerWithdrawalUncheckedCreateWithoutReversedByUserInput>
-  }
-
-  export type OwnerWithdrawalUpdateWithWhereUniqueWithoutReversedByUserInput = {
-    where: OwnerWithdrawalWhereUniqueInput
-    data: XOR<OwnerWithdrawalUpdateWithoutReversedByUserInput, OwnerWithdrawalUncheckedUpdateWithoutReversedByUserInput>
-  }
-
-  export type OwnerWithdrawalUpdateManyWithWhereWithoutReversedByUserInput = {
-    where: OwnerWithdrawalScalarWhereInput
-    data: XOR<OwnerWithdrawalUpdateManyMutationInput, OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserInput>
-  }
-
-  export type CashMovementUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: CashMovementWhereUniqueInput
-    update: XOR<CashMovementUpdateWithoutCreatedByUserInput, CashMovementUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<CashMovementCreateWithoutCreatedByUserInput, CashMovementUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type CashMovementUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: CashMovementWhereUniqueInput
-    data: XOR<CashMovementUpdateWithoutCreatedByUserInput, CashMovementUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type CashMovementUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: CashMovementScalarWhereInput
-    data: XOR<CashMovementUpdateManyMutationInput, CashMovementUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type CashMovementScalarWhereInput = {
-    AND?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
-    OR?: CashMovementScalarWhereInput[]
-    NOT?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
-    id?: UuidFilter<"CashMovement"> | string
-    direction?: EnumCashDirectionFilter<"CashMovement"> | $Enums.CashDirection
-    amount?: DecimalFilter<"CashMovement"> | Decimal | DecimalJsLike | number | string
-    sourceType?: EnumCashSourceTypeFilter<"CashMovement"> | $Enums.CashSourceType
-    sourceId?: UuidNullableFilter<"CashMovement"> | string | null
-    description?: StringNullableFilter<"CashMovement"> | string | null
-    movementDate?: DateTimeFilter<"CashMovement"> | Date | string
-    createdBy?: UuidFilter<"CashMovement"> | string
-    createdAt?: DateTimeFilter<"CashMovement"> | Date | string
-  }
-
-  export type CashClosingUpsertWithWhereUniqueWithoutClosedByUserInput = {
-    where: CashClosingWhereUniqueInput
-    update: XOR<CashClosingUpdateWithoutClosedByUserInput, CashClosingUncheckedUpdateWithoutClosedByUserInput>
-    create: XOR<CashClosingCreateWithoutClosedByUserInput, CashClosingUncheckedCreateWithoutClosedByUserInput>
-  }
-
-  export type CashClosingUpdateWithWhereUniqueWithoutClosedByUserInput = {
-    where: CashClosingWhereUniqueInput
-    data: XOR<CashClosingUpdateWithoutClosedByUserInput, CashClosingUncheckedUpdateWithoutClosedByUserInput>
-  }
-
-  export type CashClosingUpdateManyWithWhereWithoutClosedByUserInput = {
-    where: CashClosingScalarWhereInput
-    data: XOR<CashClosingUpdateManyMutationInput, CashClosingUncheckedUpdateManyWithoutClosedByUserInput>
-  }
-
-  export type CashClosingScalarWhereInput = {
-    AND?: CashClosingScalarWhereInput | CashClosingScalarWhereInput[]
-    OR?: CashClosingScalarWhereInput[]
-    NOT?: CashClosingScalarWhereInput | CashClosingScalarWhereInput[]
-    id?: UuidFilter<"CashClosing"> | string
-    closingDate?: DateTimeFilter<"CashClosing"> | Date | string
-    openingBalance?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    totalIn?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    totalOut?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    ownerWithdrawals?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    expectedBalance?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    actualBalance?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    difference?: DecimalFilter<"CashClosing"> | Decimal | DecimalJsLike | number | string
-    notes?: StringNullableFilter<"CashClosing"> | string | null
-    closedBy?: UuidFilter<"CashClosing"> | string
-    closedAt?: DateTimeFilter<"CashClosing"> | Date | string
-  }
-
-  export type AuditLogUpsertWithWhereUniqueWithoutUserInput = {
-    where: AuditLogWhereUniqueInput
-    update: XOR<AuditLogUpdateWithoutUserInput, AuditLogUncheckedUpdateWithoutUserInput>
-    create: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput>
-  }
-
-  export type AuditLogUpdateWithWhereUniqueWithoutUserInput = {
-    where: AuditLogWhereUniqueInput
-    data: XOR<AuditLogUpdateWithoutUserInput, AuditLogUncheckedUpdateWithoutUserInput>
-  }
-
-  export type AuditLogUpdateManyWithWhereWithoutUserInput = {
-    where: AuditLogScalarWhereInput
-    data: XOR<AuditLogUpdateManyMutationInput, AuditLogUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type AuditLogScalarWhereInput = {
-    AND?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
-    OR?: AuditLogScalarWhereInput[]
-    NOT?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
-    id?: UuidFilter<"AuditLog"> | string
-    userId?: UuidFilter<"AuditLog"> | string
-    action?: EnumAuditActionFilter<"AuditLog"> | $Enums.AuditAction
-    entityType?: StringFilter<"AuditLog"> | string
-    entityId?: UuidNullableFilter<"AuditLog"> | string | null
-    oldValues?: JsonNullableFilter<"AuditLog">
-    newValues?: JsonNullableFilter<"AuditLog">
-    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
-    userAgent?: StringNullableFilter<"AuditLog"> | string | null
-    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
-  }
-
-  export type BackupUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: BackupWhereUniqueInput
-    update: XOR<BackupUpdateWithoutCreatedByUserInput, BackupUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<BackupCreateWithoutCreatedByUserInput, BackupUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type BackupUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: BackupWhereUniqueInput
-    data: XOR<BackupUpdateWithoutCreatedByUserInput, BackupUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type BackupUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: BackupScalarWhereInput
-    data: XOR<BackupUpdateManyMutationInput, BackupUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
-  export type BackupScalarWhereInput = {
-    AND?: BackupScalarWhereInput | BackupScalarWhereInput[]
-    OR?: BackupScalarWhereInput[]
-    NOT?: BackupScalarWhereInput | BackupScalarWhereInput[]
-    id?: UuidFilter<"Backup"> | string
-    fileName?: StringFilter<"Backup"> | string
-    storagePath?: StringFilter<"Backup"> | string
-    sizeBytes?: BigIntFilter<"Backup"> | bigint | number
-    recordCount?: IntFilter<"Backup"> | number
-    checksum?: StringFilter<"Backup"> | string
-    createdBy?: UuidFilter<"Backup"> | string
-    createdAt?: DateTimeFilter<"Backup"> | Date | string
-  }
-
   export type PackageStockCreateWithoutPackageInput = {
     id?: string
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    createdByUser: UserCreateNestedOneWithoutPackageStocksInput
     inventoryMovements?: InventoryMovementCreateNestedManyWithoutPackageStockInput
   }
 
@@ -32642,7 +28041,7 @@ export namespace Prisma {
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutPackageStockInput
@@ -32702,6 +28101,20 @@ export namespace Prisma {
   export type PackageStockUpdateManyWithWhereWithoutPackageInput = {
     where: PackageStockScalarWhereInput
     data: XOR<PackageStockUpdateManyMutationInput, PackageStockUncheckedUpdateManyWithoutPackageInput>
+  }
+
+  export type PackageStockScalarWhereInput = {
+    AND?: PackageStockScalarWhereInput | PackageStockScalarWhereInput[]
+    OR?: PackageStockScalarWhereInput[]
+    NOT?: PackageStockScalarWhereInput | PackageStockScalarWhereInput[]
+    id?: UuidFilter<"PackageStock"> | string
+    packageId?: UuidFilter<"PackageStock"> | string
+    unitPrice?: DecimalFilter<"PackageStock"> | Decimal | DecimalJsLike | number | string
+    receivedAt?: DateTimeFilter<"PackageStock"> | Date | string
+    notes?: StringNullableFilter<"PackageStock"> | string | null
+    createdBy?: StringNullableFilter<"PackageStock"> | string | null
+    createdAt?: DateTimeFilter<"PackageStock"> | Date | string
+    updatedAt?: DateTimeFilter<"PackageStock"> | Date | string
   }
 
   export type SaleItemUpsertWithWhereUniqueWithoutPackageInput = {
@@ -32767,59 +28180,6 @@ export namespace Prisma {
     create: XOR<PackageCreateWithoutStocksInput, PackageUncheckedCreateWithoutStocksInput>
   }
 
-  export type UserCreateWithoutPackageStocksInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPackageStocksInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPackageStocksInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPackageStocksInput, UserUncheckedCreateWithoutPackageStocksInput>
-  }
-
   export type InventoryMovementCreateWithoutPackageStockInput = {
     id?: string
     type: $Enums.InventoryMovementType
@@ -32828,8 +28188,8 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     description?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
-    createdByUser: UserCreateNestedOneWithoutInventoryMovementsInput
   }
 
   export type InventoryMovementUncheckedCreateWithoutPackageStockInput = {
@@ -32840,7 +28200,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     description?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -32893,65 +28253,6 @@ export namespace Prisma {
     saleItems?: SaleItemUncheckedUpdateManyWithoutPackageNestedInput
   }
 
-  export type UserUpsertWithoutPackageStocksInput = {
-    update: XOR<UserUpdateWithoutPackageStocksInput, UserUncheckedUpdateWithoutPackageStocksInput>
-    create: XOR<UserCreateWithoutPackageStocksInput, UserUncheckedCreateWithoutPackageStocksInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPackageStocksInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPackageStocksInput, UserUncheckedUpdateWithoutPackageStocksInput>
-  }
-
-  export type UserUpdateWithoutPackageStocksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPackageStocksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
   export type InventoryMovementUpsertWithWhereUniqueWithoutPackageStockInput = {
     where: InventoryMovementWhereUniqueInput
     update: XOR<InventoryMovementUpdateWithoutPackageStockInput, InventoryMovementUncheckedUpdateWithoutPackageStockInput>
@@ -32968,15 +28269,31 @@ export namespace Prisma {
     data: XOR<InventoryMovementUpdateManyMutationInput, InventoryMovementUncheckedUpdateManyWithoutPackageStockInput>
   }
 
+  export type InventoryMovementScalarWhereInput = {
+    AND?: InventoryMovementScalarWhereInput | InventoryMovementScalarWhereInput[]
+    OR?: InventoryMovementScalarWhereInput[]
+    NOT?: InventoryMovementScalarWhereInput | InventoryMovementScalarWhereInput[]
+    id?: UuidFilter<"InventoryMovement"> | string
+    packageStockId?: UuidFilter<"InventoryMovement"> | string
+    type?: EnumInventoryMovementTypeFilter<"InventoryMovement"> | $Enums.InventoryMovementType
+    quantityDelta?: IntFilter<"InventoryMovement"> | number
+    unitPrice?: DecimalFilter<"InventoryMovement"> | Decimal | DecimalJsLike | number | string
+    referenceType?: StringNullableFilter<"InventoryMovement"> | string | null
+    referenceId?: UuidNullableFilter<"InventoryMovement"> | string | null
+    description?: StringNullableFilter<"InventoryMovement"> | string | null
+    createdBy?: StringNullableFilter<"InventoryMovement"> | string | null
+    createdAt?: DateTimeFilter<"InventoryMovement"> | Date | string
+  }
+
   export type PackageStockCreateWithoutInventoryMovementsInput = {
     id?: string
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     package: PackageCreateNestedOneWithoutStocksInput
-    createdByUser: UserCreateNestedOneWithoutPackageStocksInput
   }
 
   export type PackageStockUncheckedCreateWithoutInventoryMovementsInput = {
@@ -32985,7 +28302,7 @@ export namespace Prisma {
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32993,59 +28310,6 @@ export namespace Prisma {
   export type PackageStockCreateOrConnectWithoutInventoryMovementsInput = {
     where: PackageStockWhereUniqueInput
     create: XOR<PackageStockCreateWithoutInventoryMovementsInput, PackageStockUncheckedCreateWithoutInventoryMovementsInput>
-  }
-
-  export type UserCreateWithoutInventoryMovementsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutInventoryMovementsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutInventoryMovementsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutInventoryMovementsInput, UserUncheckedCreateWithoutInventoryMovementsInput>
   }
 
   export type PackageStockUpsertWithoutInventoryMovementsInput = {
@@ -33064,10 +28328,10 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     package?: PackageUpdateOneRequiredWithoutStocksNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutPackageStocksNestedInput
   }
 
   export type PackageStockUncheckedUpdateWithoutInventoryMovementsInput = {
@@ -33076,68 +28340,9 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserUpsertWithoutInventoryMovementsInput = {
-    update: XOR<UserUpdateWithoutInventoryMovementsInput, UserUncheckedUpdateWithoutInventoryMovementsInput>
-    create: XOR<UserCreateWithoutInventoryMovementsInput, UserUncheckedCreateWithoutInventoryMovementsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutInventoryMovementsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutInventoryMovementsInput, UserUncheckedUpdateWithoutInventoryMovementsInput>
-  }
-
-  export type UserUpdateWithoutInventoryMovementsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutInventoryMovementsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type SaleCreateWithoutDistributorInput = {
@@ -33147,12 +28352,12 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
+    cancelledBy?: string | null
     cancellationReason?: string | null
-    createdByUser: UserCreateNestedOneWithoutSalesCreatedInput
-    cancelledByUser?: UserCreateNestedOneWithoutSalesCancelledInput
     items?: SaleItemCreateNestedManyWithoutSaleInput
     payments?: PaymentCreateNestedManyWithoutSaleInput
   }
@@ -33164,7 +28369,7 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
@@ -33200,6 +28405,25 @@ export namespace Prisma {
     data: XOR<SaleUpdateManyMutationInput, SaleUncheckedUpdateManyWithoutDistributorInput>
   }
 
+  export type SaleScalarWhereInput = {
+    AND?: SaleScalarWhereInput | SaleScalarWhereInput[]
+    OR?: SaleScalarWhereInput[]
+    NOT?: SaleScalarWhereInput | SaleScalarWhereInput[]
+    id?: UuidFilter<"Sale"> | string
+    invoiceNumber?: StringFilter<"Sale"> | string
+    distributorId?: UuidFilter<"Sale"> | string
+    totalAmount?: DecimalFilter<"Sale"> | Decimal | DecimalJsLike | number | string
+    status?: EnumSaleStatusFilter<"Sale"> | $Enums.SaleStatus
+    saleDate?: DateTimeFilter<"Sale"> | Date | string
+    notes?: StringNullableFilter<"Sale"> | string | null
+    createdBy?: StringNullableFilter<"Sale"> | string | null
+    createdAt?: DateTimeFilter<"Sale"> | Date | string
+    updatedAt?: DateTimeFilter<"Sale"> | Date | string
+    cancelledAt?: DateTimeNullableFilter<"Sale"> | Date | string | null
+    cancelledBy?: StringNullableFilter<"Sale"> | string | null
+    cancellationReason?: StringNullableFilter<"Sale"> | string | null
+  }
+
   export type DistributorCreateWithoutSalesInput = {
     id?: string
     name: string
@@ -33227,112 +28451,6 @@ export namespace Prisma {
   export type DistributorCreateOrConnectWithoutSalesInput = {
     where: DistributorWhereUniqueInput
     create: XOR<DistributorCreateWithoutSalesInput, DistributorUncheckedCreateWithoutSalesInput>
-  }
-
-  export type UserCreateWithoutSalesCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutSalesCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutSalesCreatedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSalesCreatedInput, UserUncheckedCreateWithoutSalesCreatedInput>
-  }
-
-  export type UserCreateWithoutSalesCancelledInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutSalesCancelledInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutSalesCancelledInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSalesCancelledInput, UserUncheckedCreateWithoutSalesCancelledInput>
   }
 
   export type SaleItemCreateWithoutSaleInput = {
@@ -33371,11 +28489,11 @@ export namespace Prisma {
     status?: $Enums.PaymentStatus
     paymentDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
-    createdByUser: UserCreateNestedOneWithoutPaymentsCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutPaymentsReversedInput
   }
 
   export type PaymentUncheckedCreateWithoutSaleInput = {
@@ -33384,7 +28502,7 @@ export namespace Prisma {
     status?: $Enums.PaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -33436,124 +28554,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUpsertWithoutSalesCreatedInput = {
-    update: XOR<UserUpdateWithoutSalesCreatedInput, UserUncheckedUpdateWithoutSalesCreatedInput>
-    create: XOR<UserCreateWithoutSalesCreatedInput, UserUncheckedCreateWithoutSalesCreatedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSalesCreatedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSalesCreatedInput, UserUncheckedUpdateWithoutSalesCreatedInput>
-  }
-
-  export type UserUpdateWithoutSalesCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSalesCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUpsertWithoutSalesCancelledInput = {
-    update: XOR<UserUpdateWithoutSalesCancelledInput, UserUncheckedUpdateWithoutSalesCancelledInput>
-    create: XOR<UserCreateWithoutSalesCancelledInput, UserUncheckedCreateWithoutSalesCancelledInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSalesCancelledInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSalesCancelledInput, UserUncheckedUpdateWithoutSalesCancelledInput>
-  }
-
-  export type UserUpdateWithoutSalesCancelledInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSalesCancelledInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
   export type SaleItemUpsertWithWhereUniqueWithoutSaleInput = {
     where: SaleItemWhereUniqueInput
     update: XOR<SaleItemUpdateWithoutSaleInput, SaleItemUncheckedUpdateWithoutSaleInput>
@@ -33586,6 +28586,23 @@ export namespace Prisma {
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutSaleInput>
   }
 
+  export type PaymentScalarWhereInput = {
+    AND?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+    OR?: PaymentScalarWhereInput[]
+    NOT?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+    id?: UuidFilter<"Payment"> | string
+    saleId?: UuidFilter<"Payment"> | string
+    amount?: DecimalFilter<"Payment"> | Decimal | DecimalJsLike | number | string
+    status?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
+    paymentDate?: DateTimeFilter<"Payment"> | Date | string
+    notes?: StringNullableFilter<"Payment"> | string | null
+    createdBy?: StringNullableFilter<"Payment"> | string | null
+    createdAt?: DateTimeFilter<"Payment"> | Date | string
+    reversedAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    reversedBy?: StringNullableFilter<"Payment"> | string | null
+    reversalReason?: StringNullableFilter<"Payment"> | string | null
+  }
+
   export type SaleCreateWithoutItemsInput = {
     id?: string
     invoiceNumber: string
@@ -33593,13 +28610,13 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
+    cancelledBy?: string | null
     cancellationReason?: string | null
     distributor: DistributorCreateNestedOneWithoutSalesInput
-    createdByUser: UserCreateNestedOneWithoutSalesCreatedInput
-    cancelledByUser?: UserCreateNestedOneWithoutSalesCancelledInput
     payments?: PaymentCreateNestedManyWithoutSaleInput
   }
 
@@ -33611,7 +28628,7 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
@@ -33676,13 +28693,13 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
     cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
     distributor?: DistributorUpdateOneRequiredWithoutSalesNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutSalesCreatedNestedInput
-    cancelledByUser?: UserUpdateOneWithoutSalesCancelledNestedInput
     payments?: PaymentUpdateManyWithoutSaleNestedInput
   }
 
@@ -33694,7 +28711,7 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -33749,13 +28766,13 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
+    cancelledBy?: string | null
     cancellationReason?: string | null
     distributor: DistributorCreateNestedOneWithoutSalesInput
-    createdByUser: UserCreateNestedOneWithoutSalesCreatedInput
-    cancelledByUser?: UserCreateNestedOneWithoutSalesCancelledInput
     items?: SaleItemCreateNestedManyWithoutSaleInput
   }
 
@@ -33767,7 +28784,7 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
@@ -33779,112 +28796,6 @@ export namespace Prisma {
   export type SaleCreateOrConnectWithoutPaymentsInput = {
     where: SaleWhereUniqueInput
     create: XOR<SaleCreateWithoutPaymentsInput, SaleUncheckedCreateWithoutPaymentsInput>
-  }
-
-  export type UserCreateWithoutPaymentsCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPaymentsCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPaymentsCreatedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPaymentsCreatedInput, UserUncheckedCreateWithoutPaymentsCreatedInput>
-  }
-
-  export type UserCreateWithoutPaymentsReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPaymentsReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPaymentsReversedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPaymentsReversedInput, UserUncheckedCreateWithoutPaymentsReversedInput>
   }
 
   export type SaleUpsertWithoutPaymentsInput = {
@@ -33905,13 +28816,13 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
     cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
     distributor?: DistributorUpdateOneRequiredWithoutSalesNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutSalesCreatedNestedInput
-    cancelledByUser?: UserUpdateOneWithoutSalesCancelledNestedInput
     items?: SaleItemUpdateManyWithoutSaleNestedInput
   }
 
@@ -33923,131 +28834,13 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
     cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
     items?: SaleItemUncheckedUpdateManyWithoutSaleNestedInput
-  }
-
-  export type UserUpsertWithoutPaymentsCreatedInput = {
-    update: XOR<UserUpdateWithoutPaymentsCreatedInput, UserUncheckedUpdateWithoutPaymentsCreatedInput>
-    create: XOR<UserCreateWithoutPaymentsCreatedInput, UserUncheckedCreateWithoutPaymentsCreatedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPaymentsCreatedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPaymentsCreatedInput, UserUncheckedUpdateWithoutPaymentsCreatedInput>
-  }
-
-  export type UserUpdateWithoutPaymentsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPaymentsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUpsertWithoutPaymentsReversedInput = {
-    update: XOR<UserUpdateWithoutPaymentsReversedInput, UserUncheckedUpdateWithoutPaymentsReversedInput>
-    create: XOR<UserCreateWithoutPaymentsReversedInput, UserUncheckedCreateWithoutPaymentsReversedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPaymentsReversedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPaymentsReversedInput, UserUncheckedUpdateWithoutPaymentsReversedInput>
-  }
-
-  export type UserUpdateWithoutPaymentsReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPaymentsReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type LinePaymentCreateWithoutLineInput = {
@@ -34057,11 +28850,11 @@ export namespace Prisma {
     status?: $Enums.LinePaymentStatus
     paymentDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
-    createdByUser: UserCreateNestedOneWithoutLinePaymentsCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutLinePaymentsReversedInput
   }
 
   export type LinePaymentUncheckedCreateWithoutLineInput = {
@@ -34071,7 +28864,7 @@ export namespace Prisma {
     status?: $Enums.LinePaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -34102,6 +28895,24 @@ export namespace Prisma {
   export type LinePaymentUpdateManyWithWhereWithoutLineInput = {
     where: LinePaymentScalarWhereInput
     data: XOR<LinePaymentUpdateManyMutationInput, LinePaymentUncheckedUpdateManyWithoutLineInput>
+  }
+
+  export type LinePaymentScalarWhereInput = {
+    AND?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
+    OR?: LinePaymentScalarWhereInput[]
+    NOT?: LinePaymentScalarWhereInput | LinePaymentScalarWhereInput[]
+    id?: UuidFilter<"LinePayment"> | string
+    lineId?: UuidFilter<"LinePayment"> | string
+    amount?: DecimalFilter<"LinePayment"> | Decimal | DecimalJsLike | number | string
+    period?: StringFilter<"LinePayment"> | string
+    status?: EnumLinePaymentStatusFilter<"LinePayment"> | $Enums.LinePaymentStatus
+    paymentDate?: DateTimeFilter<"LinePayment"> | Date | string
+    notes?: StringNullableFilter<"LinePayment"> | string | null
+    createdBy?: StringNullableFilter<"LinePayment"> | string | null
+    createdAt?: DateTimeFilter<"LinePayment"> | Date | string
+    reversedAt?: DateTimeNullableFilter<"LinePayment"> | Date | string | null
+    reversedBy?: StringNullableFilter<"LinePayment"> | string | null
+    reversalReason?: StringNullableFilter<"LinePayment"> | string | null
   }
 
   export type LineCreateWithoutPaymentsInput = {
@@ -34135,112 +28946,6 @@ export namespace Prisma {
   export type LineCreateOrConnectWithoutPaymentsInput = {
     where: LineWhereUniqueInput
     create: XOR<LineCreateWithoutPaymentsInput, LineUncheckedCreateWithoutPaymentsInput>
-  }
-
-  export type UserCreateWithoutLinePaymentsCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLinePaymentsCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLinePaymentsCreatedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLinePaymentsCreatedInput, UserUncheckedCreateWithoutLinePaymentsCreatedInput>
-  }
-
-  export type UserCreateWithoutLinePaymentsReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLinePaymentsReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLinePaymentsReversedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLinePaymentsReversedInput, UserUncheckedCreateWithoutLinePaymentsReversedInput>
   }
 
   export type LineUpsertWithoutPaymentsInput = {
@@ -34282,124 +28987,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUpsertWithoutLinePaymentsCreatedInput = {
-    update: XOR<UserUpdateWithoutLinePaymentsCreatedInput, UserUncheckedUpdateWithoutLinePaymentsCreatedInput>
-    create: XOR<UserCreateWithoutLinePaymentsCreatedInput, UserUncheckedCreateWithoutLinePaymentsCreatedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLinePaymentsCreatedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLinePaymentsCreatedInput, UserUncheckedUpdateWithoutLinePaymentsCreatedInput>
-  }
-
-  export type UserUpdateWithoutLinePaymentsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutLinePaymentsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUpsertWithoutLinePaymentsReversedInput = {
-    update: XOR<UserUpdateWithoutLinePaymentsReversedInput, UserUncheckedUpdateWithoutLinePaymentsReversedInput>
-    create: XOR<UserCreateWithoutLinePaymentsReversedInput, UserUncheckedCreateWithoutLinePaymentsReversedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLinePaymentsReversedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLinePaymentsReversedInput, UserUncheckedUpdateWithoutLinePaymentsReversedInput>
-  }
-
-  export type UserUpdateWithoutLinePaymentsReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutLinePaymentsReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
   export type ExpenseCreateWithoutCategoryInput = {
     id?: string
     description: string
@@ -34407,12 +28994,12 @@ export namespace Prisma {
     status?: $Enums.ExpenseStatus
     expenseDate?: Date | string
     notes?: string | null
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reversedAt?: Date | string | null
+    reversedBy?: string | null
     reversalReason?: string | null
-    createdByUser: UserCreateNestedOneWithoutExpensesCreatedInput
-    reversedByUser?: UserCreateNestedOneWithoutExpensesReversedInput
   }
 
   export type ExpenseUncheckedCreateWithoutCategoryInput = {
@@ -34422,7 +29009,7 @@ export namespace Prisma {
     status?: $Enums.ExpenseStatus
     expenseDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reversedAt?: Date | string | null
@@ -34456,6 +29043,25 @@ export namespace Prisma {
     data: XOR<ExpenseUpdateManyMutationInput, ExpenseUncheckedUpdateManyWithoutCategoryInput>
   }
 
+  export type ExpenseScalarWhereInput = {
+    AND?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
+    OR?: ExpenseScalarWhereInput[]
+    NOT?: ExpenseScalarWhereInput | ExpenseScalarWhereInput[]
+    id?: UuidFilter<"Expense"> | string
+    categoryId?: UuidFilter<"Expense"> | string
+    description?: StringFilter<"Expense"> | string
+    amount?: DecimalFilter<"Expense"> | Decimal | DecimalJsLike | number | string
+    status?: EnumExpenseStatusFilter<"Expense"> | $Enums.ExpenseStatus
+    expenseDate?: DateTimeFilter<"Expense"> | Date | string
+    notes?: StringNullableFilter<"Expense"> | string | null
+    createdBy?: StringNullableFilter<"Expense"> | string | null
+    createdAt?: DateTimeFilter<"Expense"> | Date | string
+    updatedAt?: DateTimeFilter<"Expense"> | Date | string
+    reversedAt?: DateTimeNullableFilter<"Expense"> | Date | string | null
+    reversedBy?: StringNullableFilter<"Expense"> | string | null
+    reversalReason?: StringNullableFilter<"Expense"> | string | null
+  }
+
   export type ExpenseCategoryCreateWithoutExpensesInput = {
     id?: string
     name: string
@@ -34477,112 +29083,6 @@ export namespace Prisma {
   export type ExpenseCategoryCreateOrConnectWithoutExpensesInput = {
     where: ExpenseCategoryWhereUniqueInput
     create: XOR<ExpenseCategoryCreateWithoutExpensesInput, ExpenseCategoryUncheckedCreateWithoutExpensesInput>
-  }
-
-  export type UserCreateWithoutExpensesCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutExpensesCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutExpensesCreatedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutExpensesCreatedInput, UserUncheckedCreateWithoutExpensesCreatedInput>
-  }
-
-  export type UserCreateWithoutExpensesReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutExpensesReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutExpensesReversedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutExpensesReversedInput, UserUncheckedCreateWithoutExpensesReversedInput>
   }
 
   export type ExpenseCategoryUpsertWithoutExpensesInput = {
@@ -34614,1648 +29114,12 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUpsertWithoutExpensesCreatedInput = {
-    update: XOR<UserUpdateWithoutExpensesCreatedInput, UserUncheckedUpdateWithoutExpensesCreatedInput>
-    create: XOR<UserCreateWithoutExpensesCreatedInput, UserUncheckedCreateWithoutExpensesCreatedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutExpensesCreatedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutExpensesCreatedInput, UserUncheckedUpdateWithoutExpensesCreatedInput>
-  }
-
-  export type UserUpdateWithoutExpensesCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutExpensesCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUpsertWithoutExpensesReversedInput = {
-    update: XOR<UserUpdateWithoutExpensesReversedInput, UserUncheckedUpdateWithoutExpensesReversedInput>
-    create: XOR<UserCreateWithoutExpensesReversedInput, UserUncheckedCreateWithoutExpensesReversedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutExpensesReversedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutExpensesReversedInput, UserUncheckedUpdateWithoutExpensesReversedInput>
-  }
-
-  export type UserUpdateWithoutExpensesReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutExpensesReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserCreateWithoutOwnerWithdrawalsCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutOwnerWithdrawalsCreatedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutOwnerWithdrawalsCreatedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutOwnerWithdrawalsCreatedInput, UserUncheckedCreateWithoutOwnerWithdrawalsCreatedInput>
-  }
-
-  export type UserCreateWithoutOwnerWithdrawalsReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutOwnerWithdrawalsReversedInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutOwnerWithdrawalsReversedInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutOwnerWithdrawalsReversedInput, UserUncheckedCreateWithoutOwnerWithdrawalsReversedInput>
-  }
-
-  export type UserUpsertWithoutOwnerWithdrawalsCreatedInput = {
-    update: XOR<UserUpdateWithoutOwnerWithdrawalsCreatedInput, UserUncheckedUpdateWithoutOwnerWithdrawalsCreatedInput>
-    create: XOR<UserCreateWithoutOwnerWithdrawalsCreatedInput, UserUncheckedCreateWithoutOwnerWithdrawalsCreatedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutOwnerWithdrawalsCreatedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutOwnerWithdrawalsCreatedInput, UserUncheckedUpdateWithoutOwnerWithdrawalsCreatedInput>
-  }
-
-  export type UserUpdateWithoutOwnerWithdrawalsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutOwnerWithdrawalsCreatedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUpsertWithoutOwnerWithdrawalsReversedInput = {
-    update: XOR<UserUpdateWithoutOwnerWithdrawalsReversedInput, UserUncheckedUpdateWithoutOwnerWithdrawalsReversedInput>
-    create: XOR<UserCreateWithoutOwnerWithdrawalsReversedInput, UserUncheckedCreateWithoutOwnerWithdrawalsReversedInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutOwnerWithdrawalsReversedInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutOwnerWithdrawalsReversedInput, UserUncheckedUpdateWithoutOwnerWithdrawalsReversedInput>
-  }
-
-  export type UserUpdateWithoutOwnerWithdrawalsReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutOwnerWithdrawalsReversedInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserCreateWithoutCashMovementsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutCashMovementsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutCashMovementsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutCashMovementsInput, UserUncheckedCreateWithoutCashMovementsInput>
-  }
-
-  export type UserUpsertWithoutCashMovementsInput = {
-    update: XOR<UserUpdateWithoutCashMovementsInput, UserUncheckedUpdateWithoutCashMovementsInput>
-    create: XOR<UserCreateWithoutCashMovementsInput, UserUncheckedCreateWithoutCashMovementsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutCashMovementsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutCashMovementsInput, UserUncheckedUpdateWithoutCashMovementsInput>
-  }
-
-  export type UserUpdateWithoutCashMovementsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutCashMovementsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserCreateWithoutCashClosingsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutCashClosingsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutCashClosingsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutCashClosingsInput, UserUncheckedCreateWithoutCashClosingsInput>
-  }
-
-  export type UserUpsertWithoutCashClosingsInput = {
-    update: XOR<UserUpdateWithoutCashClosingsInput, UserUncheckedUpdateWithoutCashClosingsInput>
-    create: XOR<UserCreateWithoutCashClosingsInput, UserUncheckedCreateWithoutCashClosingsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutCashClosingsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutCashClosingsInput, UserUncheckedUpdateWithoutCashClosingsInput>
-  }
-
-  export type UserUpdateWithoutCashClosingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutCashClosingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserCreateWithoutAuditLogsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    backups?: BackupCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserUncheckedCreateWithoutAuditLogsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    backups?: BackupUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserCreateOrConnectWithoutAuditLogsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
-  }
-
-  export type UserUpsertWithoutAuditLogsInput = {
-    update: XOR<UserUpdateWithoutAuditLogsInput, UserUncheckedUpdateWithoutAuditLogsInput>
-    create: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutAuditLogsInput, UserUncheckedUpdateWithoutAuditLogsInput>
-  }
-
-  export type UserUpdateWithoutAuditLogsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    backups?: BackupUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutAuditLogsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    backups?: BackupUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserCreateWithoutBackupsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutBackupsInput = {
-    id?: string
-    email: string
-    passwordHash: string
-    tokenVersion?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    packageStocks?: PackageStockUncheckedCreateNestedManyWithoutCreatedByUserInput
-    inventoryMovements?: InventoryMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCreated?: SaleUncheckedCreateNestedManyWithoutCreatedByUserInput
-    salesCancelled?: SaleUncheckedCreateNestedManyWithoutCancelledByUserInput
-    paymentsCreated?: PaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    paymentsReversed?: PaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    linePaymentsCreated?: LinePaymentUncheckedCreateNestedManyWithoutCreatedByUserInput
-    linePaymentsReversed?: LinePaymentUncheckedCreateNestedManyWithoutReversedByUserInput
-    expensesCreated?: ExpenseUncheckedCreateNestedManyWithoutCreatedByUserInput
-    expensesReversed?: ExpenseUncheckedCreateNestedManyWithoutReversedByUserInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedCreateNestedManyWithoutCreatedByUserInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedCreateNestedManyWithoutReversedByUserInput
-    cashMovements?: CashMovementUncheckedCreateNestedManyWithoutCreatedByUserInput
-    cashClosings?: CashClosingUncheckedCreateNestedManyWithoutClosedByUserInput
-    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutBackupsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutBackupsInput, UserUncheckedCreateWithoutBackupsInput>
-  }
-
-  export type UserUpsertWithoutBackupsInput = {
-    update: XOR<UserUpdateWithoutBackupsInput, UserUncheckedUpdateWithoutBackupsInput>
-    create: XOR<UserCreateWithoutBackupsInput, UserUncheckedCreateWithoutBackupsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutBackupsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutBackupsInput, UserUncheckedUpdateWithoutBackupsInput>
-  }
-
-  export type UserUpdateWithoutBackupsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutBackupsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    tokenVersion?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStocks?: PackageStockUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCreated?: SaleUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    salesCancelled?: SaleUncheckedUpdateManyWithoutCancelledByUserNestedInput
-    paymentsCreated?: PaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    paymentsReversed?: PaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    linePaymentsCreated?: LinePaymentUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    linePaymentsReversed?: LinePaymentUncheckedUpdateManyWithoutReversedByUserNestedInput
-    expensesCreated?: ExpenseUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    expensesReversed?: ExpenseUncheckedUpdateManyWithoutReversedByUserNestedInput
-    ownerWithdrawalsCreated?: OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    ownerWithdrawalsReversed?: OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserNestedInput
-    cashMovements?: CashMovementUncheckedUpdateManyWithoutCreatedByUserNestedInput
-    cashClosings?: CashClosingUncheckedUpdateManyWithoutClosedByUserNestedInput
-    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type PackageStockCreateManyCreatedByUserInput = {
-    id?: string
-    packageId: string
-    unitPrice: Decimal | DecimalJsLike | number | string
-    receivedAt: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type InventoryMovementCreateManyCreatedByUserInput = {
-    id?: string
-    packageStockId: string
-    type: $Enums.InventoryMovementType
-    quantityDelta: number
-    unitPrice: Decimal | DecimalJsLike | number | string
-    referenceType?: string | null
-    referenceId?: string | null
-    description?: string | null
-    createdAt?: Date | string
-  }
-
-  export type SaleCreateManyCreatedByUserInput = {
-    id?: string
-    invoiceNumber: string
-    distributorId: string
-    totalAmount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.SaleStatus
-    saleDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    cancelledAt?: Date | string | null
-    cancelledBy?: string | null
-    cancellationReason?: string | null
-  }
-
-  export type SaleCreateManyCancelledByUserInput = {
-    id?: string
-    invoiceNumber: string
-    distributorId: string
-    totalAmount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.SaleStatus
-    saleDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    cancelledAt?: Date | string | null
-    cancellationReason?: string | null
-  }
-
-  export type PaymentCreateManyCreatedByUserInput = {
-    id?: string
-    saleId: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.PaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type PaymentCreateManyReversedByUserInput = {
-    id?: string
-    saleId: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.PaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type LinePaymentCreateManyCreatedByUserInput = {
-    id?: string
-    lineId: string
-    amount: Decimal | DecimalJsLike | number | string
-    period: string
-    status?: $Enums.LinePaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type LinePaymentCreateManyReversedByUserInput = {
-    id?: string
-    lineId: string
-    amount: Decimal | DecimalJsLike | number | string
-    period: string
-    status?: $Enums.LinePaymentStatus
-    paymentDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type ExpenseCreateManyCreatedByUserInput = {
-    id?: string
-    categoryId: string
-    description: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.ExpenseStatus
-    expenseDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type ExpenseCreateManyReversedByUserInput = {
-    id?: string
-    categoryId: string
-    description: string
-    amount: Decimal | DecimalJsLike | number | string
-    status?: $Enums.ExpenseStatus
-    expenseDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type OwnerWithdrawalCreateManyCreatedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    reason: string
-    status?: $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversedBy?: string | null
-    reversalReason?: string | null
-  }
-
-  export type OwnerWithdrawalCreateManyReversedByUserInput = {
-    id?: string
-    amount: Decimal | DecimalJsLike | number | string
-    reason: string
-    status?: $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: Date | string
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    reversedAt?: Date | string | null
-    reversalReason?: string | null
-  }
-
-  export type CashMovementCreateManyCreatedByUserInput = {
-    id?: string
-    direction: $Enums.CashDirection
-    amount: Decimal | DecimalJsLike | number | string
-    sourceType: $Enums.CashSourceType
-    sourceId?: string | null
-    description?: string | null
-    movementDate?: Date | string
-    createdAt?: Date | string
-  }
-
-  export type CashClosingCreateManyClosedByUserInput = {
-    id?: string
-    closingDate: Date | string
-    openingBalance: Decimal | DecimalJsLike | number | string
-    totalIn: Decimal | DecimalJsLike | number | string
-    totalOut: Decimal | DecimalJsLike | number | string
-    ownerWithdrawals: Decimal | DecimalJsLike | number | string
-    expectedBalance: Decimal | DecimalJsLike | number | string
-    actualBalance: Decimal | DecimalJsLike | number | string
-    difference: Decimal | DecimalJsLike | number | string
-    notes?: string | null
-    closedAt?: Date | string
-  }
-
-  export type AuditLogCreateManyUserInput = {
-    id?: string
-    action: $Enums.AuditAction
-    entityType: string
-    entityId?: string | null
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    ipAddress?: string | null
-    userAgent?: string | null
-    createdAt?: Date | string
-  }
-
-  export type BackupCreateManyCreatedByUserInput = {
-    id?: string
-    fileName: string
-    storagePath: string
-    sizeBytes: bigint | number
-    recordCount: number
-    checksum: string
-    createdAt?: Date | string
-  }
-
-  export type PackageStockUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    package?: PackageUpdateOneRequiredWithoutStocksNestedInput
-    inventoryMovements?: InventoryMovementUpdateManyWithoutPackageStockNestedInput
-  }
-
-  export type PackageStockUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    packageId?: StringFieldUpdateOperationsInput | string
-    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutPackageStockNestedInput
-  }
-
-  export type PackageStockUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    packageId?: StringFieldUpdateOperationsInput | string
-    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InventoryMovementUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: EnumInventoryMovementTypeFieldUpdateOperationsInput | $Enums.InventoryMovementType
-    quantityDelta?: IntFieldUpdateOperationsInput | number
-    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
-    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    packageStock?: PackageStockUpdateOneRequiredWithoutInventoryMovementsNestedInput
-  }
-
-  export type InventoryMovementUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    packageStockId?: StringFieldUpdateOperationsInput | string
-    type?: EnumInventoryMovementTypeFieldUpdateOperationsInput | $Enums.InventoryMovementType
-    quantityDelta?: IntFieldUpdateOperationsInput | number
-    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
-    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InventoryMovementUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    packageStockId?: StringFieldUpdateOperationsInput | string
-    type?: EnumInventoryMovementTypeFieldUpdateOperationsInput | $Enums.InventoryMovementType
-    quantityDelta?: IntFieldUpdateOperationsInput | number
-    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    referenceType?: NullableStringFieldUpdateOperationsInput | string | null
-    referenceId?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SaleUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invoiceNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
-    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-    distributor?: DistributorUpdateOneRequiredWithoutSalesNestedInput
-    cancelledByUser?: UserUpdateOneWithoutSalesCancelledNestedInput
-    items?: SaleItemUpdateManyWithoutSaleNestedInput
-    payments?: PaymentUpdateManyWithoutSaleNestedInput
-  }
-
-  export type SaleUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invoiceNumber?: StringFieldUpdateOperationsInput | string
-    distributorId?: StringFieldUpdateOperationsInput | string
-    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
-    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
-    cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-    items?: SaleItemUncheckedUpdateManyWithoutSaleNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutSaleNestedInput
-  }
-
-  export type SaleUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invoiceNumber?: StringFieldUpdateOperationsInput | string
-    distributorId?: StringFieldUpdateOperationsInput | string
-    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
-    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
-    cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type SaleUpdateWithoutCancelledByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invoiceNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
-    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-    distributor?: DistributorUpdateOneRequiredWithoutSalesNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutSalesCreatedNestedInput
-    items?: SaleItemUpdateManyWithoutSaleNestedInput
-    payments?: PaymentUpdateManyWithoutSaleNestedInput
-  }
-
-  export type SaleUncheckedUpdateWithoutCancelledByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invoiceNumber?: StringFieldUpdateOperationsInput | string
-    distributorId?: StringFieldUpdateOperationsInput | string
-    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
-    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-    items?: SaleItemUncheckedUpdateManyWithoutSaleNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutSaleNestedInput
-  }
-
-  export type SaleUncheckedUpdateManyWithoutCancelledByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    invoiceNumber?: StringFieldUpdateOperationsInput | string
-    distributorId?: StringFieldUpdateOperationsInput | string
-    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
-    saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    sale?: SaleUpdateOneRequiredWithoutPaymentsNestedInput
-    reversedByUser?: UserUpdateOneWithoutPaymentsReversedNestedInput
-  }
-
-  export type PaymentUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    saleId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    saleId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    sale?: SaleUpdateOneRequiredWithoutPaymentsNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutPaymentsCreatedNestedInput
-  }
-
-  export type PaymentUncheckedUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    saleId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PaymentUncheckedUpdateManyWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    saleId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type LinePaymentUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    period?: StringFieldUpdateOperationsInput | string
-    status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    line?: LineUpdateOneRequiredWithoutPaymentsNestedInput
-    reversedByUser?: UserUpdateOneWithoutLinePaymentsReversedNestedInput
-  }
-
-  export type LinePaymentUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lineId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    period?: StringFieldUpdateOperationsInput | string
-    status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type LinePaymentUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lineId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    period?: StringFieldUpdateOperationsInput | string
-    status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type LinePaymentUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    period?: StringFieldUpdateOperationsInput | string
-    status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    line?: LineUpdateOneRequiredWithoutPaymentsNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutLinePaymentsCreatedNestedInput
-  }
-
-  export type LinePaymentUncheckedUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lineId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    period?: StringFieldUpdateOperationsInput | string
-    status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type LinePaymentUncheckedUpdateManyWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lineId?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    period?: StringFieldUpdateOperationsInput | string
-    status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ExpenseUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: ExpenseCategoryUpdateOneRequiredWithoutExpensesNestedInput
-    reversedByUser?: UserUpdateOneWithoutExpensesReversedNestedInput
-  }
-
-  export type ExpenseUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ExpenseUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ExpenseUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: ExpenseCategoryUpdateOneRequiredWithoutExpensesNestedInput
-    createdByUser?: UserUpdateOneRequiredWithoutExpensesCreatedNestedInput
-  }
-
-  export type ExpenseUncheckedUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ExpenseUncheckedUpdateManyWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
-    expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type OwnerWithdrawalUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    reason?: StringFieldUpdateOperationsInput | string
-    status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    reversedByUser?: UserUpdateOneWithoutOwnerWithdrawalsReversedNestedInput
-  }
-
-  export type OwnerWithdrawalUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    reason?: StringFieldUpdateOperationsInput | string
-    status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type OwnerWithdrawalUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    reason?: StringFieldUpdateOperationsInput | string
-    status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type OwnerWithdrawalUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    reason?: StringFieldUpdateOperationsInput | string
-    status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    createdByUser?: UserUpdateOneRequiredWithoutOwnerWithdrawalsCreatedNestedInput
-  }
-
-  export type OwnerWithdrawalUncheckedUpdateWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    reason?: StringFieldUpdateOperationsInput | string
-    status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type OwnerWithdrawalUncheckedUpdateManyWithoutReversedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    reason?: StringFieldUpdateOperationsInput | string
-    status?: EnumOwnerWithdrawalStatusFieldUpdateOperationsInput | $Enums.OwnerWithdrawalStatus
-    withdrawalDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type CashMovementUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    direction?: EnumCashDirectionFieldUpdateOperationsInput | $Enums.CashDirection
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    sourceType?: EnumCashSourceTypeFieldUpdateOperationsInput | $Enums.CashSourceType
-    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CashMovementUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    direction?: EnumCashDirectionFieldUpdateOperationsInput | $Enums.CashDirection
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    sourceType?: EnumCashSourceTypeFieldUpdateOperationsInput | $Enums.CashSourceType
-    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CashMovementUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    direction?: EnumCashDirectionFieldUpdateOperationsInput | $Enums.CashDirection
-    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    sourceType?: EnumCashSourceTypeFieldUpdateOperationsInput | $Enums.CashSourceType
-    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    movementDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CashClosingUpdateWithoutClosedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalIn?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalOut?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ownerWithdrawals?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    expectedBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CashClosingUncheckedUpdateWithoutClosedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalIn?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalOut?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ownerWithdrawals?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    expectedBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CashClosingUncheckedUpdateManyWithoutClosedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    openingBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalIn?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalOut?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ownerWithdrawals?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    expectedBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    actualBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    difference?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    closedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuditLogUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
-    entityType?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuditLogUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
-    entityType?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuditLogUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
-    entityType?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
-    oldValues?: NullableJsonNullValueInput | InputJsonValue
-    newValues?: NullableJsonNullValueInput | InputJsonValue
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BackupUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fileName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
-    sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
-    recordCount?: IntFieldUpdateOperationsInput | number
-    checksum?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BackupUncheckedUpdateWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fileName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
-    sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
-    recordCount?: IntFieldUpdateOperationsInput | number
-    checksum?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BackupUncheckedUpdateManyWithoutCreatedByUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fileName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
-    sizeBytes?: BigIntFieldUpdateOperationsInput | bigint | number
-    recordCount?: IntFieldUpdateOperationsInput | number
-    checksum?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type PackageStockCreateManyPackageInput = {
     id?: string
     unitPrice: Decimal | DecimalJsLike | number | string
     receivedAt: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -36275,9 +29139,9 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdByUser?: UserUpdateOneRequiredWithoutPackageStocksNestedInput
     inventoryMovements?: InventoryMovementUpdateManyWithoutPackageStockNestedInput
   }
 
@@ -36286,7 +29150,7 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inventoryMovements?: InventoryMovementUncheckedUpdateManyWithoutPackageStockNestedInput
@@ -36297,7 +29161,7 @@ export namespace Prisma {
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     receivedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -36340,7 +29204,7 @@ export namespace Prisma {
     referenceType?: string | null
     referenceId?: string | null
     description?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
   }
 
@@ -36352,8 +29216,8 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdByUser?: UserUpdateOneRequiredWithoutInventoryMovementsNestedInput
   }
 
   export type InventoryMovementUncheckedUpdateWithoutPackageStockInput = {
@@ -36364,7 +29228,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -36376,7 +29240,7 @@ export namespace Prisma {
     referenceType?: NullableStringFieldUpdateOperationsInput | string | null
     referenceId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -36387,7 +29251,7 @@ export namespace Prisma {
     status?: $Enums.SaleStatus
     saleDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cancelledAt?: Date | string | null
@@ -36402,12 +29266,12 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledBy?: NullableStringFieldUpdateOperationsInput | string | null
     cancellationReason?: NullableStringFieldUpdateOperationsInput | string | null
-    createdByUser?: UserUpdateOneRequiredWithoutSalesCreatedNestedInput
-    cancelledByUser?: UserUpdateOneWithoutSalesCancelledNestedInput
     items?: SaleItemUpdateManyWithoutSaleNestedInput
     payments?: PaymentUpdateManyWithoutSaleNestedInput
   }
@@ -36419,7 +29283,7 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36436,7 +29300,7 @@ export namespace Prisma {
     status?: EnumSaleStatusFieldUpdateOperationsInput | $Enums.SaleStatus
     saleDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36460,7 +29324,7 @@ export namespace Prisma {
     status?: $Enums.PaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -36503,11 +29367,11 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    createdByUser?: UserUpdateOneRequiredWithoutPaymentsCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutPaymentsReversedNestedInput
   }
 
   export type PaymentUncheckedUpdateWithoutSaleInput = {
@@ -36516,7 +29380,7 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36529,7 +29393,7 @@ export namespace Prisma {
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36543,7 +29407,7 @@ export namespace Prisma {
     status?: $Enums.LinePaymentStatus
     paymentDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     reversedAt?: Date | string | null
     reversedBy?: string | null
@@ -36557,11 +29421,11 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    createdByUser?: UserUpdateOneRequiredWithoutLinePaymentsCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutLinePaymentsReversedNestedInput
   }
 
   export type LinePaymentUncheckedUpdateWithoutLineInput = {
@@ -36571,7 +29435,7 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36585,7 +29449,7 @@ export namespace Prisma {
     status?: EnumLinePaymentStatusFieldUpdateOperationsInput | $Enums.LinePaymentStatus
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36599,7 +29463,7 @@ export namespace Prisma {
     status?: $Enums.ExpenseStatus
     expenseDate?: Date | string
     notes?: string | null
-    createdBy: string
+    createdBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reversedAt?: Date | string | null
@@ -36614,12 +29478,12 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reversedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reversalReason?: NullableStringFieldUpdateOperationsInput | string | null
-    createdByUser?: UserUpdateOneRequiredWithoutExpensesCreatedNestedInput
-    reversedByUser?: UserUpdateOneWithoutExpensesReversedNestedInput
   }
 
   export type ExpenseUncheckedUpdateWithoutCategoryInput = {
@@ -36629,7 +29493,7 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36644,7 +29508,7 @@ export namespace Prisma {
     status?: EnumExpenseStatusFieldUpdateOperationsInput | $Enums.ExpenseStatus
     expenseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: StringFieldUpdateOperationsInput | string
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reversedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

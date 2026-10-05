@@ -49,7 +49,6 @@ export class AuditReadService {
         ? {
             OR: [
               { entityType: { contains: search, mode: 'insensitive' as const } },
-              { user: { email: { contains: search, mode: 'insensitive' as const } } },
               ...(entityIdSearch ? [{ entityId: { equals: entityIdSearch } }] : []),
               { ipAddress: { contains: search, mode: 'insensitive' as const } },
             ],
@@ -63,9 +62,6 @@ export class AuditReadService {
         skip,
         take,
         orderBy: { createdAt: 'desc' },
-        include: {
-          user: { select: { email: true } },
-        },
       }),
       this.prisma.auditLog.count({ where }),
     ]);
@@ -73,7 +69,7 @@ export class AuditReadService {
     const data: AuditLog[] = rows.map((row) => ({
       id: row.id,
       userId: row.userId,
-      userEmail: row.user?.email ?? null,
+      userEmail: null,
       action: row.action,
       entityType: row.entityType,
       entityId: row.entityId,
@@ -91,9 +87,6 @@ export class AuditReadService {
   async findById(id: string): Promise<AuditLog> {
     const row = await this.prisma.auditLog.findUnique({
       where: { id },
-      include: {
-        user: { select: { email: true } },
-      },
     });
     if (!row) {
       throw new NotFoundException({
@@ -105,7 +98,7 @@ export class AuditReadService {
     return {
       id: row.id,
       userId: row.userId,
-      userEmail: row.user?.email ?? null,
+      userEmail: null,
       action: row.action,
       entityType: row.entityType,
       entityId: row.entityId,

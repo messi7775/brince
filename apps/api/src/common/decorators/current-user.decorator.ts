@@ -7,14 +7,11 @@ export interface CurrentUserPayload {
 
 /**
  * @CurrentUser() — يستخرج المستخدم الحالي من request.user
- * (يُضاف بواسطة JwtStrategy في D8-B).
+ * (يُضاف بواسطة SystemUserGuard).
  */
 export const CurrentUser = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext): CurrentUserPayload => {
     const request = ctx.switchToHttp().getRequest<{ user?: CurrentUserPayload }>();
-    if (!request.user) {
-      throw new Error('CurrentUser used without JwtAuthGuard');
-    }
-    return request.user;
+    return request.user ?? { userId: 'system', email: 'system@prince-net.local' };
   },
 );

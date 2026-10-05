@@ -121,15 +121,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  passwordHash: 'passwordHash',
-  tokenVersion: 'tokenVersion',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.PackageScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -432,8 +423,6 @@ exports.CashSourceType = exports.$Enums.CashSourceType = {
 };
 
 exports.AuditAction = exports.$Enums.AuditAction = {
-  LOGIN: 'LOGIN',
-  LOGIN_FAILED: 'LOGIN_FAILED',
   PACKAGE_CREATED: 'PACKAGE_CREATED',
   PACKAGE_UPDATED: 'PACKAGE_UPDATED',
   INVENTORY_ADDED: 'INVENTORY_ADDED',
@@ -482,12 +471,10 @@ exports.AuditAction = exports.$Enums.AuditAction = {
   BACKUP_EXPORTED: 'BACKUP_EXPORTED',
   BACKUP_DELETED: 'BACKUP_DELETED',
   BACKUPS_PURGED: 'BACKUPS_PURGED',
-  SETTINGS_UPDATED: 'SETTINGS_UPDATED',
-  PASSWORD_CHANGED: 'PASSWORD_CHANGED'
+  SETTINGS_UPDATED: 'SETTINGS_UPDATED'
 };
 
 exports.Prisma.ModelName = {
-  User: 'User',
   Package: 'Package',
   PackageStock: 'PackageStock',
   InventoryMovement: 'InventoryMovement',
