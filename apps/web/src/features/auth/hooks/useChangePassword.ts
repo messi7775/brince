@@ -19,7 +19,7 @@ export function useChangePassword() {
     mutationFn: (input: ChangePasswordInput) => changePassword(input),
     onSuccess: () => {
       queryClient.clear();
-      navigate('/login', { replace: true });
+      navigate('/dashboard', { replace: true });
     },
   });
 }

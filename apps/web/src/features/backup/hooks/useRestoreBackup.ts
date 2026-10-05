@@ -9,7 +9,7 @@ export function useRestoreBackup() {
         onSuccess: () => {
             // استبدال كامل للبيانات → إفراغ cache كامل + إعادة تسجيل الدخول
             queryClient.clear();
-            window.location.href = '/login';
+            window.location.href = '/dashboard';
         },
     });
 }

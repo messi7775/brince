@@ -1,7 +1,5 @@
 import { Navigate, Outlet, type RouteObject } from 'react-router-dom';
 import { AuthProvider } from '../features/auth/AuthProvider';
-import { ProtectedRoute } from '../features/auth/ProtectedRoute';
-import { LoginPage } from '../features/auth/pages/LoginPage';
 import { AppLayout } from '../components/layout/AppLayout';
 import { DashboardPage } from '../features/dashboard/pages/DashboardPage';
 import { PackagesPage } from '../features/packages/pages/PackagesPage';
@@ -31,104 +29,92 @@ export const routes: RouteObject[] = [
       </AuthProvider>
     ),
     children: [
-      // ─── Public ───
       {
-        path: '/login',
-        element: <LoginPage />,
-      },
-
-      // ─── Protected ───
-      {
-        element: <ProtectedRoute />,
+        element: <AppLayout />,
         children: [
           {
-            element: <AppLayout />,
-            children: [
-              {
-                path: '/',
-                element: <Navigate to="/dashboard" replace />,
-              },
-              {
-                path: '/dashboard',
-                element: <DashboardPage />,
-              },
-              {
-                path: '/packages',
-                element: <PackagesPage />,
-              },
-              {
-                path: '/inventory',
-                element: <InventoryPage />,
-              },
-              {
-                path: '/inventory/:packageId',
-                element: <PackageInventoryPage />,
-              },
-              {
-                path: '/distributors',
-                element: <DistributorsPage />,
-              },
-              {
-                path: '/distributors/:id',
-                element: <DistributorDetailsPage />,
-              },
-              {
-                path: '/sales',
-                element: <SalesPage />,
-              },
-              {
-                path: '/sales/:id',
-                element: <SaleDetailsPage />,
-              },
-              {
-                path: '/cash',
-                element: <CashPage />,
-              },
-              {
-                path: '/lines',
-                element: <LinesPage />,
-              },
-              {
-                path: '/lines/:id',
-                element: <LineDetailsPage />,
-              },
-              {
-                path: '/line-payments',
-                element: <Navigate to="/lines" replace />,
-              },
-              {
-                path: '/expense-categories',
-                element: <ExpenseCategoriesPage />,
-              },
-              {
-                path: '/expenses',
-                element: <ExpensesPage />,
-              },
-              {
-                path: '/owner-withdrawals',
-                element: <OwnerWithdrawalsPage />,
-              },
-              {
-                path: '/reports',
-                element: <ReportsPage />,
-              },
-              {
-                path: '/search',
-                element: <SearchPage />,
-              },
-              {
-                path: '/audit-log',
-                element: <AuditLogsPage />,
-              },
-              {
-                path: '/backup',
-                element: <BackupPage />,
-              },
-              {
-                path: '/settings',
-                element: <SettingsPage />,
-              },
-            ],
+            path: '/',
+            element: <Navigate to="/dashboard" replace />,
+          },
+          {
+            path: '/dashboard',
+            element: <DashboardPage />,
+          },
+          {
+            path: '/packages',
+            element: <PackagesPage />,
+          },
+          {
+            path: '/inventory',
+            element: <InventoryPage />,
+          },
+          {
+            path: '/inventory/:packageId',
+            element: <PackageInventoryPage />,
+          },
+          {
+            path: '/distributors',
+            element: <DistributorsPage />,
+          },
+          {
+            path: '/distributors/:id',
+            element: <DistributorDetailsPage />,
+          },
+          {
+            path: '/sales',
+            element: <SalesPage />,
+          },
+          {
+            path: '/sales/:id',
+            element: <SaleDetailsPage />,
+          },
+          {
+            path: '/cash',
+            element: <CashPage />,
+          },
+          {
+            path: '/lines',
+            element: <LinesPage />,
+          },
+          {
+            path: '/lines/:id',
+            element: <LineDetailsPage />,
+          },
+          {
+            path: '/line-payments',
+            element: <Navigate to="/lines" replace />,
+          },
+          {
+            path: '/expense-categories',
+            element: <ExpenseCategoriesPage />,
+          },
+          {
+            path: '/expenses',
+            element: <ExpensesPage />,
+          },
+          {
+            path: '/owner-withdrawals',
+            element: <OwnerWithdrawalsPage />,
+          },
+          {
+            path: '/reports',
+            element: <ReportsPage />,
+          },
+          {
+            path: '/search',
+            element: <SearchPage />,
+          },
+          {
+            path: '/audit-log',
+            element: <AuditLogsPage />,
+          },
+          {
+            path: '/backup',
+            element: <BackupPage />,
+          },
+          {
+            path: '/settings',
+            element: <SettingsPage />,
           },
         ],
       },

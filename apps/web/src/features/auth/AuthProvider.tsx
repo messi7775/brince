@@ -42,7 +42,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     mutationFn: logoutApi,
     onSuccess: () => {
       queryClient.clear();
-      navigate('/login', { replace: true });
+      navigate('/dashboard', { replace: true });
     },
   });
 
