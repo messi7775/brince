@@ -195,7 +195,6 @@ export class CashClosingsService {
         skip,
         take,
         orderBy: { closingDate: order },
-        include: { closedByUser: { select: { email: true } } },
       }),
       this.prisma.cashClosing.count({ where }),
     ]);
@@ -212,7 +211,7 @@ export class CashClosingsService {
       difference: toMoneyStringRequired(row.difference),
       notes: row.notes,
       closedBy: row.closedBy,
-      closedByEmail: row.closedByUser?.email ?? null,
+      closedByEmail: null,
       closedAt: row.closedAt.toISOString(),
     }));
 
@@ -311,7 +310,6 @@ export class CashClosingsService {
   async findById(id: string): Promise<CashClosing> {
     const row = await this.prisma.cashClosing.findUnique({
       where: { id },
-      include: { closedByUser: { select: { email: true } } },
     });
     if (!row) {
       throw new NotFoundException({
@@ -332,7 +330,7 @@ export class CashClosingsService {
       difference: toMoneyStringRequired(row.difference),
       notes: row.notes,
       closedBy: row.closedBy,
-      closedByEmail: row.closedByUser?.email ?? null,
+      closedByEmail: null,
       closedAt: row.closedAt.toISOString(),
     };
   }

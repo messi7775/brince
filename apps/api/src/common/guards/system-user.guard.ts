@@ -2,9 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
-  Logger,
 } from '@nestjs/common';
-import { PrismaService } from '../../prisma/prisma.service';
 
 interface SystemUser {
   userId: string;
@@ -14,37 +12,24 @@ interface SystemUser {
 /**
  * SystemUserGuard — لا يتطلب مصادقة.
  *
- * يحلّ المستخدم الإداري الأول من قاعدة البيانات (المُنشأ عبر الـ seed)
- * ويضعه في request.user لاستخدامه في سجلات التدقيق وحقول createdBy/cancelledBy.
- * النتيجة تُخزَّن مؤقتًا بعد أول طلب (لا استعلام DB متكرر).
+ * لا يستعلم قاعدة البيانات — يضع مستخدم نظام ثابت
+ * لاستخدامه في سجلات التدقيق وحقول createdBy/cancelledBy.
  *
  * جميع المسارات عامة — لا JWT، لا CSRF، لا تسجيل دخول.
  */
 @Injectable()
 export class SystemUserGuard implements CanActivate {
-  private readonly logger = new Logger(SystemUserGuard.name);
-  private cached: SystemUser | null = null;
+  private static readonly SYSTEM_USER: SystemUser = {
+    userId: 'system',
+    email: 'system@prince-net.local',
+  };
 
-  constructor(private readonly prisma: PrismaService) {}
-
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest<{
       user?: SystemUser;
     }>();
 
-    if (!this.cached) {
-      const user = await this.prisma.user.findFirst({
-        orderBy: { createdAt: 'asc' },
-        select: { id: true, email: true },
-      });
-      if (user) {
-        this.cached = { userId: user.id, email: user.email };
-      } else {
-        this.logger.warn('No user found in database — audit logs will be skipped');
-      }
-    }
-
-    request.user = this.cached ?? undefined;
+    request.user = SystemUserGuard.SYSTEM_USER;
     return true;
   }
 }

@@ -16,9 +16,7 @@ const SNAPSHOT_VERSION = 2;
  *  - INSERT_ORDER   = ترتيب إدراج حسب تبعيات FK (الأب قبل الابن)
  *  - WIPE_ORDER     = عكس INSERT_ORDER (الابن قبل الأب)
  *
- * ملاحظة: جدول backups نفسه لا يُمسّ (تاريخ النسخ محفوظ)،
- * وجدول users يُدمج بـ upsert (لا يُحذف) لأنه مرجع FK لـ backups
- * ولأن حساب الجلسة الحالية يجب أن يبقى صالحًا بعد الاستعادة.
+ * ملاحظة: جدول backups نفسه لا يُمسّ (تاريخ النسخ محفوظ).
  */
 const INSERT_ORDER = [
   'packages',
@@ -70,7 +68,7 @@ interface SnapshotDelegate {
  * اسم خاصية الـ delegate على PrismaClient/TransactionClient —
  * أسماء النماذج مفردة (prisma.sale وليس prisma.sales).
  */
-const PRISMA_DELEGATES: Record<SnapshotModel | 'users', string> = {
+const PRISMA_DELEGATES: Record<SnapshotModel, string> = {
   packages: 'package',
   distributors: 'distributor',
   settings: 'settings',
@@ -87,7 +85,6 @@ const PRISMA_DELEGATES: Record<SnapshotModel | 'users', string> = {
   cashMovements: 'cashMovement',
   cashClosings: 'cashClosing',
   auditLogs: 'auditLog',
-  users: 'user',
 };
 
 interface SnapshotFile {
@@ -136,9 +133,6 @@ export class BackupsService {
         tables[model] = rows.map((row) => this.serializeRow(model, row));
         recordCount += rows.length;
       }
-      const users = await delegates.user.findMany();
-      tables.users = users.map((row) => this.serializeRow('users', row));
-      recordCount += users.length;
       return { tables, recordCount };
     }, { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead, timeout: 120_000 });
 
@@ -379,19 +373,6 @@ export class BackupsService {
           await delegates[PRISMA_DELEGATES[model]].deleteMany();
         }
 
-        // users — دمج بـ upsert: لا يُحذف مستخدم (مرجع FK لـ backups
-        // وحساب الجلسة الحالية يجب أن يبقى صالحًا)
-        const userRows = snapshot.tables.users ?? [];
-        for (const row of userRows) {
-          const data = this.deserializeRow('users' as never, row);
-          const id = data.id as string;
-          await delegates[PRISMA_DELEGATES.users].upsert({
-            where: { id },
-            create: data,
-            update: data,
-          });
-        }
-
         // إعادة الإدراج بترتيب التبعيات
         for (const model of INSERT_ORDER) {
           const rows = snapshot.tables[model];
@@ -434,7 +415,7 @@ export class BackupsService {
    * Date → ISO string، Decimal → string، BigInt → string.
    */
   private serializeRow(
-    model: SnapshotModel | 'users',
+    model: SnapshotModel,
     row: Record<string, unknown>,
   ): Record<string, unknown> {
     const fields = this.modelFields(model);
@@ -473,7 +454,7 @@ export class BackupsService {
    * ISO string → Date، string → Decimal/BigInt.
    */
   private deserializeRow(
-    model: SnapshotModel | 'users',
+    model: SnapshotModel,
     row: Record<string, unknown>,
   ): Record<string, unknown> {
     const fields = this.modelFields(model);
@@ -507,12 +488,12 @@ export class BackupsService {
     return out;
   }
 
-  private modelFields(model: SnapshotModel | 'users'): {
+  private modelFields(model: SnapshotModel): {
     name: string;
     kind: string;
     type: string;
   }[] {
-    const modelName = model === 'users' ? 'User' : DMMF_MODEL_NAMES[model];
+    const modelName = DMMF_MODEL_NAMES[model];
     const modelMeta = Prisma.dmmf.datamodel.models.find(
       (m) => m.name === modelName,
     );
@@ -546,7 +527,7 @@ export class BackupsService {
     sizeBytes: bigint;
     recordCount: number;
     checksum: string;
-    createdBy: string;
+    createdBy: string | null;
     createdAt: Date;
   }): Backup {
     return {

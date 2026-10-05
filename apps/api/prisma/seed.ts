@@ -1,6 +1,5 @@
 import { PrismaClient } from '../src/generated/prisma';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { hash } from '@node-rs/argon2';
 import {
     DEFAULT_PACKAGES,
     DEFAULT_SETTINGS,
@@ -18,34 +17,13 @@ function requireEnv(name: string): string {
 // ─── Main ─────────────────────────────────────────────────────
 async function main(): Promise<void> {
     const connectionString = requireEnv('DATABASE_URL');
-    const adminEmail = requireEnv('ADMIN_EMAIL').trim().toLowerCase();
-    const adminPassword = requireEnv('ADMIN_PASSWORD');
-
-    if (adminPassword.length < 12) {
-        throw new Error('ADMIN_PASSWORD must be at least 12 characters');
-    }
+    const adminEmail = process.env.ADMIN_EMAIL?.trim() || 'admin@prince-net.local';
 
     const adapter = new PrismaPg({ connectionString });
     const prisma = new PrismaClient({ adapter });
 
     try {
-        // ─── Admin user ───
-        const passwordHash = await hash(adminPassword);
-
-        const user = await prisma.user.upsert({
-            where: { email: adminEmail },
-            update: { passwordHash },
-            create: {
-                email: adminEmail,
-                passwordHash,
-            },
-        });
-
-        console.log(`✅ Admin user ready: ${user.email}`);
-
         // ─── Packages ───
-        // الأسعار محوّلة من MoneyString إلى Prisma.Decimal
-        // بدون Number() / parseFloat() / toFixed().
         for (const pkg of DEFAULT_PACKAGES) {
             await prisma.package.upsert({
                 where: { name: pkg.name },
@@ -63,8 +41,6 @@ async function main(): Promise<void> {
         console.log(`✅ Packages seeded: ${DEFAULT_PACKAGES.length}`);
 
         // ─── Settings (singleton) ───
-        // adminEmail: البريد الإداري الظاهر في الفواتير/المخرجات.
-        // منفصل عن users.email (بريد تسجيل الدخول).
         await prisma.settings.upsert({
             where: { singletonKey: 'main' },
             update: {},

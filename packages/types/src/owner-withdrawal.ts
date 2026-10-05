@@ -9,7 +9,7 @@ export interface OwnerWithdrawal {
   status: OwnerWithdrawalStatus;
   withdrawalDate: ISODateString;
   notes: string | null;
-  createdBy: UUID;
+  createdBy: UUID | null;
   createdAt: ISODateString;
   reversedAt: ISODateString | null;
   reversedBy: UUID | null;
