@@ -16,7 +16,6 @@ interface ProvidersProps {
  * - TooltipProvider (Radix)
  *
  * في D8-I:
- * - AuthProvider (يُضاف هنا)
  */
 export function Providers({ children }: ProvidersProps) {
   return (

@@ -1,5 +1,4 @@
 import { Navigate, Outlet, type RouteObject } from 'react-router-dom';
-import { AuthProvider } from '../features/auth/AuthProvider';
 import { AppLayout } from '../components/layout/AppLayout';
 import { DashboardPage } from '../features/dashboard/pages/DashboardPage';
 import { PackagesPage } from '../features/packages/pages/PackagesPage';
@@ -23,11 +22,7 @@ import { SettingsPage } from '../features/settings/pages/SettingsPage';
 
 export const routes: RouteObject[] = [
   {
-    element: (
-      <AuthProvider>
-        <Outlet />
-      </AuthProvider>
-    ),
+    element: <Outlet />,
     children: [
       {
         element: <AppLayout />,

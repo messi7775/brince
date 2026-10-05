@@ -1,10 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
-import { CsrfService } from './csrf/csrf.service';
 
 async function bootstrap(): Promise<void> {
     const logger = new Logger('Bootstrap');
@@ -14,25 +12,17 @@ async function bootstrap(): Promise<void> {
     });
 
     const config = app.get(ConfigService);
-    const csrf = app.get(CsrfService);
 
     const port = config.get<number>('PORT', 3000);
     const apiPrefix = config.get<string>('API_PREFIX', 'api/v1');
     const corsOriginRaw = config.get<string>('CORS_ORIGIN', '');
-    // When CORS_ORIGIN is empty (e.g. Vercel same-origin via services),
-    // reflect the request origin so the API works on any domain.
+    // When CORS_ORIGIN is empty, reflect the request origin so the API works on any domain.
     const corsOrigin: string | true = corsOriginRaw || true;
 
     // Security headers
     app.use(helmet());
 
-    // Cookies (يجب أن يسبق CSRF middleware)
-    app.use(cookieParser());
-
-    // CSRF — csrf-csrf middleware (double-submit cookie)
-    app.use(csrf.protection);
-
-    // CORS — يدعم HttpOnly Cookies
+    // CORS
     app.enableCors({
         origin: corsOrigin,
         credentials: true,

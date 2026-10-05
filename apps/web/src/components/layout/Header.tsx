@@ -1,17 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Menu, LogOut, User } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '../ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
 import { ThemeToggle } from './ThemeToggle';
 import { Breadcrumbs } from '../navigation/Breadcrumbs';
-import { useAuth } from '../../features/auth/hooks/useAuth';
 import { NotificationCenter } from '../../features/notifications/components/NotificationCenter';
 
 interface HeaderProps {
@@ -19,8 +10,6 @@ interface HeaderProps {
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
-  const { user, logout } = useAuth();
-
   return (
     <header className="sticky top-0 z-40 h-16 border-b bg-card">
       <div className="flex h-full items-center justify-between gap-4 px-4">
@@ -45,36 +34,10 @@ export function Header({ onMenuClick }: HeaderProps) {
           <Breadcrumbs className="ms-4" />
         </div>
 
-        {/* End: Theme + User */}
+        {/* End: Theme + Notifications */}
         <div className="flex items-center gap-2 shrink-0">
           <NotificationCenter />
           <ThemeToggle />
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="قائمة المستخدم"
-              >
-                <User className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>
-                <div className="flex flex-col">
-                  <span dir="ltr" className="text-sm font-medium ltr">
-                    {user?.email ?? 'مستخدم'}
-                  </span>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={logout}>
-                <LogOut className="me-2 h-4 w-4" />
-                <span>تسجيل الخروج</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
       </div>
     </header>
