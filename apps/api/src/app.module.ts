@@ -6,9 +6,6 @@ import { APP_GUARD, APP_FILTER } from '@nestjs/core';
 import { PrismaModule } from './prisma/prisma.module';
 import { CommonModule } from './common/common.module';
 import { AuditModule } from './audit/audit.module';
-import { CsrfModule } from './csrf/csrf.module';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
 import { PackagesModule } from './packages/packages.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { DistributorsModule } from './distributors/distributors.module';
@@ -29,7 +26,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { HealthModule } from './health/health.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { validateEnv } from './config/env.validation';
-import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
+import { SystemUserGuard } from './common/guards/system-user.guard';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 @Module({
@@ -53,9 +50,6 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
         PrismaModule,
         CommonModule,
         AuditModule,
-        CsrfModule,
-        UsersModule,
-        AuthModule,
         PackagesModule,
         InventoryModule,
         DistributorsModule,
@@ -84,7 +78,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
         },
         {
             provide: APP_GUARD,
-            useClass: JwtAuthGuard,
+            useClass: SystemUserGuard,
         },
         {
             provide: APP_FILTER,

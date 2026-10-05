@@ -1,6 +1,4 @@
-import { ActivityTimeline } from '../../../components/activity/ActivityTimeline';
-import { useAuth } from '../../auth/hooks/useAuth';
-import { Settings as SettingsIcon, Shield } from 'lucide-react';
+import { Settings as SettingsIcon } from 'lucide-react';
 import type { UpdateSettingsInput } from '@prince-net/validation';
 import { PageHeader } from '../../../components/layout/PageHeader';
 import {
@@ -16,12 +14,10 @@ import { useToast } from '../../../components/ui/use-toast';
 import { useSettings } from '../hooks/useSettings';
 import { useUpdateSettings } from '../hooks/useUpdateSettings';
 import { SettingsForm } from '../components/SettingsForm';
-import { ChangePasswordForm } from '../components/ChangePasswordForm';
 import { ApiClientError } from '../../../lib/api-client';
 
 export function SettingsPage() {
     const { toast } = useToast();
-    const { user } = useAuth();
 
     const settingsQuery = useSettings();
     const updateMutation = useUpdateSettings();
@@ -42,65 +38,41 @@ export function SettingsPage() {
     };
 
     return (
-        <div className= "space-y-6" >
-        <PageHeader
-        title="الإعدادات"
-    description = "إعدادات النظام وكلمة المرور"
-        />
+        <div className="space-y-6">
+            <PageHeader title="الإعدادات" description="إعدادات النظام" />
 
-    {/* System Settings */ }
-        < Card >
-        <CardHeader>
-        <CardTitle className="text-base flex items-center gap-2" >
-            <SettingsIcon className="h-4 w-4" />
-                إعدادات النظام
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-base flex items-center gap-2">
+                        <SettingsIcon className="h-4 w-4" />
+                        إعدادات النظام
                     </CardTitle>
                     <CardDescription>
-            هذه الإعدادات تُطبَّق على كل النظام وتظهر في الفواتير والمخرجات.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-    {
-        settingsQuery.isLoading ? (
-            <LoadingState />
-        ) : settingsQuery.isError || !settingsQuery.data ? (
-            <ErrorState
-              title= "تعذّر تحميل الإعدادات"
-              message = {
-            settingsQuery.error instanceof Error
-                ? settingsQuery.error.message
-                : 'حدث خطأ'
-        }
-        onRetry = {() => settingsQuery.refetch()
-    }
-            />
-          ) : (
-        <SettingsForm
-              settings= { settingsQuery.data }
-    onSubmit = { handleSettingsSubmit }
-    isSubmitting = { updateMutation.isPending }
-        />
-          )
-}
-</CardContent>
-    </Card>
-
-{/* Change Password */ }
-<Card>
-    <CardHeader>
-    <CardTitle className="text-base flex items-center gap-2" >
-        <Shield className="h-4 w-4" />
-            تغيير كلمة المرور
-                </CardTitle>
-                <CardDescription>
-            يجب إدخال كلمة المرور الحالية للتحقق.
-          </CardDescription>
-    </CardHeader>
-    < CardContent >
-    <ChangePasswordForm />
-    </CardContent>
-    </Card>
-    {user && <ActivityTimeline userId={user.id} title="نشاط المستخدم" />}
-    </div>
-  );
+                        هذه الإعدادات تُطبَّق على كل النظام وتظهر في الفواتير والمخرجات.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {settingsQuery.isLoading ? (
+                        <LoadingState />
+                    ) : settingsQuery.isError || !settingsQuery.data ? (
+                        <ErrorState
+                            title="تعذّر تحميل الإعدادات"
+                            message={
+                                settingsQuery.error instanceof Error
+                                    ? settingsQuery.error.message
+                                    : 'حدث خطأ'
+                            }
+                            onRetry={() => settingsQuery.refetch()}
+                        />
+                    ) : (
+                        <SettingsForm
+                            settings={settingsQuery.data}
+                            onSubmit={handleSettingsSubmit}
+                            isSubmitting={updateMutation.isPending}
+                        />
+                    )}
+                </CardContent>
+            </Card>
+        </div>
+    );
 }
